@@ -60,7 +60,7 @@ class FacebookBot {
 
         for (let messageIndex = 0; messageIndex < messages.length; messageIndex++) {
             let message = messages[messageIndex];
-
+			console.log('message.type'+message.type);
             switch (message.type) {
                 //message.type 0 means text message
                 case 0:
@@ -233,7 +233,8 @@ class FacebookBot {
     getEventText(event) {
         if (event.message) {
             if (event.message.quick_reply && event.message.quick_reply.payload) {
-                return event.message.quick_reply.payload;
+                console.log('event.message.quick_reply.payload = ' +event.message.quick_reply.payload);
+				return event.message.quick_reply.payload;
             }
 
             if (event.message.text) {
