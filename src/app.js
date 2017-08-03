@@ -178,7 +178,7 @@ class FacebookBot {
                         // "imageUrl": "http://example.com/image.jpg"
                         facebookMessage.attachment = {type: "image"};
                         facebookMessage.attachment.payload = {url: message.imageUrl};
-
+						console.log('message.imageUrl=' +message.imageUrl);
                         facebookMessages.push(facebookMessage);
                     }
 
@@ -237,6 +237,7 @@ class FacebookBot {
             }
 
             if (event.message.text) {
+				console.log('event.message.text = ' +event.message.text);
                 return event.message.text;
             }
         }
