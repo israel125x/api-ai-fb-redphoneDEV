@@ -232,7 +232,11 @@ class FacebookBot {
     //which webhook event
     getEventText(event) {
         if (event.message) {
+			if(event.messageobj.type){
+			console.log('event.messageobj.type '+ JSON.stringify(event.messageobj.type);	
+			}
             if (event.message.quick_reply && event.message.quick_reply.payload) {
+				console.log('event.message.quick_reply.payload= '+ event.message.quick_reply.payload);
                 return event.message.quick_reply.payload;
             }
 
@@ -269,7 +273,7 @@ class FacebookBot {
     processFacebookEvent(event) {
         const sender = event.sender.id.toString();
         const eventObject = this.getFacebookEvent(event);
-
+			
         if (eventObject) {
 
             // Handle a text message from this sender
