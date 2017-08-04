@@ -238,6 +238,7 @@ class FacebookBot {
             }
 
             if (event.message.text) {
+				console.log('event.messageobj.type ='+ event.messageobj.type);
                 return event.message.text;
             }
         }
