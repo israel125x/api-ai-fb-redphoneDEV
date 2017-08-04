@@ -233,15 +233,18 @@ class FacebookBot {
     getEventText(event) {
         if (event.message) {
             if (event.message.quick_reply && event.message.quick_reply.payload) {
-                return event.message.quick_reply.payload;
+                console.log('event.message = true');
+				return event.message.quick_reply.payload;
             }
 
             if (event.message.text) {
-                return event.message.text;
+                console.log('event.message.text = true');
+				return event.message.text;
             }
         }
 
         if (event.postback && event.postback.payload) {
+			console.log('event.postback && event.postback.payload = true');
             return event.postback.payload;
         }
 
