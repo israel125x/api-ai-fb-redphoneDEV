@@ -232,8 +232,6 @@ class FacebookBot {
     //which webhook event
     getEventText(event) {
         if (event.message) {
-			if(event.messageobj.type){
-			}
             if (event.message.quick_reply && event.message.quick_reply.payload) {
 				console.log('event.message.quick_reply.payload= '+ event.message.quick_reply.payload);
                 return event.message.quick_reply.payload;
