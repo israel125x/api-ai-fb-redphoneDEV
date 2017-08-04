@@ -247,7 +247,7 @@ class FacebookBot {
 			console.log('event.postback && event.postback.payload = true');
             return event.postback.payload;
         }
-
+		console.log('return null');
         return null;
 
     }
