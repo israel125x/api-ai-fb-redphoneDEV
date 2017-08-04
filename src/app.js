@@ -292,18 +292,21 @@ class FacebookBot {
     }
 
     processMessageEvent(event) {
-		console.log('event.messageobj.type = ' +event.messageobj.type);
+		console.log('inicio  processMessageEvent');
+		if (event){
+			console.log('event.messageobj.type= ' +event.messageobj.type);
+		}
         const sender = event.sender.id.toString();
         const text = this.getEventText(event);
 
         if (text) {
-
+			console.log("Text", text);
             // Handle a text message from this sender
             if (!this.sessionIds.has(sender)) {
                 this.sessionIds.set(sender, uuid.v4());
             }
 
-            console.log("Text", text);
+            
             //send user's text to api.ai service
             let apiaiRequest = this.apiAiService.textRequest(text,
                 {
