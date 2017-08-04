@@ -60,7 +60,7 @@ class FacebookBot {
 
         for (let messageIndex = 0; messageIndex < messages.length; messageIndex++) {
             let message = messages[messageIndex];
-			console.log('message.type: '+message.type);
+
             switch (message.type) {
                 //message.type 0 means text message
                 case 0:
@@ -178,7 +178,7 @@ class FacebookBot {
                         // "imageUrl": "http://example.com/image.jpg"
                         facebookMessage.attachment = {type: "image"};
                         facebookMessage.attachment.payload = {url: message.imageUrl};
-						console.log('message.imageUrl=' +message.imageUrl);
+
                         facebookMessages.push(facebookMessage);
                     }
 
@@ -233,12 +233,10 @@ class FacebookBot {
     getEventText(event) {
         if (event.message) {
             if (event.message.quick_reply && event.message.quick_reply.payload) {
-                console.log('event.message.quick_reply.payload = ' +event.message.quick_reply.payload);
-				return event.message.quick_reply.payload;
+                return event.message.quick_reply.payload;
             }
 
             if (event.message.text) {
-				console.log('event.message.text = ' +event.message.text);
                 return event.message.text;
             }
         }
@@ -292,21 +290,17 @@ class FacebookBot {
     }
 
     processMessageEvent(event) {
-		console.log('inicio  processMessageEvent');
-		if (event){
-			console.log('event.messageobj.type= ' +event.messageobj.type);
-		}
         const sender = event.sender.id.toString();
         const text = this.getEventText(event);
 
         if (text) {
-			console.log("Text", text);
+
             // Handle a text message from this sender
             if (!this.sessionIds.has(sender)) {
                 this.sessionIds.set(sender, uuid.v4());
             }
 
-            
+            console.log("Text", text);
             //send user's text to api.ai service
             let apiaiRequest = this.apiAiService.textRequest(text,
                 {
@@ -516,7 +510,7 @@ app.post('/webhook/', (req, res) => {
                 if (messaging_events) {
                     messaging_events.forEach((event) => {
                         if (event.message && !event.message.is_echo) {
-							
+
                             if (event.message.attachments) {
                                 let locations = event.message.attachments.filter(a => a.type === "location");
 
