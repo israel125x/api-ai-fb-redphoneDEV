@@ -234,7 +234,6 @@ class FacebookBot {
         if (event.message) {
             if (event.message.quick_reply && event.message.quick_reply.payload) {
                 console.log('event.message.quick_reply.payload = ' +event.message.quick_reply.payload);
-				console.log('event.messageobj.type = ' +event.messageobj.type);
 				return event.message.quick_reply.payload;
             }
 
@@ -293,6 +292,7 @@ class FacebookBot {
     }
 
     processMessageEvent(event) {
+		console.log('event.messageobj.type = ' +event.messageobj.type);
         const sender = event.sender.id.toString();
         const text = this.getEventText(event);
 
@@ -513,7 +513,7 @@ app.post('/webhook/', (req, res) => {
                 if (messaging_events) {
                     messaging_events.forEach((event) => {
                         if (event.message && !event.message.is_echo) {
-
+							
                             if (event.message.attachments) {
                                 let locations = event.message.attachments.filter(a => a.type === "location");
 
