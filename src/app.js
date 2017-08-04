@@ -247,6 +247,10 @@ class FacebookBot {
 			console.log('event.postback && event.postback.payload = true');
             return event.postback.payload;
         }
+		if (event.message.url) {
+			console.log('event.message.url = true');
+            return event.postback.payload;
+        }
 		console.log('return null');
         return null;
 
