@@ -247,8 +247,8 @@ class FacebookBot {
 			console.log('event.postback && event.postback.payload = true');
             return event.postback.payload;
         }
-		if (event.message.attachment.payload) {
-			console.log('event.attachment.payload = true');
+		if (event.messageobj.type=='image') {
+			console.log('event.messageobj.type==image');
             return null;
         }
 		console.log('return null');
