@@ -60,7 +60,7 @@ class FacebookBot {
 
         for (let messageIndex = 0; messageIndex < messages.length; messageIndex++) {
             let message = messages[messageIndex];
-
+			console.log('message.type: '+message.type);
             switch (message.type) {
                 //message.type 0 means text message
                 case 0:
@@ -69,7 +69,7 @@ class FacebookBot {
                     if (message.speech) {
 
                         let splittedText = this.splitResponse(message.speech);
-
+						console.log('message.speech: '+message.speech);	
                         splittedText.forEach(s => {
                             facebookMessages.push({text: s});
                         });
@@ -154,6 +154,7 @@ class FacebookBot {
                         let facebookMessage = {};
 
                         facebookMessage.text = message.title ? message.title : 'Choose an item';
+						console.log('facebookMessage.text: '+facebookMessage.text);
                         facebookMessage.quick_replies = [];
 
                         message.replies.forEach((r) => {
