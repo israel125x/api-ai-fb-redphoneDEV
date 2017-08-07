@@ -17,6 +17,7 @@ const FB_TEXT_LIMIT = 640;
 
 const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
 const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
+var flagCOMO = false;
 
 class FacebookBot {
     constructor() {
@@ -54,7 +55,7 @@ class FacebookBot {
             });
         }
     }
-	var flagCOMO = false;	
+		
     doRichContentResponse(sender, messages) {
         let facebookMessages = []; // array with result messages
 		
