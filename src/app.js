@@ -54,10 +54,10 @@ class FacebookBot {
             });
         }
     }
-
+	var flagCOMO = false;	
     doRichContentResponse(sender, messages) {
         let facebookMessages = []; // array with result messages
-
+		
         for (let messageIndex = 0; messageIndex < messages.length; messageIndex++) {
             let message = messages[messageIndex];
 			console.log('message.type: '+message.type);
@@ -69,7 +69,11 @@ class FacebookBot {
                     if (message.speech) {
 
                         let splittedText = this.splitResponse(message.speech);
-						console.log('message.speech: '+message.speech);	
+						console.log('message.speech: '+message.speech);
+						if (message.speech==¿Cómo?){
+						flagCOMO=true;	
+						}
+							
                         splittedText.forEach(s => {
                             facebookMessages.push({text: s});
                         });
@@ -232,6 +236,7 @@ class FacebookBot {
 
     //which webhook event
     getEventText(event) {
+		console.log('flagCOMO ='+flagCOMO);
         if (event.message) {
             if (event.message.quick_reply && event.message.quick_reply.payload) {
                 console.log('event.message = true');
