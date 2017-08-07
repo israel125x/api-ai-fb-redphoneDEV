@@ -239,6 +239,9 @@ class FacebookBot {
 
             if (event.message.text) {
                 console.log('event.message.text = true');
+				if(event.message.text=='a'){
+				return 'b';
+				}
 				return event.message.text;
             }
         }
