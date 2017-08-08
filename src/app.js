@@ -71,7 +71,7 @@ class FacebookBot {
 
                         let splittedText = this.splitResponse(message.speech);
 						console.log('message.speech: '+message.speech);
-						if (message.speech==¿Cómo?){
+						if (message.speech=='¿Cómo?'){
 						flagCOMO=true;	
 						}
 							
