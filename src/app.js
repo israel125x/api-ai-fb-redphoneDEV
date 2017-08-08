@@ -17,7 +17,7 @@ const FB_TEXT_LIMIT = 640;
 
 const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
 const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
-var flagCOMO = false;
+var flagNombre = false;
 
 class FacebookBot {
     constructor() {
@@ -71,8 +71,8 @@ class FacebookBot {
 
                         let splittedText = this.splitResponse(message.speech);
 						console.log('message.speech: '+message.speech);
-						if (message.speech=='¿Cómo?'){
-						flagCOMO=true;	
+						if (message.speech=='Me indicas tú nombre completo, por favor'){
+						flagNombre=true;	
 						}
 							
                         splittedText.forEach(s => {
@@ -237,7 +237,7 @@ class FacebookBot {
 
     //which webhook event
     getEventText(event) {
-		console.log('flagCOMO ='+flagCOMO);
+		console.log('flagNombre ='+flagNombre);
         if (event.message) {
             if (event.message.quick_reply && event.message.quick_reply.payload) {
                 console.log('event.message = true');
@@ -246,8 +246,12 @@ class FacebookBot {
 
             if (event.message.text) {
                 console.log('event.message.text = true');
-				if(event.message.text=='Registrarse'){
-				return 'Alta';
+					if(event.message.text=='Registrarse'){
+					return 'Alta';
+				}
+				if(flagNombre==true){
+					console.log('nombre a registrar en DB: '+event.message.text);
+					flagNombre=false;
 				}
 				return event.message.text;
             }
