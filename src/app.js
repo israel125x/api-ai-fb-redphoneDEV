@@ -56,7 +56,29 @@ class FacebookBot {
         }
     }
 		
-    doRichContentResponse(sender, messages) {
+    var config = {
+    apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
+    authDomain: "turnosmovil-a576d.firebaseapp.com",
+    databaseURL: "https://turnosmovil-a576d.firebaseio.com",
+    projectId: "turnosmovil-a576d",
+    storageBucket: "turnosmovil-a576d.appspot.com",
+    messagingSenderId: "706329874359"
+  };
+function initfirebase (){
+  //
+  //firebase.initializeApp(config);
+  // Initialize the default app
+var defaultApp = admin.initializeApp(config);
+console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
+// Retrieve services via the defaultApp variable...
+var defaultAuth = defaultApp.auth();
+var defaultDatabase = defaultApp.database();
+// ... or use the equivalent shorthand notation
+defaultAuth = admin.auth();
+defaultDatabase = admin.database();
+}
+
+	doRichContentResponse(sender, messages) {
         let facebookMessages = []; // array with result messages
 		
         for (let messageIndex = 0; messageIndex < messages.length; messageIndex++) {
@@ -72,7 +94,8 @@ class FacebookBot {
                         let splittedText = this.splitResponse(message.speech);
 						console.log('message.speech: '+message.speech);
 						if (message.speech=='Me indicas tú nombre completo, por favor'){
-						flagNombre=true;	
+						//flagNombre=true;	
+						initfirebase();
 						}
 							
                         splittedText.forEach(s => {
