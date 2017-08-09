@@ -57,14 +57,7 @@ class FacebookBot {
     }
 		
    
-var config = {
-    apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
-    authDomain: "turnosmovil-a576d.firebaseapp.com",
-    databaseURL: "https://turnosmovil-a576d.firebaseio.com",
-    projectId: "turnosmovil-a576d",
-    storageBucket: "turnosmovil-a576d.appspot.com",
-    messagingSenderId: "706329874359"
-  };
+var config = 123;
 
   
 	doRichContentResponse(sender, messages) {
