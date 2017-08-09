@@ -57,7 +57,15 @@ class FacebookBot {
     }
 		
    
-
+var config = {
+    apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
+    authDomain: "turnosmovil-a576d.firebaseapp.com",
+    databaseURL: "https://turnosmovil-a576d.firebaseio.com",
+    projectId: "turnosmovil-a576d",
+    storageBucket: "turnosmovil-a576d.appspot.com",
+    messagingSenderId: "706329874359"
+  };
+  
 	doRichContentResponse(sender, messages) {
         let facebookMessages = []; // array with result messages
 		
@@ -74,7 +82,7 @@ class FacebookBot {
                         let splittedText = this.splitResponse(message.speech);
 						console.log('message.speech: '+message.speech);
 						if (message.speech=='Me indicas tú nombre completo, por favor'){
-						//flagNombre=true;	
+						flagNombre=true;	
 						//initfirebase();
 						}
 							
