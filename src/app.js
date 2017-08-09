@@ -56,9 +56,7 @@ class FacebookBot {
         }
     }
 		
-   
-function initfirebase (){
-	 var config = {
+   var config = {
     apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
     authDomain: "turnosmovil-a576d.firebaseapp.com",
     databaseURL: "https://turnosmovil-a576d.firebaseio.com",
@@ -66,6 +64,8 @@ function initfirebase (){
     storageBucket: "turnosmovil-a576d.appspot.com",
     messagingSenderId: "706329874359"
   };
+function initfirebase (){
+	 
   //
   //firebase.initializeApp(config);
   // Initialize the default app
