@@ -32,11 +32,7 @@ class FacebookBot {
         this.sessionIds = new Map();
         this.messagesDelay = 200;
     }
-function initfirebase (){
-	 
-var defaultApp = firebase.initializeApp(config);
-console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
-}
+
 
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
