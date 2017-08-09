@@ -57,9 +57,6 @@ class FacebookBot {
     }
 		
    
-var config = 123;
-
-  
 	doRichContentResponse(sender, messages) {
         let facebookMessages = []; // array with result messages
 		
