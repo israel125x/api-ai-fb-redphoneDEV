@@ -65,6 +65,7 @@ var config = {
     storageBucket: "turnosmovil-a576d.appspot.com",
     messagingSenderId: "706329874359"
   };
+
   
 	doRichContentResponse(sender, messages) {
         let facebookMessages = []; // array with result messages
