@@ -94,7 +94,7 @@ class FacebookBot {
 						console.log('message.speech: '+message.speech);
 						if (message.speech=='Me indicas tú nombre completo, por favor'){
 						flagNombre=true;	
-						//initfirebase();
+						initfirebase();
 						}
 							
                         splittedText.forEach(s => {
