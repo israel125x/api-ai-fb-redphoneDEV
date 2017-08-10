@@ -24,7 +24,20 @@ var config = {
   databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
   storageBucket: "<BUCKET>.appspot.com",
 };
-
+function initfirebase (){
+	 
+  //
+  //firebase.initializeApp(config);
+  // Initialize the default app
+var defaultApp = firebase.initializeApp(config);
+console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
+// Retrieve services via the defaultApp variable...
+var defaultAuth = defaultApp.auth();
+var defaultDatabase = defaultApp.database();
+// ... or use the equivalent shorthand notation
+defaultAuth = firebase.auth();
+defaultDatabase = firebase.database();
+}
 
 class FacebookBot {
     constructor() {
