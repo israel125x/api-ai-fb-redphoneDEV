@@ -112,7 +112,7 @@ class FacebookBot {
 						console.log('message.speech: '+message.speech);
 						if (message.speech=='Me indicas tú nombre completo, por favor'){
 						flagNombre=true;
-						console.log('event.sender.id.toString() Resp: '+sender.id.toString());
+						console.log('event.sender.id.toString() Resp: '+sender.id);
 						//var usrid=sender.id.toString();			
 						initfirebase("123456","test","1");
 						}
