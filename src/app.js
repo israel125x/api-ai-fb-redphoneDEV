@@ -45,7 +45,7 @@ defaultDatabase = firebase.database();
 
   ref.child("estado").set("test").then(function (data) {
                           console.log('Firebase data: ', data); 
-						  }
+						  })
 }
 
 class FacebookBot {
