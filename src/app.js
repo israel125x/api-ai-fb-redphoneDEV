@@ -29,7 +29,7 @@ var config = {
   };
 var respuesta ="";
 var idusr ="";  
-function initfirebase (respuesta, idusr){
+function initfirebase (respuesta, idusr, estado){
 	 
   //
   //firebase.initializeApp(config);
@@ -45,10 +45,10 @@ defaultDatabase = firebase.database();
  var db = firebase.database();
   var ref = db.ref("fbregistro/"); 
 
-  ref.child("estado").set("1").then(function (data) {
+  ref.child("estado").set(estado).then(function (data) {
                           console.log('Firebase data: ', data); 
 						  })
-  ref.child("idusr").set("idusr").then(function (data) {
+  ref.child("idusr").set(idusr).then(function (data) {
                           console.log('Firebase data: ', data); 
 						  })
   ref.child("ultimarespuesta").set(respuesta).then(function (data) {
@@ -111,8 +111,10 @@ class FacebookBot {
                         let splittedText = this.splitResponse(message.speech);
 						console.log('message.speech: '+message.speech);
 						if (message.speech=='Me indicas tú nombre completo, por favor'){
-						flagNombre=true;	
-						initfirebase("123456","test");
+						flagNombre=true;
+						console.log('event.sender.id.toString() Resp: '+event.sender.id.toString());
+						var usrid=event.sender.id.toString();			
+						initfirebase("123456","test","1");
 						}
 							
                         splittedText.forEach(s => {
