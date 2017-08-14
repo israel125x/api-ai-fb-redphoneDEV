@@ -17,7 +17,6 @@ const FB_TEXT_LIMIT = 640;
 
 const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
 const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
-var flagNombre = false;
 var firebase = require('firebase');
 var config = {
     apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
@@ -111,10 +110,7 @@ class FacebookBot {
                         let splittedText = this.splitResponse(message.speech);
 						console.log('message.speech: '+message.speech);
 						if (message.speech=='Me indicas tú nombre completo, por favor'){
-						flagNombre=true;
-						console.log('event.sender.id.toString() Resp: '+sender.id);
-						//var usrid=sender.id.toString();			
-						initfirebase("123456","test","1");
+						
 						}
 							
                         splittedText.forEach(s => {
@@ -279,7 +275,6 @@ class FacebookBot {
 
     //which webhook event
     getEventText(event) {
-		console.log('flagNombre ='+flagNombre);
         if (event.message) {
             if (event.message.quick_reply && event.message.quick_reply.payload) {
                 console.log('event.message = true');
@@ -292,10 +287,7 @@ class FacebookBot {
 					if(event.message.text=='Registrarse'){
 					return 'Alta';
 				}
-				if(flagNombre==true){
-					console.log('nombre a registrar en DB: '+event.message.text);
-					flagNombre=false;
-				}
+				
 				return event.message.text;
             }
         }
