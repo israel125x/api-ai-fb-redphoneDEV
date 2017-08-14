@@ -40,6 +40,12 @@ var defaultDatabase = defaultApp.database();
 // ... or use the equivalent shorthand notation
 defaultAuth = firebase.auth();
 defaultDatabase = firebase.database();
+ var db = firebase.database();
+  var ref = db.ref("fbregistro/"); 
+
+  ref.child("estado").set("test").then(function (data) {
+                          console.log('Firebase data: ', data); 
+						  }
 }
 
 class FacebookBot {
