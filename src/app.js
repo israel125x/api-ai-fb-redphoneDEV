@@ -19,11 +19,13 @@ const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
 const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 var flagNombre = false;
 var config = {
-  apiKey: "<API_KEY>",
-  authDomain: "<PROJECT_ID>.firebaseapp.com",
-  databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
-  storageBucket: "<BUCKET>.appspot.com",
-};
+    apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
+    authDomain: "turnosmovil-a576d.firebaseapp.com",
+    databaseURL: "https://turnosmovil-a576d.firebaseio.com",
+    projectId: "turnosmovil-a576d",
+    storageBucket: "turnosmovil-a576d.appspot.com",
+    messagingSenderId: "706329874359"
+  };
 function initfirebase (){
 	 
   //
