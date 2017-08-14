@@ -27,8 +27,9 @@ var config = {
     storageBucket: "turnosmovil-a576d.appspot.com",
     messagingSenderId: "706329874359"
   };
-var respuesta ="";  
-function initfirebase (respuesta){
+var respuesta ="";
+var idusr ="";  
+function initfirebase (respuesta, idusr){
 	 
   //
   //firebase.initializeApp(config);
@@ -47,7 +48,7 @@ defaultDatabase = firebase.database();
   ref.child("estado").set("1").then(function (data) {
                           console.log('Firebase data: ', data); 
 						  })
-  ref.child("idusr").set(event.sender.id.toString()).then(function (data) {
+  ref.child("idusr").set("idusr").then(function (data) {
                           console.log('Firebase data: ', data); 
 						  })
   ref.child("ultimarespuesta").set(respuesta).then(function (data) {
@@ -111,7 +112,7 @@ class FacebookBot {
 						console.log('message.speech: '+message.speech);
 						if (message.speech=='Me indicas tú nombre completo, por favor'){
 						flagNombre=true;	
-						initfirebase(message.speech);
+						initfirebase("123456","test");
 						}
 							
                         splittedText.forEach(s => {
