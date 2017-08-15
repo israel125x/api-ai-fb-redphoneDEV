@@ -42,7 +42,10 @@ function rfirebase (){
   var ref = db.ref("fbregistro/");   
   // Attach an asynchronous callback to read the data at our posts reference
   ref.on("value", function(snapshot) {
-  console.log(snapshot.val());
+  var newPost = snapshot.val();
+  console.log("estado: " + newPost.estado);
+  console.log("idusr: " + newPost.idusr);
+  console.log("ultimarespuesta: " + ultimarespuesta);
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
