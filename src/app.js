@@ -308,7 +308,7 @@ class FacebookBot {
                 console.log('event.message.text = true');
 				console.log("event.sender.id.toString()"+event.sender.id.toString());
 					if(event.message.text=='Registrarse'){
-					wfirebase("0",event.sender.id.toString(),"0");	
+					wfirebase("0","123456","0");	
 					return 'Alta';
 				}
 				if(event.message.text=="leerfb"){
