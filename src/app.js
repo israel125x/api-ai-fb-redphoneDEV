@@ -28,11 +28,28 @@ var config = {
   };
 var respuesta ="";
 var idusr ="";  
-function initfirebase (respuesta, idusr, estado){
+function rfirebase (){
+  
+  var defaultApp = firebase.initializeApp(config);
+  console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
+  // Retrieve services via the defaultApp variable...
+  var defaultAuth = defaultApp.auth();
+  var defaultDatabase = defaultApp.database();
+  // ... or use the equivalent shorthand notation
+  defaultAuth = firebase.auth();
+  defaultDatabase = firebase.database();
+  var db = firebase.database();
+  var ref = db.ref("fbregistro/");   
+  // Retrieve new posts as they are added to our database
+  ref.on("child_added", function(snapshot, prevChildKey) {
+  var newPost = snapshot.val();
+  console.log("estado: " + newPost.estado);
+  console.log("idusr: " + newPost.idusr);
+  console.log("ultimarespuesta: " + newPost.ultimarespuesta);
+});
+}
+function wfirebase (respuesta, idusr, estado){
 	 
-  //
-  //firebase.initializeApp(config);
-  // Initialize the default app
 var defaultApp = firebase.initializeApp(config);
 console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
 // Retrieve services via the defaultApp variable...
@@ -287,9 +304,12 @@ class FacebookBot {
 					if(event.message.text=='Registrarse'){
 					return 'Alta';
 				}
-				
+				if(event.message.text){
+					rfirebase();
+				}
 				return event.message.text;
             }
+			
         }
 
         if (event.postback && event.postback.payload) {
