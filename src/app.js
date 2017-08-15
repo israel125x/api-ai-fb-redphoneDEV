@@ -43,7 +43,7 @@ function rfirebase (){
   /*ref.orderByChild("idusr").equalTo("123").on("child_added", function(snapshot) {
   console.log("snapshot.val: "+snapshot.val());
 }); */ 
-  Attach an asynchronous callback to read the data at our posts reference
+  //Attach an asynchronous callback to read the data at our posts reference
   ref.on("value", function(snapshot) {
   var newPost = snapshot.val();
   console.log("snapshot.val: "+snapshot.val());
