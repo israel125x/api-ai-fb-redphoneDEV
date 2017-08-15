@@ -40,6 +40,10 @@ function rfirebase (){
   defaultDatabase = firebase.database();
   var db = firebase.database();
   var ref = db.ref("fbregistro/");   
+  //buscar idusrtest
+  ref.orderByChild("idusr").equalTo("test").on("child_added", function(snapshot){
+  console.log("idusr= "+snapshot.idusr);
+  });
   // Attach an asynchronous callback to read the data at our posts reference
   ref.on("value", function(snapshot) {
   var newPost = snapshot.val();
@@ -50,9 +54,7 @@ function rfirebase (){
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
-  ref.orderByChild("idusr").equalTo("test").on("child_added", function(snapshot){
-  console.log("idusr= "+snapshot.idusr);
-});
+  
 }
 function wfirebase (respuesta, idusr, estado){
 	 
