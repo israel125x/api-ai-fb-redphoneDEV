@@ -29,7 +29,7 @@ var config = {
 var respuesta ="";
 var idusr ="";  
 function rfirebase (){
-  
+  console.log("conectando a FireBase");
   var defaultApp = firebase.initializeApp(config);
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
   // Retrieve services via the defaultApp variable...
@@ -43,9 +43,10 @@ function rfirebase (){
   // Attach an asynchronous callback to read the data at our posts reference
   ref.on("value", function(snapshot) {
   var newPost = snapshot.val();
-  console.log("estado: " + newPost.estado);
-  console.log("idusr: " + newPost.idusr);
-  console.log("ultimarespuesta: " + newPost.ultimarespuesta);
+  console.log("snapshot.val: "+snapshot.val());
+  console.log("newPost.estado: " + newPost.estado);
+  console.log("newPost.idusr: " + newPost.idusr);
+  console.log("newPost.ultimarespuesta: " + newPost.ultimarespuesta);
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
@@ -307,6 +308,7 @@ class FacebookBot {
 					return 'Alta';
 				}
 				if(event.message.text=="leerfb"){
+					console.log('leerfb');
 					rfirebase();
 				}
 				return event.message.text;
