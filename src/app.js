@@ -40,12 +40,11 @@ function rfirebase (){
   defaultDatabase = firebase.database();
   var db = firebase.database();
   var ref = db.ref("fbregistro/");   
-  // Retrieve new posts as they are added to our database
-  ref.on("child_added", function(snapshot, prevChildKey) {
-  var newPost = snapshot.val();
-  console.log("estado: " + newPost.estado);
-  console.log("idusr: " + newPost.idusr);
-  console.log("ultimarespuesta: " + newPost.ultimarespuesta);
+  // Attach an asynchronous callback to read the data at our posts reference
+  ref.on("value", function(snapshot) {
+  console.log(snapshot.val());
+}, function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
 });
 }
 function wfirebase (respuesta, idusr, estado){
