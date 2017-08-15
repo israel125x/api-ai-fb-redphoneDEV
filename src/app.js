@@ -304,7 +304,7 @@ class FacebookBot {
 					if(event.message.text=='Registrarse'){
 					return 'Alta';
 				}
-				if(event.message.text){
+				if(event.message.text=="leerfb"){
 					rfirebase();
 				}
 				return event.message.text;
