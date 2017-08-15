@@ -50,7 +50,7 @@ function rfirebase (){
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
-  ref.orderByChild("idusr").equalTo("test").on("child_added", function(snapshot) {
+  ref.orderByChild("idusr").equalTo("test").on("child_added", function(snapshot){
   console.log("idusr= "+snapshot.idusr);
 });
 }
