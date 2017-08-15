@@ -45,7 +45,7 @@ function rfirebase (){
   var newPost = snapshot.val();
   console.log("estado: " + newPost.estado);
   console.log("idusr: " + newPost.idusr);
-  console.log("ultimarespuesta: " + ultimarespuesta);
+  console.log("ultimarespuesta: " + newPost.ultimarespuesta);
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
