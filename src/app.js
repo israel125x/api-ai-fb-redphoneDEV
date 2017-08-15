@@ -40,10 +40,10 @@ function rfirebase (){
   defaultDatabase = firebase.database();
   var db = firebase.database();
   var ref = db.ref("fbregistro/"); 
-  ref.orderByChild("idusr").equalTo("123").on("child_added", function(snapshot) {
+  /*ref.orderByChild("idusr").equalTo("123").on("child_added", function(snapshot) {
   console.log("snapshot.val: "+snapshot.val());
-});  
-  /* Attach an asynchronous callback to read the data at our posts reference
+}); */ 
+  Attach an asynchronous callback to read the data at our posts reference
   ref.on("value", function(snapshot) {
   var newPost = snapshot.val();
   console.log("snapshot.val: "+snapshot.val());
@@ -52,7 +52,7 @@ function rfirebase (){
   console.log("newPost.ultimarespuesta: " + newPost.ultimarespuesta);
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
-});*/
+});
 }
 function wfirebase (respuesta, idusr, estado){
 	 
@@ -308,11 +308,12 @@ class FacebookBot {
                 console.log('event.message.text = true');
 				console.log("event.sender.id.toString()"+event.sender.id.toString());
 					if(event.message.text=='Registrarse'){
+					wfirebase("0",event.sender.id.toString(),"0");	
 					return 'Alta';
 				}
 				if(event.message.text=="leerfb"){
 					console.log('leerfb');
-					rfirebase();
+					//rfirebase();
 				}
 				return event.message.text;
             }
