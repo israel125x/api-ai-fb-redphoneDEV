@@ -39,8 +39,11 @@ function rfirebase (){
   defaultAuth = firebase.auth();
   defaultDatabase = firebase.database();
   var db = firebase.database();
-  var ref = db.ref("fbregistro/");   
-  // Attach an asynchronous callback to read the data at our posts reference
+  var ref = db.ref("fbregistro/"); 
+  ref.orderByChild("idusr").equalTo("123").on("child_added", function(snapshot) {
+  console.log("snapshot.val: "+snapshot.val());
+});  
+  /* Attach an asynchronous callback to read the data at our posts reference
   ref.on("value", function(snapshot) {
   var newPost = snapshot.val();
   console.log("snapshot.val: "+snapshot.val());
@@ -49,15 +52,7 @@ function rfirebase (){
   console.log("newPost.ultimarespuesta: " + newPost.ultimarespuesta);
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
-});
-
-ref.child("fbregistro/")
-   .orderByChild("idusr")
-   .equalTo("test")
-   .on("child_added", function(snapshot) {
-      console.log("orderByChild snapshot.val ="+snapshot.val());
-    });
-
+});*/
 }
 function wfirebase (respuesta, idusr, estado){
 	 
