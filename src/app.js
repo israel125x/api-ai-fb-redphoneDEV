@@ -54,7 +54,7 @@ function rfirebase (){
   console.log("The read failed: " + errorObject.code);
 });
 }
-function wfirebase (respuesta, idusr, estado){
+function wfirebase (idusr, estado, respuesta){
 	 
 var defaultApp = firebase.initializeApp(config);
 console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
@@ -309,7 +309,7 @@ class FacebookBot {
                 console.log('event.message.text = true');
 				console.log("event.sender.id.toString()"+event.sender.id.toString());
 					if(event.message.text=='Registrarse'){
-					wfirebase("1","123410","1");	
+					wfirebase(event.sender.id.toString(),"1"," ");	
 					return 'Alta';
 				}
 				if(event.message.text=="leerfb"){
