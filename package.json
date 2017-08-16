@@ -31,5 +31,15 @@
     "rewire": "^2.5.2",
     "should": "^11.2.0",
     "supertest": "^3.0.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/api-ai/api-ai-facebook/issues"
+  },
+  "homepage": "https://github.com/api-ai/api-ai-facebook#readme",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "test"
+  ]
 }
