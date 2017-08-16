@@ -40,11 +40,11 @@ function rfirebase (){
   defaultDatabase = firebase.database();
   var db = firebase.database();
   var ref = db.ref("fbregistro/"); 
-  /*ref.orderByChild("idusr").equalTo("123").on("child_added", function(snapshot) {
+  ref.orderByChild("idusr").equalTo("1215350818569477").on("child_added", function(snapshot) {
   console.log("snapshot.val: "+snapshot.val());
-}); */ 
+});  
   //Attach an asynchronous callback to read the data at our posts reference
-  ref.on("value", function(snapshot) {
+  /*ref.on("value", function(snapshot) {
   var newPost = snapshot.val();
   console.log("snapshot.val: "+snapshot.val());
   console.log("newPost.estado: " + newPost.estado);
@@ -52,7 +52,7 @@ function rfirebase (){
   console.log("newPost.ultimarespuesta: " + newPost.ultimarespuesta);
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
-});
+});*/
 }
 function wfirebase (idusr, estado, respuesta){
 	 
