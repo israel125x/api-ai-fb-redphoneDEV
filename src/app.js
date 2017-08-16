@@ -66,14 +66,15 @@ defaultAuth = firebase.auth();
 defaultDatabase = firebase.database();
  var db = firebase.database();
   var ref = db.ref("fbregistro/"); 
+  var newRef = ref.push();
 
-  ref.child("estado").set(estado).then(function (data) {
+  newRef.child("estado").set(estado).then(function (data) {
                           console.log('Firebase data: ', data); 
 						  })
-  ref.child("idusr").set(idusr).then(function (data) {
+  newRef.child("idusr").set(idusr).then(function (data) {
                           console.log('Firebase data: ', data); 
 						  })
-  ref.child("ultimarespuesta").set(respuesta).then(function (data) {
+  newRef.child("ultimarespuesta").set(respuesta).then(function (data) {
                           console.log('Firebase data: ', data); 
 						  })
 						  
