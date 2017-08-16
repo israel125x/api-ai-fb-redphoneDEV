@@ -35,9 +35,9 @@ var config = {
 
 function enviarTodos(){
 	var options = {
-  host: 'https://graph.facebook.com/v2.6/me/messages?access_token=EAAD3bi8tBYwBAJ01mvNEUeVI61xuahECaGZCnYZCngi8sCaDpknrNeSQBBIMuonKaHDbuMZBSkmp0Hbwq7QZC1moygpDkqXlxB5YBDyKTECPI5h4X7QsLQQyfNZCueSbXih91NQb3yimsZBq1eigkiWL5n3Qq0BDM1KS2jgx9I1AZDZD',
+  host: 'https://graph.facebook.com',
   //port: 80,
-  //path: '/upload',
+  path: '/v2.6/me/messages?access_token=EAAD3bi8tBYwBAJ01mvNEUeVI61xuahECaGZCnYZCngi8sCaDpknrNeSQBBIMuonKaHDbuMZBSkmp0Hbwq7QZC1moygpDkqXlxB5YBDyKTECPI5h4X7QsLQQyfNZCueSbXih91NQb3yimsZBq1eigkiWL5n3Qq0BDM1KS2jgx9I1AZDZD',
   method: 'POST'
 };
 
