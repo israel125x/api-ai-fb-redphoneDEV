@@ -18,6 +18,20 @@ const FB_TEXT_LIMIT = 640;
 const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
 const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 var firebase = require('firebase');
+var http = require('http');
+
+var respuesta ="";
+var idusr ="";  
+
+var config = {
+    apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
+    authDomain: "turnosmovil-a576d.firebaseapp.com",
+    databaseURL: "https://turnosmovil-a576d.firebaseio.com",
+    projectId: "turnosmovil-a576d",
+    storageBucket: "turnosmovil-a576d.appspot.com",
+    messagingSenderId: "706329874359"
+  };
+
 
 function enviarTodos(){
 	var options = {
@@ -45,17 +59,6 @@ req.write('data\n');
 req.write('data\n');
 req.end();
 }
-var myhttp = require('http');
-var config = {
-    apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
-    authDomain: "turnosmovil-a576d.firebaseapp.com",
-    databaseURL: "https://turnosmovil-a576d.firebaseio.com",
-    projectId: "turnosmovil-a576d",
-    storageBucket: "turnosmovil-a576d.appspot.com",
-    messagingSenderId: "706329874359"
-  };
-var respuesta ="";
-var idusr ="";  
 function rfirebase (){
   console.log("conectando a FireBase");
   var defaultApp = firebase.initializeApp(config);
