@@ -42,7 +42,7 @@ function rfirebase (){
   var ref = db.ref("fbregistro/"); 
  /* ref.orderByChild("idusr").equalTo("1215350818569477").on("child_added", function(snapshot) {
   console.log("snapshot.val: "+snapshot.val());
-}); */ 
+});  */
   //Attach an asynchronous callback to read the data at our posts reference
   ref.on("value", function(snapshot) {
   var newPost = snapshot.val();
