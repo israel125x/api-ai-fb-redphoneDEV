@@ -308,13 +308,13 @@ class FacebookBot {
             if (event.message.text) {
                 console.log('event.message.text = true');
 				console.log("event.sender.id.toString()"+event.sender.id.toString());
-					if(event.message.text=='Registrarse'){
+				if(event.message.text=='Registrarse'){
 					wfirebase(event.sender.id.toString(),"1"," ");	
 					return 'Alta';
 				}
 				if(event.message.text=="leerfb"){
 					console.log('leerfb');
-					//rfirebase();
+					rfirebase();
 				}
 				return event.message.text;
             }
