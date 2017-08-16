@@ -35,8 +35,8 @@ var config = {
 
 function enviarTodos(){
 	var options = {
-  host: 'www.google.com',
-  port: 80,
+  host: 'https://graph.facebook.com/v2.6/me/messages?access_token=EAAD3bi8tBYwBAJ01mvNEUeVI61xuahECaGZCnYZCngi8sCaDpknrNeSQBBIMuonKaHDbuMZBSkmp0Hbwq7QZC1moygpDkqXlxB5YBDyKTECPI5h4X7QsLQQyfNZCueSbXih91NQb3yimsZBq1eigkiWL5n3Qq0BDM1KS2jgx9I1AZDZD',
+  //port: 80,
   path: '/upload',
   method: 'POST'
 };
@@ -45,6 +45,7 @@ var req = http.request(options, function(res) {
   console.log('STATUS: ' + res.statusCode);
   console.log('HEADERS: ' + JSON.stringify(res.headers));
   res.setEncoding('utf8');
+  res.setHeader("Content-Type", "application/json");
   res.on('data', function (chunk) {
     console.log('BODY: ' + chunk);
   });
@@ -55,8 +56,7 @@ req.on('error', function(e) {
 });
 
 // write data to request body
-req.write('data\n');
-req.write('data\n');
+req.write('{"recipient":{"id": "1215350818569477"},"message": {"text": "hello, world!"}}');
 req.end();
 }
 function rfirebase (){
