@@ -18,7 +18,7 @@ const FB_TEXT_LIMIT = 640;
 const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
 const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 var firebase = require('firebase');
-var http require('http');
+var http require('http'); 
 var config = {
     apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
     authDomain: "turnosmovil-a576d.firebaseapp.com",
