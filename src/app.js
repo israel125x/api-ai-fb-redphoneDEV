@@ -47,12 +47,12 @@ function rfirebase (){
   ref.on("value", function(snapshot) {
   var newPost = snapshot.val();
   console.log("snapshot.val: "+snapshot.val());
-  console.log("newPost.estado: " + newPost.estado);
+  /*console.log("newPost.estado: " + newPost.estado);
   console.log("newPost.idusr: " + newPost.idusr);
   console.log("newPost.ultimarespuesta: " + newPost.ultimarespuesta);
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
-});
+});*/
 }
 function wfirebase (idusr, estado, respuesta){
 	 
