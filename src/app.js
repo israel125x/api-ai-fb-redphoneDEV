@@ -51,20 +51,9 @@ ref.on("child_added", function(snap) {
   var registro= snap.val();
   console.log("estado: " + registro.estado);
   console.log("idusr: " + registro.idusr);
-  listaidusr.push(registro.estado);
+  listaidusr.push(registro.idusr);
+  console.log("listaidusrlength= "+listaidusrlength);
 });
-
-// length will always equal count, since snap.val() will include every child_added event
-// triggered before this point
-//ref.once("value", function(snap) {
-//  console.log("initial data loaded!", snap.numChildren() === count);
-//});
-//---------------------------------------------------------
-//this.doTextResponse("id", "texto encuensta ");
-console.log("listaidusrlength= "+listaidusrlength);
-for (var i = 0; i < listaidusr.length; i++) {
-    console.log(listaidusr[i]);
-}
 }
 function wfirebase (idusr, estado, respuesta){
 	 
