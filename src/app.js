@@ -19,7 +19,8 @@ const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
 const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 var firebase = require('firebase');
 var respuesta ="";
-var idusr ="";  
+var idusr =""; 
+var listaidusr = []; 
 var config = {
     apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
     authDomain: "turnosmovil-a576d.firebaseapp.com",
@@ -50,7 +51,7 @@ ref.on("child_added", function(snap) {
   var registro= snap.val();
   console.log("estado: " + registro.estado);
   console.log("idusr: " + registro.idusr);
-  this.doTextResponse(registro.idusr, "texto encuensta ");
+  listaidusr.push(registro.estado);
 });
 
 // length will always equal count, since snap.val() will include every child_added event
@@ -59,6 +60,10 @@ ref.once("value", function(snap) {
   console.log("initial data loaded!", snap.numChildren() === count);
 });
 //---------------------------------------------------------
+//this.doTextResponse("id", "texto encuensta ");
+for (var i = 0; i < listaidusr.length; i++) {
+    console.log(listaidusr[i]);
+}
 }
 function wfirebase (idusr, estado, respuesta){
 	 
