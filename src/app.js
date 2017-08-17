@@ -313,7 +313,7 @@ class FacebookBot {
 					return 'Alta';
 				}
 				if(event.message.text=="Enviar"){
-					this.doTextResponse("100000515780678", "texto de prueba para id 100000515780678");
+					this.doTextResponse("1963048170387920", "texto de prueba para id 1963048170387920");
 				}
 				return event.message.text;
             }
