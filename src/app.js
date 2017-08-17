@@ -343,7 +343,7 @@ class FacebookBot {
 				if(event.message.text=="Enviar"){
 					//console.log('leerfb');
 					//rfirebase();
-					enviarMSGporID("1215350818569477","mensaje de prueba");
+					this.doTextResponse("1215350818569477", "texto de prueba");
 				}
 				return event.message.text;
             }
