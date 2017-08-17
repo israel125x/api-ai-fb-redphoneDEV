@@ -28,7 +28,7 @@ var config = {
     storageBucket: "turnosmovil-a576d.appspot.com",
     messagingSenderId: "706329874359"
   };
-function rfirebase (){
+function enviarEncuestasSol(){
   console.log("conectando a FireBase");
   var defaultApp = firebase.initializeApp(config);
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
@@ -50,6 +50,9 @@ ref.on("child_added", function(snap) {
   var registro= snap.val();
   console.log("estado: " + registro.estado);
   console.log("idusr: " + registro.idusr);
+  if(registro.estado=="1"){
+	this.doTextResponse(registro.idusr, "Desea partisipar en una encuesta ?");  
+  }
 });
 
 // length will always equal count, since snap.val() will include every child_added event
@@ -317,11 +320,8 @@ class FacebookBot {
 					wfirebase(event.sender.id.toString(),"1"," ");	
 					return 'Alta';
 				}
-				if(event.message.text=="Enviar"){
-					this.doTextResponse("1963048170387920", "texto de prueba para id 1963048170387920");
-				}
-				if(event.message.text=="Leer"){
-				rfirebase ();	
+				if(event.message.text=="Enviar encuesta"){
+				enviarEncuestasSol();	
 				}
 				return event.message.text;
             }
