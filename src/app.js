@@ -40,19 +40,20 @@ function rfirebase (){
   defaultDatabase = firebase.database();
   var db = firebase.database();
   var ref = db.ref("fbregistro/"); 
- /* ref.orderByChild("idusr").equalTo("1215350818569477").on("child_added", function(snapshot) {
-  console.log("snapshot.val: "+snapshot.val());
-});  */
-  //Attach an asynchronous callback to read the data at our posts reference
-  ref.on("value", function(snapshot) {
-  var newPost = snapshot.val();
-  console.log("snapshot.val: "+snapshot.val());
-  //console.log("newPost.estado: " + newPost.estado);
-  //console.log("newPost.idusr: " + newPost.idusr);
-  //console.log("newPost.ultimarespuesta: " + newPost.ultimarespuesta);
-}, function (errorObject) {
-  console.log("The read failed: " + errorObject.code);
+  //---------------------------------------------------
+  var count = 0;
+
+ref.on("child_added", function(snap) {
+  count++;
+  console.log("added:", snap.key);
 });
+
+// length will always equal count, since snap.val() will include every child_added event
+// triggered before this point
+ref.once("value", function(snap) {
+  console.log("initial data loaded!", snap.numChildren() === count);
+});
+//---------------------------------------------------------
 }
 function wfirebase (idusr, estado, respuesta){
 	 
