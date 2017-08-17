@@ -53,7 +53,7 @@ ref.on("child_added", function(snap) {
   console.log("idusr: " + registro.idusr);
   listaidusr.push(registro.idusr);
   console.log("listaidusrlength= "+listaidusr.length);
-  doTextResponse("1963048170387920", "texto encuensta ");
+  this.doTextResponse(listaidusr[count], "texto encuensta ");
 });
 }
 function wfirebase (idusr, estado, respuesta){
