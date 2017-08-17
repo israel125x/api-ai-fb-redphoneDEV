@@ -45,7 +45,11 @@ function rfirebase (){
 
 ref.on("child_added", function(snap) {
   count++;
-  console.log("added:", snap.key);
+  console.log("----------------");
+  console.log("id:", snap.key);
+  console.log("estado:", snap.estado);
+  console.log("idusr:", snap.idusr);
+  console.log("ultimarespuesta:", snap.ultimarespuesta);
 });
 
 // length will always equal count, since snap.val() will include every child_added event
