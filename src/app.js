@@ -52,8 +52,9 @@ ref.on("child_added", function(snap) {
   console.log("estado: " + registro.estado);
   console.log("idusr: " + registro.idusr);
   listaidusr.push(registro.idusr);
-  console.log("listaidusrlength= "+listaidusr.length);
+  //console.log("listaidusrlength= "+listaidusr.length);
 });
+console.log("listaidusrlength= "+listaidusr.length);
 }
 function wfirebase (idusr, estado, respuesta){
 	 
