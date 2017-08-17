@@ -57,7 +57,7 @@ req.on('error', function(e) {
 });
 
 // write data to request body
-req.write('{"recipient":{"id": "1215350818569477"},"message": {"text": "hello, world!"}}');
+req.write('\'{"recipient":{"id": "1215350818569477"},"message": {"text": "hello, world!"}}\'');
 req.end();
 }
 function rfirebase (){
