@@ -18,7 +18,7 @@ const FB_TEXT_LIMIT = 640;
 const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
 const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 var firebase = require('firebase');
-var http = require('http');
+//var http = require('http');
 
 var respuesta ="";
 var idusr ="";  
@@ -33,32 +33,28 @@ var config = {
   };
 
 
-function enviarTodos(){
-	var options = {
-  host: 'https://graph.facebook.com',
-  port: 443,
-  path: '/v2.6/me/messages?access_token=EAAD3bi8tBYwBAJ01mvNEUeVI61xuahECaGZCnYZCngi8sCaDpknrNeSQBBIMuonKaHDbuMZBSkmp0Hbwq7QZC1moygpDkqXlxB5YBDyKTECPI5h4X7QsLQQyfNZCueSbXih91NQb3yimsZBq1eigkiWL5n3Qq0BDM1KS2jgx9I1AZDZD',
-  method: 'POST'
-};
+function enviarMSGporID(id, texto){
+	return new Promise((resolve, reject) => {
+            request({
+                url: 'https://graph.facebook.com/v2.6/me/messages',
+                qs: {access_token: FB_PAGE_ACCESS_TOKEN},
+                method: 'POST',
+                json: {
+                    recipient: {id: id},
+                    message: texto
+                }
+            }, (error, response) => {
+                if (error) {
+                    console.log('Error sending message: ', error);
+                    reject(error);
+                } else if (response.body.error) {
+                    console.log('Error: ', response.body.error);
+                    reject(new Error(response.body.error));
+                }
 
-var req = http.request(options, function(res) {
-  console.log('STATUS: ' + res.statusCode);
-  console.log('HEADERS: ' + JSON.stringify(res.headers));
-  res.setEncoding('utf8');
-  res.setHeader("Content-Type", "application/json");
-  
-  res.on('data', function (chunk) {
-    console.log('BODY: ' + chunk);
-  });
-});
-
-req.on('error', function(e) {
-  console.log('problem with request: ' + e.message);
-});
-
-// write data to request body
-req.write('\'{"recipient":{"id": "1215350818569477"},"message": {"text": "hello, world!"}}\'');
-req.end();
+                resolve();
+            });
+        });
 }
 function rfirebase (){
   console.log("conectando a FireBase");
@@ -347,7 +343,7 @@ class FacebookBot {
 				if(event.message.text=="Enviar"){
 					//console.log('leerfb');
 					//rfirebase();
-					enviarTodos();
+					enviarMSGporID("1215350818569477","mensaje de prueba");
 				}
 				return event.message.text;
             }
@@ -415,7 +411,7 @@ class FacebookBot {
                 this.sessionIds.set(sender, uuid.v4());
             }
 
-            console.log("Text", text);
+            console.log("Text = ", text);
             //send user's text to api.ai service
             let apiaiRequest = this.apiAiService.textRequest(text,
                 {
