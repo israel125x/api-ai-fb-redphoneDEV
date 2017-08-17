@@ -315,6 +315,9 @@ class FacebookBot {
 				if(event.message.text=="Enviar"){
 					this.doTextResponse("1963048170387920", "texto de prueba para id 1963048170387920");
 				}
+				if(event.message.text=="Leer"){
+				rfirebase ();	
+				}
 				return event.message.text;
             }
 			
