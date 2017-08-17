@@ -42,7 +42,7 @@ function enviarEncuestasSol(){
   var ref = db.ref("fbregistro/"); 
   //---------------------------------------------------
   var count = 0;
-
+  var usrid = "";
 ref.on("child_added", function(snap) {
   count++;
   console.log("----------------");
@@ -50,9 +50,10 @@ ref.on("child_added", function(snap) {
   var registro= snap.val();
   console.log("estado: " + registro.estado);
   console.log("idusr: " + registro.idusr);
-  if(registro.estado=="1"){
-	this.doTextResponse(registro.idusr, "Desea partisipar en una encuesta ?");  
-  }
+  //if(registro.estado=="1"){
+	usrid=registro.idusr;  
+	this.doTextResponse(usrid, "Desea partisipar en una encuesta ?");  
+  //}
 });
 
 // length will always equal count, since snap.val() will include every child_added event
