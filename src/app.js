@@ -45,7 +45,7 @@ function enviarEncuestasSol(){
   var ref = db.ref("fbregistro/1215350818569477"); 
   //---------------------------------------------------
 //Attach an asynchronous callback to read the data at our posts reference
-  ref.on("value", function(snapshot) {
+  ref.once("value", function(snapshot) {
   var newPost = snapshot.val();
   console.log("snapshot.val: "+snapshot.val());
   console.log("newPost.ultimapeticion: " + newPost.ultimapeticion);
