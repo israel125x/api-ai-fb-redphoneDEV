@@ -31,15 +31,10 @@ var config = {
     messagingSenderId: "706329874359"
   };
 var defaultApp = firebase.initializeApp(config);
-function enviarEncuestasSol(){
+
+function ultimarespusta consultarID(idusuario){
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
-  // Retrieve services via the defaultApp variable...
-  //var defaultAuth = defaultApp.auth();
-  //var defaultDatabase = defaultApp.database();
-  // ... or use the equivalent shorthand notation
-  //defaultAuth = firebase.auth();
-  //defaultDatabase = firebase.database();
   var db = firebase.database();
   var ref = db.ref("fbregistro/1215350818569477"); 
   //---------------------------------------------------
@@ -311,8 +306,8 @@ class FacebookBot {
 					wfirebase(event.sender.id.toString(),"1"," ");	
 					return 'Alta';
 				}
-				if(event.message.text=="Enviar encuesta"){
-				enviarEncuestasSol();				
+				if(event.message.text=="Consulta usuario"){
+				this.doTextResponse(event.sender.id.toString(), consultarID(event.sender.id.toString()));
 				}
 				return event.message.text;
             }
