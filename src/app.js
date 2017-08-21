@@ -42,7 +42,7 @@ function enviarEncuestasSol(){
   defaultAuth = firebase.auth();
   defaultDatabase = firebase.database();
   var db = firebase.database();
-  var ref = db.ref("fbregistro/1215350818569477/"); 
+  var ref = db.ref("fbregistro/1215350818569477"); 
   //---------------------------------------------------
 // Retrieve new posts as they are added to our database
   ref.on("child_added", function(snapshot, prevChildKey) {
