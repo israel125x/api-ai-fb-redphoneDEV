@@ -46,15 +46,19 @@ function enviarEncuestasSol(){
   //---------------------------------------------------
 //Attach an asynchronous callback to read the data at our posts reference
   ref.on("value", function(snapshot) {
-  var newPost = snapshot.val();
-  console.log("snapshot.val: "+snapshot.val());
-  console.log("newPost.ultimapeticion: " + newPost.ultimapeticion);
-  console.log("newPost.ultimarespuesta: " + newPost.ultimarespuesta);
+  var registro = snapshot.val();
+  console.log("snapshot.val: "+registro.val());
+  console.log("newPost.ultimapeticion: " + registro.ultimapeticion);
+  console.log("newPost.ultimarespuesta: " + registro.ultimarespuesta);
   //console.log("newPost.ultimarespuesta: " + newPost.ultimarespuesta);
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
-
+// length will always equal count, since snap.val() will include every child_added event
+// triggered before this point
+ref.once("value", function(snap) {
+  console.log("initial data loaded!",);
+});
 }
 function wfirebase (idusr, estado, respuesta){
 	 
