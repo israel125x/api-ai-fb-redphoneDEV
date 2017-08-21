@@ -42,21 +42,13 @@ function enviarEncuestasSol(){
   defaultAuth = firebase.auth();
   defaultDatabase = firebase.database();
   var db = firebase.database();
-  var ref = db.ref("fbregistro/"); 
+  var ref = db.ref("fbregistro/1215350818569477/"); 
   //---------------------------------------------------
-  var count = 0;
-
-ref.on("child_added", function(snap) {
-  count++;
-  console.log("added:", snap.key);
+  ref.on("value", function(snapshot) {
+  console.log(snapshot.val());
+}, function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
 });
-
-// length will always equal count, since snap.val() will include every child_added event
-// triggered before this point
-ref.once("value", function(snap) {
-  console.log("initial data loaded!", snap.numChildren() === count);
-});
- 
 }
 function wfirebase (idusr, estado, respuesta){
 	 
