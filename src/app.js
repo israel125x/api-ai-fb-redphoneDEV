@@ -50,6 +50,7 @@ function enviarEncuestasSol(){
   console.log("newPost " + newPost);
   console.log("newPost.ultimarespuesta: " + newPost.ultimarespuesta);
 });
+}
 function wfirebase (idusr, estado, respuesta){
 	 
 var defaultApp = firebase.initializeApp(config);
