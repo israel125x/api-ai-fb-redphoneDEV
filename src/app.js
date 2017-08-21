@@ -42,7 +42,7 @@ function enviarEncuestasSol(){
   defaultAuth = firebase.auth();
   defaultDatabase = firebase.database();
   var db = firebase.database();
-  var ref = db.ref("fbregistro/1215350818569477"); 
+  var ref = db.ref("fbregistro/1963048170387920"); 
   //---------------------------------------------------
 //Attach an asynchronous callback to read the data at our posts reference
   ref.once("value", function(snapshot) {
