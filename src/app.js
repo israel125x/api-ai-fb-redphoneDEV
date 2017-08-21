@@ -30,6 +30,7 @@ var config = {
     messagingSenderId: "706329874359"
   };
 function enviarEncuestasSol(){
+   listaidusr = [];	
   console.log("conectando a FireBase");
   var defaultApp = firebase.initializeApp(config);
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
