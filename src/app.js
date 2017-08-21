@@ -47,7 +47,7 @@ function enviarEncuestasSol(){
 //Attach an asynchronous callback to read the data at our posts reference
   ref.on("value", function(snapshot) {
   var registro = snapshot.val();
-  console.log("registro.val: "+registro.val());
+  console.log("registro.val: "+registro);
   console.log("registro.ultimapeticion: " + registro.ultimapeticion);
   console.log("registro.ultimarespuesta: " + registro.ultimarespuesta);
 }, function (errorObject) {
