@@ -310,7 +310,8 @@ class FacebookBot {
 					return 'Alta';
 				}
 				if(event.message.text=="Consulta usuario"){
-				this.doTextResponse(event.sender.id.toString(), consultarID(event.sender.id.toString()));
+				console.log('consultarID = true'+consultarID());
+				//this.doTextResponse(event.sender.id.toString(),"");
 				}
 				return event.message.text;
             }
