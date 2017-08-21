@@ -30,17 +30,16 @@ var config = {
     storageBucket: "turnosmovil-a576d.appspot.com",
     messagingSenderId: "706329874359"
   };
-
+var defaultApp = firebase.initializeApp(config);
 function enviarEncuestasSol(){
   console.log("conectando a FireBase");
-  var defaultApp = firebase.initializeApp(config);
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
   // Retrieve services via the defaultApp variable...
-  var defaultAuth = defaultApp.auth();
-  var defaultDatabase = defaultApp.database();
+  //var defaultAuth = defaultApp.auth();
+  //var defaultDatabase = defaultApp.database();
   // ... or use the equivalent shorthand notation
-  defaultAuth = firebase.auth();
-  defaultDatabase = firebase.database();
+  //defaultAuth = firebase.auth();
+  //defaultDatabase = firebase.database();
   var db = firebase.database();
   var ref = db.ref("fbregistro/1215350818569477"); 
   //---------------------------------------------------
