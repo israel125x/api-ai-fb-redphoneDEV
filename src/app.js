@@ -52,8 +52,6 @@ ref.on("child_added", function(snapshot) {
   var registro= snapshot.val();
   console.log("estado: " + registro.estado);
   console.log("idusr: " + registro.idusr);
-  function (errorObject) {
-  console.log("The read failed: " + errorObject.code);
 });
 }
 function wfirebase (idusr, estado, respuesta){
