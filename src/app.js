@@ -48,8 +48,8 @@ function enviarEncuestasSol(){
   ref.on("value", function(snapshot) {
   var newPost = snapshot.val();
   console.log("snapshot.val: "+snapshot.val());
-  //console.log("newPost.estado: " + newPost.estado);
-  //console.log("newPost.idusr: " + newPost.idusr);
+  console.log("newPost.ultimapeticion: " + newPost.ultimapeticion);
+  console.log("newPost.ultimarespuesta: " + newPost.ultimarespuesta);
   //console.log("newPost.ultimarespuesta: " + newPost.ultimarespuesta);
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
