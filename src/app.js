@@ -30,6 +30,7 @@ var config = {
     storageBucket: "turnosmovil-a576d.appspot.com",
     messagingSenderId: "706329874359"
   };
+
 function enviarEncuestasSol(){
   console.log("conectando a FireBase");
   var defaultApp = firebase.initializeApp(config);
