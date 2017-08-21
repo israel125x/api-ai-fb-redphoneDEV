@@ -53,7 +53,6 @@ function enviarEncuestasSol(){
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
-
 }
 function wfirebase (idusr, estado, respuesta){
 	 
