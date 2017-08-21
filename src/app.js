@@ -21,6 +21,7 @@ var firebase = require('firebase');
 var respuesta ="";
 var idusr =""; 
 var listaidusr = []; 
+
 var config = {
     apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
     authDomain: "turnosmovil-a576d.firebaseapp.com",
@@ -30,7 +31,6 @@ var config = {
     messagingSenderId: "706329874359"
   };
 function enviarEncuestasSol(){
-   listaidusr = [];	
   console.log("conectando a FireBase");
   var defaultApp = firebase.initializeApp(config);
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
@@ -45,15 +45,15 @@ function enviarEncuestasSol(){
   //---------------------------------------------------
   var count = 0;
 
-ref.on("child_added", function(snap) {
+ref.on("child_added", function(snapshot) {
   count++;
   console.log("----------------");
-  console.log("Key", snap.key);
-  var registro= snap.val();
+  console.log("Key", snapshot.key);
+  var registro= snapshot.val();
   console.log("estado: " + registro.estado);
   console.log("idusr: " + registro.idusr);
-  listaidusr.push(registro.idusr);
-  console.log("listaidusrlength= "+listaidusr.length+ "en:: "+count);
+  function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
 });
 }
 function wfirebase (idusr, estado, respuesta){
@@ -317,7 +317,6 @@ class FacebookBot {
 				if(event.message.text=="Enviar encuesta"){
 				enviarEncuestasSol();				
 				}
-				console.log("listaidusrlength= "+listaidusr.length);
 				return event.message.text;
             }
 			
