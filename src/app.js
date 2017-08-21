@@ -311,7 +311,7 @@ class FacebookBot {
 				}
 				if(event.message.text=="Consulta usuario"){
 				console.log('consultarID = '+consultarID());
-				//this.doTextResponse(event.sender.id.toString(),"");
+				this.doTextResponse(event.sender.id.toString(),consultarID()+" :) ");
 				}
 				return event.message.text;
             }
