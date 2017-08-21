@@ -32,21 +32,24 @@ var config = {
   };
 var defaultApp = firebase.initializeApp(config);
 
-function ultimarespusta consultarID(idusuario){
+function consultarID(idusuario){
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
   var db = firebase.database();
   var ref = db.ref("fbregistro/1215350818569477"); 
   //---------------------------------------------------
 //Attach an asynchronous callback to read the data at our posts reference
+  var ultimarespuesta="";
   ref.on("value", function(snapshot) {
   var registro = snapshot.val();
   console.log("registro.val: "+registro);
   console.log("registro.ultimapeticion: " + registro.ultimapeticion);
   console.log("registro.ultimarespuesta: " + registro.ultimarespuesta);
+  ultimarespuesta = registro.ultimarespuesta;
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
+return ultimarespuesta;
 }
 function wfirebase (idusr, estado, respuesta){
 	 
