@@ -52,7 +52,7 @@ ref.on("child_added", function(snap) {
   console.log("estado: " + registro.estado);
   console.log("idusr: " + registro.idusr);
   listaidusr.push(registro.idusr);
-  console.log("listaidusrlength= "+this.listaidusr.length+ "en:: "+count);
+  console.log("listaidusrlength= "+listaidusr.length+ "en:: "+count);
 });
 }
 function wfirebase (idusr, estado, respuesta){
@@ -316,7 +316,7 @@ class FacebookBot {
 				if(event.message.text=="Enviar encuesta"){
 				enviarEncuestasSol();				
 				}
-				console.log("listaidusrlength= "+this.listaidusr.length);
+				console.log("listaidusrlength= "+listaidusr.length);
 				return event.message.text;
             }
 			
