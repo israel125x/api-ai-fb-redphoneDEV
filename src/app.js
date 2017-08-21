@@ -45,11 +45,11 @@ function enviarEncuestasSol(){
   //---------------------------------------------------
   var count = 0;
 
-ref.on("child_added", function(snapshot) {
+ref.on("child_added", function(snap) {
   count++;
   console.log("----------------");
-  console.log("Key", snapshot.key);
-  var registro= snapshot.val();
+  console.log("Key", snap.key);
+  var registro= snap.val();
   console.log("estado: " + registro.estado);
   console.log("idusr: " + registro.idusr);
 });
