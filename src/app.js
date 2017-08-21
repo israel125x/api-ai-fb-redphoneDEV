@@ -42,10 +42,10 @@ function enviarEncuestasSol(){
   defaultAuth = firebase.auth();
   defaultDatabase = firebase.database();
   var db = firebase.database();
-  var ref = db.ref("fbregistro/1963048170387920"); 
+  var ref = db.ref("fbregistro/1215350818569477"); 
   //---------------------------------------------------
 //Attach an asynchronous callback to read the data at our posts reference
-  ref.once("value", function(snapshot) {
+  ref.on("value", function(snapshot) {
   var newPost = snapshot.val();
   console.log("snapshot.val: "+snapshot.val());
   console.log("newPost.ultimapeticion: " + newPost.ultimapeticion);
@@ -54,6 +54,7 @@ function enviarEncuestasSol(){
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
+
 }
 function wfirebase (idusr, estado, respuesta){
 	 
