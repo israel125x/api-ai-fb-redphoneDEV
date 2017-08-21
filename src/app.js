@@ -44,13 +44,12 @@ function enviarEncuestasSol(){
   var db = firebase.database();
   var ref = db.ref("fbregistro/1215350818569477/"); 
   //---------------------------------------------------
- // Attach an asynchronous callback to read the data at our posts reference
-  ref.on("value", function(snapshot) {
-  console.log("snapshot.val= "+snapshot.val());
-  }, function (errorObject) {
-  console.log("The read failed: " + errorObject.code);
-  });
-}
+// Retrieve new posts as they are added to our database
+  ref.on("child_added", function(snapshot, prevChildKey) {
+  var newPost = snapshot.val();
+  console.log("newPost " + newPost);
+  console.log("newPost.ultimarespuesta: " + newPost.ultimarespuesta);
+});
 function wfirebase (idusr, estado, respuesta){
 	 
 var defaultApp = firebase.initializeApp(config);
