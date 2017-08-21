@@ -55,7 +55,7 @@ function enviarEncuestasSol(){
   ref.once("value", function(snap) {
   console.log("initial data loaded!", snap.numChildren() === count);
 });
-ref.off("value", originalCallback, this);
+//ref.off("value", originalCallback, this);
 }
 function wfirebase (idusr, estado, respuesta){
 	 
