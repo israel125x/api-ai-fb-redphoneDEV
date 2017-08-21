@@ -47,8 +47,9 @@ function enviarEncuestasSol(){
   // Retrieve new posts as they are added to our database
   ref.on("child_added", function(snapshot, prevChildKey) {
   var newPost = snapshot.val();
-  console.log("Author: " + newPost.ultimapeticion);
-  console.log("Title: " + newPost.ultimarespuesta);
+  console.log("snapshot.val =  " + snapshot.val());
+  console.log("ultimapeticion: " + newPost.ultimapeticion);
+  console.log("ultimapeticion: " + newPost.ultimapeticion);
 });
   
 }
