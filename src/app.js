@@ -285,14 +285,7 @@ class FacebookBot {
 
     //which webhook event
     getEventText(event) {
-		
-		
-		if (event.postback){
-			console.log('event.postback= '+event.postback);
-		}
-		if(event.postback.payload){
-			console.log('event.postback.payload= '+event.postback.payload);
-		}
+
         if (event.message) {
             if (event.message.quick_reply && event.message.quick_reply.payload) {
                 console.log('event.message = true');
@@ -319,7 +312,7 @@ class FacebookBot {
 			console.log('event.postback && event.postback.payload = true');
             return event.postback.payload;
         }
-		
+		//console.log('event.postback.payload= '+event.postback.payload+);
 		console.log('return null');
         return null;
 
