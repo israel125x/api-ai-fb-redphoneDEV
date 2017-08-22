@@ -312,7 +312,7 @@ class FacebookBot {
             return event.postback.payload;
         }
 		//console.log('event.postback= '+event.postback);
-		//console.log('event.postback.payload= '+event.postback.payload);
+		console.log('event.postback.payload= '+event.postback.payload);
 		console.log('return null');
         return null;
 
