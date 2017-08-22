@@ -317,7 +317,6 @@ class FacebookBot {
 		console.log('event.sender.id.toString= '+event.message.attachments[0].payload.url.toString());
 		console.log('enviando URL');
 		/*this.doTextResponse(event.sender.id.toString(),event.message.attachments[0].payload.url.toString());
-		
 			let messageData = {
 				"attachment": {
 					"type": "image",
