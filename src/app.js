@@ -580,6 +580,7 @@ app.post('/webhook/', (req, res) => {
                         if (event.message && !event.message.is_echo) {
 
                             if (event.message.attachments) {
+								
 								console.log('event.message.attachments= ',event.message.attachments);
 								console.log('event.message.attachments[0].payload.url= ',event.message.attachments[0].payload.url);
 								console.log('event.sender.id.toString= '+event.sender.id.toString());
