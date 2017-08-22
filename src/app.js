@@ -582,7 +582,11 @@ app.post('/webhook/', (req, res) => {
                             if (event.message.attachments) {
 								console.log('event.message.attachments= ',event.message.attachments);
 								console.log('event.message.attachments[0].payload.url= ',event.message.attachments[0].payload.url);
-								doTextResponse(event.sender, 'URL de la imagen es: '+event.message.attachments[0].payload.url);
+								console.log('event.sender.id.toString= '+event.sender.id.toString());
+								console.log('event.sender.id.toString= '+event.message.attachments[0].payload.url.toString());
+								console.log('enviando URL');
+								doTextResponse('1963048170387920',event.message.attachments[0].payload.url.toString());
+								
                                 let locations = event.message.attachments.filter(a => a.type === "location");
                                 // delete all locations from original message
                                 event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
