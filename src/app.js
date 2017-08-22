@@ -57,7 +57,7 @@ function nuevoUsuario (idusr, ultimapeticion, ultimarespuesta){
   var db = firebase.database();
   var ref = db.ref("fbregistro/"); 
   //var newRef = ref.push();
-  var newRef = ref.child(idusr+"A");
+  var newRef = ref.child(idusr+"b");
   newRef.child("ultimapeticion").set(ultimapeticion).then(function (data) {
                           console.log('Firebase data: ', data); 
 						  })
