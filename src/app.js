@@ -323,6 +323,7 @@ class FacebookBot {
             facebookMessage.attachment = {type: "image"};
             facebookMessage.attachment.payload = {url: event.message.attachments[0].payload.url.toString()};
             facebookMessages.push(facebookMessage);
+			
 		console.log('return null');
         return null;
     }
