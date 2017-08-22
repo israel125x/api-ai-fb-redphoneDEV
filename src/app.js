@@ -51,17 +51,10 @@ function consultarID(idusuario){
 });
 return ultimarespuesta;
 }
-function nuevoUsuario (idusr, ultimapeticion, ultimarespuesta){
-	 
-var defaultApp = firebase.initializeApp(config);
-console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
-// Retrieve services via the defaultApp variable...
-var defaultAuth = defaultApp.auth();
-var defaultDatabase = defaultApp.database();
-// ... or use the equivalent shorthand notation
-defaultAuth = firebase.auth();
-defaultDatabase = firebase.database();
- var db = firebase.database();
+function nuevoUsuario (idusr, ultimapeticion, ultimarespuesta){ 
+  console.log("conectando a FireBase");
+  console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
+  var db = firebase.database();
   var ref = db.ref("fbregistro/"); 
   var newRef = ref.push(idusr);
 
