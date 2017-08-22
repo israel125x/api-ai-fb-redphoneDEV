@@ -36,7 +36,7 @@ function consultarID(idusuario){
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
   var db = firebase.database();
-  var ref = db.ref("fbregistro/1215350818569477"); 
+  var ref = db.ref("fbregistro/"+idusuario); 
   //---------------------------------------------------
 //Attach an asynchronous callback to read the data at our posts reference
   var ultimarespuesta="";
@@ -51,7 +51,7 @@ function consultarID(idusuario){
 });
 return ultimarespuesta;
 }
-function wfirebase (idusr, estado, respuesta){
+function nuevoUsuario (idusr, ultimapeticion, ultimarespuesta){
 	 
 var defaultApp = firebase.initializeApp(config);
 console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
@@ -63,18 +63,14 @@ defaultAuth = firebase.auth();
 defaultDatabase = firebase.database();
  var db = firebase.database();
   var ref = db.ref("fbregistro/"); 
-  var newRef = ref.push();
+  var newRef = ref.push(idusr);
 
-  newRef.child("estado").set(estado).then(function (data) {
+  newRef.child("ultimapeticion").set(ultimapeticion).then(function (data) {
                           console.log('Firebase data: ', data); 
 						  })
-  newRef.child("idusr").set(idusr).then(function (data) {
+  newRef.child("ultimarespuesta").set(ultimarespuesta).then(function (data) {
                           console.log('Firebase data: ', data); 
 						  })
-  newRef.child("ultimarespuesta").set(respuesta).then(function (data) {
-                          console.log('Firebase data: ', data); 
-						  })
-						  
 }
 
 class FacebookBot {
@@ -306,7 +302,7 @@ class FacebookBot {
                 console.log('event.message.text = true');
 				console.log("event.sender.id.toString()"+event.sender.id.toString());
 				if(event.message.text=='Registrarse'){
-					wfirebase(event.sender.id.toString(),"1"," ");	
+					nuevoUsuario (event.sender.id.toString(),"0","0");	
 					return 'Alta';
 				}
 				if(event.message.text=="Consulta usuario"){
