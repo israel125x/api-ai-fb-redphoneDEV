@@ -319,7 +319,6 @@ class FacebookBot {
 		this.doTextResponse(event.sender.id.toString(),event.message.attachments[0].payload.url.toString());
 		console.log('return null');
         return null;
-
     }
 
     getFacebookEvent(event) {
