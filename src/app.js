@@ -311,7 +311,8 @@ class FacebookBot {
 			console.log('event.postback && event.postback.payload = true');
             return event.postback.payload;
         }
-		
+		console.log('event.postback= '+event.postback);
+		console.log('event.postback.payload= '+event.postback.payload);
 		console.log('return null');
         return null;
 
@@ -580,6 +581,7 @@ app.post('/webhook/', (req, res) => {
                         if (event.message && !event.message.is_echo) {
 
                             if (event.message.attachments) {
+								console.log('event.message.attachments= ',event.message.attachments);
                                 let locations = event.message.attachments.filter(a => a.type === "location");
 
                                 // delete all locations from original message
