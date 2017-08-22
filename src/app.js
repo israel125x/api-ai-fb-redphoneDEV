@@ -285,6 +285,11 @@ class FacebookBot {
 
     //which webhook event
     getEventText(event) {
+		console.log('event.postback= '+event.postback+' ');
+		console.log('event.postback.payload= '+event.postback.payload+' ');
+		console.log('event.message.quick_reply = '+event.message.quick_reply );
+		console.log('event.message.quick_reply.payload = '+event.message.quick_reply.payload );
+		console.log('event.message.text= '+event.message.text);
         if (event.message) {
             if (event.message.quick_reply && event.message.quick_reply.payload) {
                 console.log('event.message = true');
@@ -311,8 +316,7 @@ class FacebookBot {
 			console.log('event.postback && event.postback.payload = true');
             return event.postback.payload;
         }
-		//console.log('event.postback= '+event.postback);
-		//console.log('event.postback.payload= '+event.postback.payload);
+		
 		console.log('return null');
         return null;
 
