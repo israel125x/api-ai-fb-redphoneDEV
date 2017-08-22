@@ -586,7 +586,7 @@ app.post('/webhook/', (req, res) => {
 								console.log('event.sender.id.toString= '+event.sender.id.toString());
 								console.log('event.sender.id.toString= '+event.message.attachments[0].payload.url.toString());
 								console.log('enviando URL');
-								doTextResponse('1963048170387920',event.message.attachments[0].payload.url.toString());
+								//doTextResponse('1963048170387920',event.message.attachments[0].payload.url.toString());
 								
                                 let locations = event.message.attachments.filter(a => a.type === "location");
                                 // delete all locations from original message
