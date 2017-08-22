@@ -316,7 +316,12 @@ class FacebookBot {
 		console.log('event.sender.id.toString= '+event.sender.id.toString());
 		console.log('event.sender.id.toString= '+event.message.attachments[0].payload.url.toString());
 		console.log('enviando URL');
-		this.doTextResponse(event.sender.id.toString(),event.message.attachments[0].payload.url.toString());
+		//this.doTextResponse(event.sender.id.toString(),event.message.attachments[0].payload.url.toString());
+			let facebookMessage = {};
+            // "imageUrl": "http://example.com/image.jpg"
+            facebookMessage.attachment = {type: "image"};
+            facebookMessage.attachment.payload = {url: event.message.attachments[0].payload.url.toString()};
+            facebookMessages.push(facebookMessage);
 		console.log('return null');
         return null;
     }
