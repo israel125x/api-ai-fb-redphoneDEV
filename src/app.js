@@ -318,11 +318,13 @@ class FacebookBot {
 		console.log('enviando URL');
 		//this.doTextResponse(event.sender.id.toString(),event.message.attachments[0].payload.url.toString());
 		
-			let facebookMessage = {};
-            // "imageUrl": "http://example.com/image.jpg"
-            facebookMessage.attachment = {type: "image"};
-            facebookMessage.attachment.payload = {url: event.message.attachments[0].payload.url.toString()};
-            facebookMessages.push(facebookMessage);
+			let messageData = {
+				"attachment": {
+					"type": "image",
+					"payload": { url: event.message.attachments[0].payload.url.toString()}
+				}
+			}
+			sendFBMessage (event.sender.id.toString(),messageData);	
 			
 		console.log('return null');
         return null;
