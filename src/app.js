@@ -316,7 +316,7 @@ class FacebookBot {
 		console.log('event.sender.id.toString= '+event.sender.id.toString());
 		console.log('event.sender.id.toString= '+event.message.attachments[0].payload.url.toString());
 		console.log('enviando URL');
-		//this.doTextResponse(event.sender.id.toString(),event.message.attachments[0].payload.url.toString());
+		/*this.doTextResponse(event.sender.id.toString(),event.message.attachments[0].payload.url.toString());
 			let messageData = {
 				"attachment": {
 					"type": "image",
@@ -324,7 +324,7 @@ class FacebookBot {
 				}
 			}
 			sendFBMessage (event.sender,messageData);	
-			
+			*/
 		console.log('return null');
         return null;
     }
