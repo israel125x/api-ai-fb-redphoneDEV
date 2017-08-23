@@ -303,6 +303,16 @@ class FacebookBot {
 				console.log('consultarID = '+consultarID());
 				this.doTextResponse(event.sender.id.toString(),consultarID()+" :) ");
 				}
+				if(event.message.text=="info"){
+					let messageData = {
+						"attachment": 	{
+						"type": "image",
+						"payload": {url: http://journey.coca-cola.com/content/dam/journey/lc/es/private/infographics/infografia-narrativa-1.png
+						}
+					}
+				}
+				this.sendFBMessage (event.sender.id,messageData);	
+				}
 				return event.message.text;
             }
 			
@@ -315,16 +325,9 @@ class FacebookBot {
 		
 		console.log('event.sender.id.toString= '+event.sender.id.toString());
 		console.log('event.sender.id.toString= '+event.message.attachments[0].payload.url.toString());
-		console.log('enviando URL');
-		this.doTextResponse(event.sender.id.toString(),event.message.attachments[0].payload.url.toString());
-			let messageData = {
-			"attachment": 	{
-				"type": "image",
-				"payload": {url: event.message.attachments[0].payload.url
-				}
-			}
-		}
-		this.sendFBMessage (event.sender.id,messageData);	
+		
+		//this.doTextResponse(event.sender.id.toString(),event.message.attachments[0].payload.url.toString());
+			
 		console.log('return null');
         return null;
     }
