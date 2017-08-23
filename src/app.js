@@ -285,7 +285,7 @@ class FacebookBot {
 
     //which webhook event
     getEventText(event) {
-		console.log('event: '+event);
+		
         if (event.message) {
             if (event.message.quick_reply && event.message.quick_reply.payload) {
                 console.log('event.message = true');
@@ -294,7 +294,7 @@ class FacebookBot {
 
             if (event.message.text) {
                 console.log('event.message.text = true');
-				console.log("event.sender.id.toString()"+event.sender.id.toString());
+				console.log("event.sender"+event.sender);
 				if(event.message.text=='Registrarse'){
 					nuevoUsuario (event.sender.id.toString(),"0","0");	
 					return 'Alta';
