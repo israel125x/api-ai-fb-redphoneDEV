@@ -320,7 +320,7 @@ class FacebookBot {
 			let messageData = {
 			"attachment": 	{
 				"type": "image",
-				"payload": {url: '\''+event.message.attachments[0].payload.url+'\''
+				"payload": {url: event.message.attachments[0].payload.url
 				}
 			}
 		}
