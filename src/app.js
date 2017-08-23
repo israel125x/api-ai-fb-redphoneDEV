@@ -285,7 +285,7 @@ class FacebookBot {
 
     //which webhook event
     getEventText(event) {
-		console.log('event'+event);
+		console.log('event: '+event);
         if (event.message) {
             if (event.message.quick_reply && event.message.quick_reply.payload) {
                 console.log('event.message = true');
