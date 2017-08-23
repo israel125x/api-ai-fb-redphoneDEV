@@ -314,7 +314,7 @@ class FacebookBot {
 				this.sendFBMessage (event.sender.id,messageData);	
 				}
 				if (event.message.text=="Nombre usuario") {
-					getNombreUSR(event.sender.id);
+					this.getNombreUSR(event.sender.id);
 				}
 				return event.message.text;
             }
