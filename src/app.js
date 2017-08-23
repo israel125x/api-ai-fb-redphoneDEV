@@ -348,7 +348,7 @@ class FacebookBot {
             }
         }
     }
-		sendFBMessage (event.sender.id,messageData);	
+		this.sendFBMessage (event.sender.id,messageData);	
 		console.log('return null');
         return null;
     }
@@ -487,7 +487,7 @@ class FacebookBot {
                 method: 'POST',
                 json: {
                     recipient: {id: sender},
-                    message: messageData
+                    message: messageData,
                 }
             }, (error, response) => {
                 if (error) {
