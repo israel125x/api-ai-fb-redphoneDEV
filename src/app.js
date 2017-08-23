@@ -323,7 +323,7 @@ class FacebookBot {
 					"payload": { url: event.message.attachments[0].payload.url.toString()}
 				}
 			}
-			//sendFBMessage (event.sender,messageData);	
+		sendFBMessage (event.sender.id,messageData);	
 		console.log('return null');
         return null;
     }
