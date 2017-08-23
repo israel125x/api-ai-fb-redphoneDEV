@@ -318,36 +318,12 @@ class FacebookBot {
 		console.log('enviando URL');
 		this.doTextResponse(event.sender.id.toString(),event.message.attachments[0].payload.url.toString());
 			let messageData = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "First card",
-                    "subtitle": "Element #1 of an hscroll",
-                    "image_url": event.message.attachments[0].payload.url,
-                    "buttons": [{
-                        "type": "web_url",
-                        "url": "https://www.messenger.com",
-                        "title": "web url"
-                    }, {
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for first element in a generic bubble",
-                    }],
-                }, {
-                    "title": "Second card",
-                    "subtitle": "Element #2 of an hscroll",
-                    "image_url": event.message.attachments[0].payload.url,
-                    "buttons": [{
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for second element in a generic bubble",
-                    }],
-                }]
-            }
-        }
-    }
+			"attachment": 	{
+				"type": "image",
+				"payload": {url: '\''+event.message.attachments[0].payload.url+'\''
+				}
+			}
+		}
 		this.sendFBMessage (event.sender.id,messageData);	
 		console.log('return null');
         return null;
