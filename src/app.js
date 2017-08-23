@@ -313,6 +313,9 @@ class FacebookBot {
 				}
 				this.sendFBMessage (event.sender.id,messageData);	
 				}
+				if (event.message.text=="Nombre usuario") {
+					getNombreUSR(event.sender.id);
+				}
 				return event.message.text;
             }
 			
@@ -456,6 +459,34 @@ class FacebookBot {
         return output;
     }
 
+	
+    getNombreUSR(sender) {
+        return new Promise((resolve, reject) => {
+            request({
+                url: 'https://graph.facebook.com/v2.6/1215350818569477',
+                qs: {access_token: FB_PAGE_ACCESS_TOKEN},
+                method: 'POST',
+                /*json: {
+                    recipient: {id: sender},
+                    message: messageData,
+                }*/
+            }, (error, response) => {
+                if (error) {
+                    console.log('Error sending message: ', error);
+                    reject(error);
+                } else if (response.body.error) {
+                    console.log('Error: ', response.body.error);
+                    reject(new Error(response.body.error));
+                }
+				console.log('response.body ',response.body);
+				console.log('resolve: ',resolve);
+                resolve();
+            });
+        });
+    }
+
+	
+	
     sendFBMessage(sender, messageData) {
         return new Promise((resolve, reject) => {
             request({
