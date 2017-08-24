@@ -72,14 +72,15 @@ function consultarProceso(idusuario){
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
   var db = firebase.database();
   var ref = db.ref("procesos/"+idusuario); 
-  var estadoAlta="";
+  var estadoAlta="Inicializar";
   ref.on("value", function(snapshot) {
   var registro = snapshot.val();
-  console.log("registro.idfb: " + registro.idfb);
-  console.log("registro.proceso: " + registro.proceso);
-  console.log("registro.paso: " + registro.paso);
-  console.log("registro.limite: " + registro.limite);
-  estadoAlta = registro.paso;
+  console.log("registro.idfb: " + registro);
+  //console.log("registro.idfb: " + registro.idfb);
+  //console.log("registro.proceso: " + registro.proceso);
+  //console.log("registro.paso: " + registro.paso);
+  //console.log("registro.limite: " + registro.limite);
+  //estadoAlta = registro.paso;
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
