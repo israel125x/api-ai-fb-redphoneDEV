@@ -70,18 +70,17 @@ function nuevoUsuario (idusr, ultimapeticion, ultimarespuesta){
 function consultarProceso(idusuario){
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
-  console.log("idusuario.toString",idusuario.toString);
+  console.log("idusuario.toString: ",idusuario.toString);
   var db = firebase.database();
   var registro = snapshot.val();
   var ref = db.ref("procesos/"+idusuario.toString); 
   var estadoAlta="Inicializar";
   ref.on("value", function(snapshot) {
-  var registro = snapshot.val();
-  console.log("registro.val: "+registro);
+  console.log("snapshot.val: ",snapshot.val());
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
-return estadoAlta;
+return "test";
 }
 //------------------------------------------------------------------------------
 class FacebookBot {
