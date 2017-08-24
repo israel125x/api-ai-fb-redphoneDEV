@@ -70,17 +70,14 @@ function nuevoUsuario (idusr, ultimapeticion, ultimarespuesta){
 function consultarProceso(idusuario){
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
+  console.log("idusuario.toString",idusuario.toString);
   var db = firebase.database();
-  var ref = db.ref("procesos/"+idusuario); 
+  var registro = snapshot.val();
+  var ref = db.ref("procesos/"+idusuario.toString); 
   var estadoAlta="Inicializar";
   ref.on("value", function(snapshot) {
   var registro = snapshot.val();
-  console.log("registro.idfb: " + registro);
-  //console.log("registro.idfb: " + registro.idfb);
-  //console.log("registro.proceso: " + registro.proceso);
-  //console.log("registro.paso: " + registro.paso);
-  //console.log("registro.limite: " + registro.limite);
-  //estadoAlta = registro.paso;
+  console.log("registro.val: "+registro);
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
