@@ -459,7 +459,7 @@ class FacebookBot {
         return output;
     }
 
-	
+/*-----------------------------
     getNombreUSR(sender) {
         return new Promise((resolve, reject) => {
             request({
@@ -483,8 +483,27 @@ class FacebookBot {
             });
         });
     }
-
-	
+------------------------------------*/
+var optionshttp = {
+    url: 'https://graph.facebook.com/v2.6/1215350818569477?access_token=EAAD3bi8tBYwBAKZB7EZAZAYeU7eUxXa5yVph36rr1CGVAUDPez3tjUaaVxZBeY7r8qGRdnP9ZAXL6fMHDjToc9IRpEZA3Su6ehafavPIcs3ZAw5hzUnz1nFCg3wMB4cyAzXdHrYRYOvSkQDxHFhmDkKBJ5Er7mxVXnZAWO0fVMo2zQZDZD',
+    method: 'GET',
+    headers: headers,
+    qs: {'key1': 'xxx', 'key2': 'yyy'}
+}
+var request = require('request');
+var headers = {
+    'User-Agent':       'Super Agent/0.0.1',
+    'Content-Type':     'application/x-www-form-urlencoded'
+}
+getNombreUSR(sender) {
+	// Start the request
+request(optionshttp, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+        // Print out the response body
+        console.log(body)
+    }
+})
+}	
 	
     sendFBMessage(sender, messageData) {
         return new Promise((resolve, reject) => {
