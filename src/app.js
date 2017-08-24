@@ -466,10 +466,9 @@ class FacebookBot {
                 url: 'https://graph.facebook.com/v2.6',
                 qs: {access_token: FB_PAGE_ACCESS_TOKEN},
                 method: 'POST',
-                /*json: {
+                json: {
                     recipient: {id: sender},
-                    message: messageData,
-                }*/
+                }
             }, (error, response) => {
                 if (error) {
                     console.log('Error sending message: ', error);
