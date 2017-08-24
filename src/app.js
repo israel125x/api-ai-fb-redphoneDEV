@@ -66,6 +66,26 @@ function nuevoUsuario (idusr, ultimapeticion, ultimarespuesta){
 						  })
 }
 
+//funcion que verifica el estado de la solicitus de alta 
+function consultarID(idusuario){
+  console.log("conectando a FireBase");
+  console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
+  var db = firebase.database();
+  var ref = db.ref("procesos/"+idusuario); 
+  var estadoAlta="";
+  ref.on("value", function(snapshot) {
+  var registro = snapshot.val();
+  console.log("registro.idfb: " + registro.idfb);
+  console.log("registro.proceso: " + registro.proceso);
+  console.log("registro.paso: " + registro.paso);
+  console.log("registro.limite: " + registro.limite);
+  estadoAlta = registro.paso;
+}, function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
+});
+return estadoAlta;
+}
+//------------------------------------------------------------------------------
 class FacebookBot {
     constructor() {
         this.apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
@@ -296,8 +316,9 @@ class FacebookBot {
                 console.log('event.message.text = true');
 				console.log("event: "+JSON.stringify(event));
 				if(event.message.text=='Registrarse'){
-					nuevoUsuario (event.sender.id.toString(),"0","0");	
-					return 'Alta';
+					nuevoUsuario (event.sender.id.toString(),"0","0");
+					console.log('estado alta= ',consultarID());
+					return 'AltaXXX';
 				}
 				if(event.message.text=="Consulta usuario"){
 				console.log('consultarID = '+consultarID());
