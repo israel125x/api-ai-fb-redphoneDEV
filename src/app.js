@@ -463,13 +463,13 @@ class FacebookBot {
     getNombreUSR(sender) {
         return new Promise((resolve, reject) => {
             request({
-                url: 'https://graph.facebook.com/v2.6/',
+                url: 'https://graph.facebook.com/v2.6/1215350818569477',
                 qs: {access_token: FB_PAGE_ACCESS_TOKEN},
                 method: 'POST',
-                json: {
+                /*json: {
                     recipient: {id: sender},
-                   // message: messageData,
-                }
+                    message: messageData,
+                }*/
             }, (error, response) => {
                 if (error) {
                     console.log('Error sending message: ', error);
