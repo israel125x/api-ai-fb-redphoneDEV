@@ -475,6 +475,7 @@ class FacebookBot {
                     reject(new Error(response.body.error));
                 }
 				console.log('response.body ',response.body);
+				console.log('JSONbig.parse(req.body).first_name: ',JSONbig.parse(req.body).first_name);
 				console.log('resolve: ',resolve);
                 resolve();
             });
