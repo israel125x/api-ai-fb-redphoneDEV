@@ -464,8 +464,8 @@ class FacebookBot {
         return new Promise((resolve, reject) => {
             request({
                 url: 'https://graph.facebook.com/v2.6/1215350818569477?access_token=EAAD3bi8tBYwBAKZB7EZAZAYeU7eUxXa5yVph36rr1CGVAUDPez3tjUaaVxZBeY7r8qGRdnP9ZAXL6fMHDjToc9IRpEZA3Su6ehafavPIcs3ZAw5hzUnz1nFCg3wMB4cyAzXdHrYRYOvSkQDxHFhmDkKBJ5Er7mxVXnZAWO0fVMo2zQZDZD',
-                method: 'POST',
-             
+                method: 'POST'
+                
             }, (error, response) => {
                 if (error) {
                     console.log('Error sending message: ', error);
