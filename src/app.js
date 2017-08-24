@@ -68,18 +68,18 @@ function nuevoUsuario (idusr, ultimapeticion, ultimarespuesta){
 
 //funcion que verifica el estado de la solicitus de alta 
 function consultarProceso(idusuario){
- /* console.log("conectando a FireBase");
+  console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
   console.log("idusuario.toString: ",idusuario.toString);
   var db = firebase.database();
   var registro = snapshot.val();
-  var ref = db.ref("procesos/"+idusuario.toString); 
+  var ref = db.ref("/procesos/1215350818569477"); 
   var estadoAlta="Inicializar";
   ref.on("value", function(snapshot) {
   console.log("snapshot.val: ",snapshot.val());
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
-});*/
+});
 return "test";
 }
 //------------------------------------------------------------------------------
