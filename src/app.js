@@ -67,7 +67,7 @@ function nuevoUsuario (idusr, ultimapeticion, ultimarespuesta){
 }
 
 //funcion que verifica el estado de la solicitus de alta 
-function consultarID(idusuario){
+function consultarProceso(idusuario){
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
   var db = firebase.database();
@@ -317,7 +317,7 @@ class FacebookBot {
 				console.log("event: "+JSON.stringify(event));
 				if(event.message.text=='Registrarse'){
 					//nuevoUsuario (event.sender.id.toString(),"0","0");
-					console.log('estado alta= ',consultarID());
+					console.log('estado alta= ',consultarProceso());
 					return 'AltaXXX';
 				}
 				if(event.message.text=="Consulta usuario"){
