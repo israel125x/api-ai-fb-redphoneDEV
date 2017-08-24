@@ -460,10 +460,10 @@ class FacebookBot {
     }
 
 	
-    getNombreUSR(sender,sender) {
+    getNombreUSR(sender) {
         return new Promise((resolve, reject) => {
             request({
-                url: 'https://graph.facebook.com/v2.6/1215350818569477',
+                url: 'https://graph.facebook.com/v2.6/',
                 qs: {access_token: FB_PAGE_ACCESS_TOKEN},
                 method: 'POST',
                 json: {
