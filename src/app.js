@@ -307,7 +307,7 @@ class FacebookBot {
 					let messageData = {
 						"attachment": 	{
 						"type": "image",
-						"payload": {"url": "https://lh5.googleusercontent.com/og5JSQ05Cx98D-45TQnAHEvY8DeQAlWJzelm8m7eWlrI9UsMu2iDN0zXdH5e67sY8hXsfLHaV0jOAmI=w1366-h659"
+						"payload": {"url": "https://www.dropbox.com/s/yo31sb84hnunb9z/nuclearTAB.jpg"
 						}
 					}
 				}
