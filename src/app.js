@@ -307,7 +307,7 @@ class FacebookBot {
 					let messageData = {
 						"attachment": 	{
 						"type": "image",
-						"payload": {"url": "https://www.dropbox.com/s/yo31sb84hnunb9z/nuclearTAB.jpg"
+						"payload": {"url": "https://uuajpq.dm2302.livefilestore.com/y4pV0o-PnYo4EGr72neSDx4EqAjD4V7qsN3ztz15n29PoU5dhLwk0psbiVNb2xcNG0oV-GiradMklm2luhQEBbpSxLS1No48bQnLQ3R41IpCji9qLW1H_QwtOtmdSHxjqkblqULTblMIaigctMh5TwP72aFyJ_r9V0rOUPu52bQVvjml0V8-H5cCkSp29E4mjje/coca_logo2.png"
 						}
 					}
 				}
