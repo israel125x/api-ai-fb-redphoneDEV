@@ -307,7 +307,7 @@ class FacebookBot {
 					let messageData = {
 						"attachment": 	{
 						"type": "image",
-						"payload": {"url": "http://journey.coca-cola.com/content/dam/journey/lc/es/private/infographics/infografia-narrativa-1.png"
+						"payload": {"url": "https://lh5.googleusercontent.com/og5JSQ05Cx98D-45TQnAHEvY8DeQAlWJzelm8m7eWlrI9UsMu2iDN0zXdH5e67sY8hXsfLHaV0jOAmI=w1366-h659"
 						}
 					}
 				}
@@ -460,16 +460,16 @@ class FacebookBot {
     }
 
 	
-    getNombreUSR(sender) {
+    getNombreUSR(sender,sender) {
         return new Promise((resolve, reject) => {
             request({
                 url: 'https://graph.facebook.com/v2.6/1215350818569477',
                 qs: {access_token: FB_PAGE_ACCESS_TOKEN},
                 method: 'POST',
-                /*json: {
+                json: {
                     recipient: {id: sender},
-                    message: messageData,
-                }*/
+                   // message: messageData,
+                }
             }, (error, response) => {
                 if (error) {
                     console.log('Error sending message: ', error);
