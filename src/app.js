@@ -71,17 +71,19 @@ function nuevoUsuario (idusr, ultimapeticion, ultimarespuesta){
 function consultarProceso(idusuario){
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
-  console.log("idusuario.toString: ",idusuario);
   var db = firebase.database();
-  var registro = snapshot.val();
-  var ref = db.ref("fbregistro/"+idusuario); 
-  var estadoAlta="Inicializar";
+  var ref = db.ref("procesos/"+idusuario); 
+  //---------------------------------------------------
+//Attach an asynchronous callback to read the data at our posts reference
+  var paso="";
   ref.on("value", function(snapshot) {
-  console.log("snapshot.val: ",snapshot.val());
   var registro = snapshot.val();
   console.log("registro.val: "+registro);
-  console.log("registro.paso: " + registro.paso);
-  var paso = registro.paso;
+  console.log("registro.ultimapeticion: " + registro.idfb);
+  console.log("registro.ultimarespuesta: " + registro.paso);
+  console.log("registro.ultimarespuesta: " + registro.limite);
+  console.log("registro.ultimarespuesta: " + registro.proceso);
+  paso = registro.paso;
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
