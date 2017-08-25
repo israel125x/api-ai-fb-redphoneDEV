@@ -77,20 +77,16 @@ function consultarProceso(idusuario){
 //Attach an asynchronous callback to read the data at our posts reference
   var paso="_";
   ref.on("value", function(snapshot) {
+  console.log("registro.val: "+snapshot.val);
+  if(snapshot.val){	  
   var registro = snapshot.val();
-  console.log("registro.val: "+registro);
-  try{
   console.log("registro.idfb: " + registro.idfb);
   console.log("registro.paso: " + registro.paso);
   console.log("registro.limite " + registro.limite);
   console.log("registro.proceso " + registro.proceso);
   paso = registro.paso;
-  var err = new Error('example');
-  throw err;
-  }catch (err) {
-    // handle the error safely
-	console.log(err);
-	return paso;
+  }else{
+	  return paso;
   }
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
