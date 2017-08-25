@@ -30,6 +30,7 @@ var config = {
     storageBucket: "turnosmovil-a576d.appspot.com",
     messagingSenderId: "706329874359"
   };
+
 var defaultApp = firebase.initializeApp(config);
 
 function consultarID(idusuario){
