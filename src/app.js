@@ -44,8 +44,8 @@ function consultarID(idusuario){
   ref.on("value", function(snapshot) {
   var registro = snapshot.val();
   console.log("registro.val: "+registro);
-  //console.log("registro.ultimapeticion: " + registro.ultimapeticion);
-  //console.log("registro.ultimarespuesta: " + registro.ultimarespuesta);
+  console.log("registro.ultimapeticion: " + registro.ultimapeticion);
+  console.log("registro.ultimarespuesta: " + registro.ultimarespuesta);
   ultimarespuesta = "test";//registro.ultimarespuesta;
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
@@ -319,8 +319,8 @@ class FacebookBot {
 					return 'AltaXXX';
 				}
 				if(event.message.text=="Consulta usuario"){
-				console.log('consultarID = '+consultarID());
-				this.doTextResponse(event.sender.id.toString(),consultarID()+" :) ");
+				console.log('consultarID = '+consultarID(event.sender.id));
+				this.doTextResponse(event.sender.id.toString(),consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="info"){
 					let messageData = {
