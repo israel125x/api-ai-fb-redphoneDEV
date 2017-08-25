@@ -53,12 +53,12 @@ function consultarID(idusuario){
 return ultimarespuesta;
 }
 function nuevoUsuario (idusr, ultimapeticion, ultimarespuesta){ 
-  console.log("conectando a FireBase");
+  console.log("Insertar Registro");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
   var db = firebase.database();
   var ref = db.ref("fbregistro/"); 
   //var newRef = ref.push();
-  var newRef = ref.child(idusr+"b");
+  var newRef = ref.child(idusr);
   newRef.child("ultimapeticion").set(ultimapeticion).then(function (data) {
                           console.log('Firebase data: ', data); 
 						  })
@@ -353,7 +353,7 @@ class FacebookBot {
 					console.log('estado proceso alta= ',consultarProceso(event.sender.id));
 					if(consultarProceso(event.sender.id)=="_"){
 					//this.nuevoproceso(event.sender.id);
-					this.nuevoUsuario ("123456", "1","1");
+					//this.nuevoUsuario ("123456789", "1","1");
 					}	
 					return 'Alta_0';
 				}
