@@ -75,17 +75,20 @@ function consultarProceso(idusuario){
   var ref = db.ref("procesos/"+idusuario); 
   //---------------------------------------------------
 //Attach an asynchronous callback to read the data at our posts reference
-  var paso="";
+  var paso="_";
   ref.on("value", function(snapshot) {
   var registro = snapshot.val();
+  try{
   console.log("registro.val: "+registro);
-  console.log("registro.ultimapeticion: " + registro.idfb);
-  console.log("registro.ultimarespuesta: " + registro.paso);
-  console.log("registro.ultimarespuesta: " + registro.limite);
-  console.log("registro.ultimarespuesta: " + registro.proceso);
+  console.log("registro.idfb: " + registro.idfb);
+  console.log("registro.paso: " + registro.paso);
+  console.log("registro.limite " + registro.limite);
+  console.log("registro.proceso " + registro.proceso);
   paso = registro.paso;
+  }
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
+  return paso;
 });
 return paso;
 }
