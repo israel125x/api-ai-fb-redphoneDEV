@@ -85,7 +85,7 @@ function consultarProceso(idusuario){
   console.log("registro.idfb: " + registro.idfb);
   console.log("registro.paso: " + registro.paso);
   console.log("registro.limite " + registro.limite);
-  console.log("registro.proceso " + registro.proceso);*/
+  console.log("registro.proceso " + registro.proceso);
   paso = registro.paso;
   
 }, function (errorObject) {
