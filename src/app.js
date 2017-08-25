@@ -46,7 +46,7 @@ function consultarID(idusuario){
   console.log("registro.val: "+registro);
   console.log("registro.ultimapeticion: " + registro.ultimapeticion);
   console.log("registro.ultimarespuesta: " + registro.ultimarespuesta);
-  ultimarespuesta = "test";//registro.ultimarespuesta;
+  ultimarespuesta = registro.ultimarespuesta;
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
@@ -74,14 +74,18 @@ function consultarProceso(idusuario){
   console.log("idusuario.toString: ",idusuario.toString);
   var db = firebase.database();
   var registro = snapshot.val();
-  var ref = db.ref("/procesos/1215350818569477"); 
+  var ref = db.ref("fbregistro/"+idusuario); 
   var estadoAlta="Inicializar";
   ref.on("value", function(snapshot) {
   console.log("snapshot.val: ",snapshot.val());
+  var registro = snapshot.val();
+  console.log("registro.val: "+registro);
+  console.log("registro.paso: " + registro.paso);
+  var paso = registro.paso;
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
-return "test";
+return paso;
 }
 //------------------------------------------------------------------------------
 class FacebookBot {
@@ -315,12 +319,12 @@ class FacebookBot {
 				console.log("event: "+JSON.stringify(event));
 				if(event.message.text=='Registrarse'){
 					//nuevoUsuario (event.sender.id.toString(),"0","0");
-					//console.log('estado alta= ',consultarProceso());
+					console.log('estado alta= ',consultarProceso(event.sender.id));
 					return 'AltaXXX';
 				}
 				if(event.message.text=="Consulta usuario"){
 				console.log('consultarID = '+consultarID(event.sender.id));
-				this.doTextResponse(event.sender.id.toString(),consultarID(event.sender.id)+" :) ");
+				this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="info"){
 					let messageData = {
