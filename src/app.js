@@ -78,14 +78,12 @@ function consultarProceso(idusuario){
   var paso="_";
   ref.on("value", function(snapshot) {
   var registro = snapshot.val();
-  try{
   console.log("registro.val: "+registro);
   console.log("registro.idfb: " + registro.idfb);
   console.log("registro.paso: " + registro.paso);
   console.log("registro.limite " + registro.limite);
   console.log("registro.proceso " + registro.proceso);
   paso = registro.paso;
-  }
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
   return paso;
@@ -324,7 +322,7 @@ class FacebookBot {
 				console.log("event: "+JSON.stringify(event));
 				if(event.message.text=='Registrarse'){
 					//nuevoUsuario (event.sender.id.toString(),"0","0");
-					//console.log('estado alta= ',consultarProceso(event.sender.id));
+					console.log('estado alta= ',consultarProceso(event.sender.id));
 					return 'AltaXXX';
 				}
 				if(event.message.text=="Consulta usuario"){
