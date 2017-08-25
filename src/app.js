@@ -78,7 +78,6 @@ function nuevoproceso (idusr){
                           console.log('Firebase data: ', data); 
 						  }).catch(function (error) {
                 console.log('Firebase error: ', error);
-                context.fail();
             });
   newRef.child("limite").set("3").then(function (data) {
                           console.log('Firebase data: ', data); 
@@ -353,7 +352,7 @@ class FacebookBot {
 				if(event.message.text=='Registrarse'){
 					console.log('estado proceso alta= ',consultarProceso(event.sender.id));
 					if(consultarProceso(event.sender.id)=="_"){
-					//this.nuevoproceso(event.sender.id);
+					this.nuevoproceso(event.sender.id);
 					}	
 					return 'Alta_0';
 				}
