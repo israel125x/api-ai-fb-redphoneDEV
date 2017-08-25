@@ -78,20 +78,16 @@ function consultarProceso(idusuario){
   var paso="_";
   ref.on("value", function(snapshot) {
   var registro = snapshot.val();
-  try{
+  if(registro==null){
+	return paso;  
+  }
   console.log("registro.val: "+registro);
   console.log("registro.idfb: " + registro.idfb);
   console.log("registro.paso: " + registro.paso);
   console.log("registro.limite " + registro.limite);
-  console.log("registro.proceso " + registro.proceso);
+  console.log("registro.proceso " + registro.proceso);*/
   paso = registro.paso;
-  var err = new Error();
-    throw err;
-  }catch (err) {
-    // handle the error safely
-    console.log(err);
-	return paso;
-  }
+  
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
   return paso;
