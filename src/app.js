@@ -71,7 +71,7 @@ function nuevoUsuario (idusr, ultimapeticion, ultimarespuesta){
 function consultarProceso(idusuario){
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
-  console.log("idusuario.toString: ",idusuario.toString);
+  console.log("idusuario.toString: ",idusuario);
   var db = firebase.database();
   var registro = snapshot.val();
   var ref = db.ref("fbregistro/"+idusuario); 
