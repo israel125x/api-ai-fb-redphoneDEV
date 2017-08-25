@@ -314,7 +314,7 @@ class FacebookBot {
 				console.log("event: "+JSON.stringify(event));
 				if(event.message.text=='Registrarse'){
 					//nuevoUsuario (event.sender.id.toString(),"0","0");
-					console.log('estado alta= ',consultarProceso());
+					//console.log('estado alta= ',consultarProceso());
 					return 'AltaXXX';
 				}
 				if(event.message.text=="Consulta usuario"){
