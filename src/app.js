@@ -353,7 +353,7 @@ class FacebookBot {
 					console.log('estado proceso alta= ',consultarProceso(event.sender.id));
 					if(consultarProceso(event.sender.id)=="_"){
 					//this.nuevoproceso(event.sender.id);
-					this.nuevoUsuario ("123456", "1","1");
+					//this.nuevoUsuario ("123456", "1","1");
 					}	
 					return 'Alta_0';
 				}
