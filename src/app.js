@@ -76,7 +76,10 @@ function nuevoproceso (idusr){
   var newRef = ref.child(idusr);
   newRef.child("idfb").set(idusr).then(function (data) {
                           console.log('Firebase data: ', data); 
-						  })
+						  }).catch(function (error) {
+                console.log('Firebase error: ', error);
+                context.fail();
+            });
   newRef.child("limite").set("3").then(function (data) {
                           console.log('Firebase data: ', data); 
 						  })
