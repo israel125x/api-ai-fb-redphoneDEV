@@ -66,6 +66,29 @@ function nuevoUsuario (idusr, ultimapeticion, ultimarespuesta){
                           console.log('Firebase data: ', data); 
 						  })
 }
+//---inserta nuevo registro de usurios en procesos--------------
+function nuevoproceso (idusr){ 
+  console.log("conectando a FireBase");
+  console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
+  var db = firebase.database();
+  var ref = db.ref("procesos/"); 
+  //var newRef = ref.push();
+  var newRef = ref.child(idusr);
+  newRef.child("idfb").set(idusr).then(function (data) {
+                          console.log('Firebase data: ', data); 
+						  })
+  newRef.child("limite").set("3").then(function (data) {
+                          console.log('Firebase data: ', data); 
+						  })
+  newRef.child("paso").set("0").then(function (data) {
+                          console.log('Firebase data: ', data); 
+						  })
+  newRef.child("proceso").set("alta").then(function (data) {
+                          console.log('Firebase data: ', data); 
+						  })
+						  
+}
+//-------------------------------------------------------------
 
 //funcion que verifica el estado de la solicitus de alta 
 function consultarProceso(idusuario){
@@ -325,9 +348,11 @@ class FacebookBot {
                 console.log('event.message.text = true');
 				console.log("event: "+JSON.stringify(event));
 				if(event.message.text=='Registrarse'){
-					//nuevoUsuario (event.sender.id.toString(),"0","0");
-					console.log('estado alta= ',consultarProceso(event.sender.id));
-					return 'AltaXXX';
+					console.log('estado proceso alta= ',consultarProceso(event.sender.id));
+					if(consultarProceso(event.sender.id)=="_"){
+					this.nuevoproceso(event.sender.id);
+					}	
+					return 'Alta_0';
 				}
 				if(event.message.text=="Consulta usuario"){
 				console.log('consultarID = '+consultarID(event.sender.id));
