@@ -77,9 +77,10 @@ function consultarProceso(idusuario){
 //Attach an asynchronous callback to read the data at our posts reference
   var paso="_";
   ref.on("value", function(snapshot) {
-  console.log("registro.val: "+snapshot.val);
-  if(snapshot.val){	  
+   
   var registro = snapshot.val();
+  console.log("registro.val: "+registro);
+  if(registro.idfb){	 
   console.log("registro.idfb: " + registro.idfb);
   console.log("registro.paso: " + registro.paso);
   console.log("registro.limite " + registro.limite);
