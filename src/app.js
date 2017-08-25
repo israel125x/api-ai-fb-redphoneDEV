@@ -85,11 +85,11 @@ function consultarProceso(idusuario){
   console.log("registro.limite " + registro.limite);
   console.log("registro.proceso " + registro.proceso);
   paso = registro.paso;
-  var err = new Error('Error: ')
-    throw err
+  var err = new Error();
+    throw err;
   }catch (err) {
     // handle the error safely
-    console.log(err)
+    console.log(err);
 	return paso;
   }
 }, function (errorObject) {
