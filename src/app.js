@@ -514,9 +514,10 @@ app.get('/webhook/', (req, res) => {
 
 app.post('/webhook/', (req, res) => {
     try {
-		console.log("req.sessionID= ",req.sessionID);
         const data = JSONbig.parse(req.body);
-
+		var sesionid =JSONbig.parse(req.sessionID);
+		console.log("data= ",data);
+		console.log("req.sessionID= ",sesionid);
         if (data.entry) {
             let entries = data.entry;
             entries.forEach((entry) => {
