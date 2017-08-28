@@ -124,6 +124,24 @@ function consultarProceso(idusuario){
 });
 return paso;
 }
+//funcion que inicializa las encuestas--------------------------- 
+function iniciarEncuestas(event){
+	
+const senderSimulado = "1963048170387920";
+const text= "Encuesta1";
+// Handle a text message from this sender
+this.sessionIds.set(senderSimulado, uuid.v4());
+//send user's text to api.ai service
+let apiaiRequest = this.apiAiService.textRequest(text,
+    {
+    sessionId: this.sessionIds.get(sender),
+    originalRequest: {
+		data: event,
+		source: "facebook"
+        }
+    });
+this.doApiAiRequest(apiaiRequest, sender);        
+}
 //------------------------------------------------------------------------------
 class FacebookBot {
     constructor() {
@@ -362,6 +380,10 @@ class FacebookBot {
 				console.log('consultarID = '+consultarID(event.sender.id));
 				this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
+				if(event.message.text=="Iniciar encuestas"){
+				iniciarEncuestas(event);
+				return ' ';
+				}
 				if(event.message.text=="info"){
 					let messageData = {
 						"attachment": 	{
@@ -467,7 +489,7 @@ class FacebookBot {
 				console.log('response.result.metadata.intentName: ',response.result.metadata.intentName);
 				console.log('response.result.parameters.valor: ',response.result.parameters.valor);
 				if (response.result.metadata.intentName=='redphone.agente.alta.pregunta1'){
-					procesoAlta("A1",sender,response.result.parameters.valor);
+					//procesoAlta("A1",sender,response.result.parameters.valor);
 				}
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
                     let facebookResponseData = responseData.facebook;
