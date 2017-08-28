@@ -115,7 +115,7 @@ function consultarProceso(idusuario){
   
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
-  return paso;
+  return errorObject.code;
 });
 return paso;
 }
@@ -351,6 +351,7 @@ class FacebookBot {
 				console.log("event: "+JSON.stringify(event));
 				if(event.message.text=='Registrarse'){
 					console.log('estado proceso alta= ',consultarProceso(event.sender.id));
+					this.doTextResponse(event.sender.id.toString(),"estado proceso alta :"+consultarProceso(event.sender.id));
 					//if(consultarProceso(event.sender.id)=="_"){
 					//this.nuevoproceso(event.sender.id);
 					//this.nuevoUsuario ("123456789", "1","1");
