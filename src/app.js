@@ -256,10 +256,7 @@ class FacebookBot {
         return null;
 
     }
-function procesarPeticion(){
-	console.log("prosesar peticion");
-	return null;	
-	}
+
     getFacebookEvent(event) {
         if (event.postback && event.postback.payload) {
 
@@ -491,7 +488,12 @@ function procesarPeticion(){
 
 }
 
-
+function procesarPeticion(){
+	console.log("prosesar peticion");
+	return null;	
+	}
+	
+	
 let facebookBot = new FacebookBot();
 
 const app = express();
