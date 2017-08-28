@@ -383,7 +383,7 @@ class FacebookBot {
                 method: 'POST',
                 json: {
                     recipient: {id: sender},
-                    message: messageData
+                    message: messageData,
                 }
             }, (error, response) => {
                 if (error) {
