@@ -306,6 +306,7 @@ class FacebookBot {
             // Handle a text message from this sender
             if (!this.sessionIds.has(sender)) {
                 this.sessionIds.set(sender, uuid.v4());
+				console.log('this.sessionIds= ',this.sessionIds);
             }
 
             console.log("Text", text);
@@ -328,6 +329,7 @@ class FacebookBot {
             if (this.isDefined(response.result) && this.isDefined(response.result.fulfillment)) {
                 let responseText = response.result.fulfillment.speech;
                 let responseData = response.result.fulfillment.data;
+				console.log('responseData: ',responseData);
                 let responseMessages = response.result.fulfillment.messages;
 
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
