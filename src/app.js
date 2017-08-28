@@ -513,11 +513,11 @@ app.get('/webhook/', (req, res) => {
 });
 
 app.post('/webhook/', (req, res) => {
-    console.log("req.sessionID= ",JSONbig.parse(req.sessionID));
-	console.log("req= ",req);
+    //console.log("req.sessionID= ",JSONbig.parse(req.sessionID));
+	//console.log("req= ",req);
 	try {
         const data = JSONbig.parse(req.body);
-		console.log("data= ",data);
+		//console.log("data= ",data);
         if (data.entry) {
             let entries = data.entry;
             entries.forEach((entry) => {
