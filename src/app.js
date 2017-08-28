@@ -239,7 +239,7 @@ class FacebookBot {
             if (event.message.text) {
 				if(event.message.text=='Alta'){
 					console.log("Alta");
-					return 'Nueva_Alta';
+					return 'ALTA';
 				}
 				else{
 				procesarPeticion();
