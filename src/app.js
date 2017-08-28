@@ -331,10 +331,10 @@ class FacebookBot {
                 let responseData = response.result.fulfillment.data;
 				console.log('response.result.parameters.nombre: ',response.result.parameters.nombre);
 				console.log('response.result.contexts.length: ',response.result.contexts.length);
-				for(i = 0; i < response.result.contexts.length; i++){
+				//for(i = 0; i < response.result.contexts.length; i++){
 				//console.log('response.result.parameters.nombre: ',response.result.contexts[0]);
-				console.log('contador: ',i);
-				}
+				//console.log('contador: ',i);
+				//}
                 let responseMessages = response.result.fulfillment.messages;
 
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
