@@ -240,7 +240,8 @@ class FacebookBot {
 				if(event.message.text=='Alta'){
 					console.log("Alta");
 					return 'Nueva_Alta';
-				}else{
+				}
+				else{
 				procesarPeticion();
 				return event.message.text;
 				}	
@@ -255,8 +256,9 @@ class FacebookBot {
         return null;
 
     }
-	procesarPeticion(){
-	console.log("prosesar peticion");	
+function procesarPeticion(){
+	console.log("prosesar peticion");
+	return null;	
 	}
     getFacebookEvent(event) {
         if (event.postback && event.postback.payload) {
