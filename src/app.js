@@ -329,7 +329,7 @@ class FacebookBot {
             if (this.isDefined(response.result) && this.isDefined(response.result.fulfillment)) {
                 let responseText = response.result.fulfillment.speech;
                 let responseData = response.result.fulfillment.data;
-				console.log('response.result.parameters.nombre: ',response.result.parameters.valor);
+				console.log('response.result.parameters.valor: ',response.result.parameters.valor);
 				console.log('response.result.metadata.intentName: ',response.result.metadata.intentName);
                 let responseMessages = response.result.fulfillment.messages;
 
