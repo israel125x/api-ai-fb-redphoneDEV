@@ -332,7 +332,8 @@ class FacebookBot {
 				console.log('response.result.parameters.nombre: ',response.result.parameters.nombre);
 				console.log('response.result.contexts.length: ',response.result.contexts.length);
 				for(i = 0; i < response.result.contexts.length; i++){
-				console.log('response.result.parameters.nombre: ',response.result.contexts[0]);
+				//console.log('response.result.parameters.nombre: ',response.result.contexts[0]);
+				console.log('contador: ',i);
 				}
                 let responseMessages = response.result.fulfillment.messages;
 
