@@ -237,8 +237,9 @@ class FacebookBot {
             }
 
             if (event.message.text) {
-				if(event.message.text=='Registrarse'){
-					return 'Alta_0';
+				if(event.message.text=='Alta'){
+					console.log("Alta");
+					return 'Nueva_Alta';
 				}
                 return event.message.text;
             }
