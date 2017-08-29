@@ -485,7 +485,7 @@ class FacebookBot {
                 let responseMessages = response.result.fulfillment.messages;
 				console.log('response.result.metadata.intentName: ',response.result.metadata.intentName);
 				console.log('response.result.parameters.valor: ',response.result.parameters.valor);
-				console.log('response.result.sessionId: ',response.result.sessionId);
+				console.log('response.sessionId: ',response.sessionId);
 				if (response.result.metadata.intentName=='redphone.agente.alta.pregunta1'){
 					//procesoAlta("A1",sender,response.result.parameters.valor);
 				}
