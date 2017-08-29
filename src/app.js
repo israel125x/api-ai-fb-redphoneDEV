@@ -379,8 +379,7 @@ class FacebookBot {
 				this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Iniciar encuestas"){
-				iniciarEncuestas();
-				//return ' ';
+					console.log('Iniciar encuestas incompleto');
 				}
 				if(event.message.text=="info"){
 					let messageData = {
@@ -692,7 +691,7 @@ app.get('/webhook/', (req, res) => {
 app.post('/webhook/', (req, res) => {
     try {
         const data = JSONbig.parse(req.body);
-
+		console.log("req body = "+JSON.stringify(data));
         if (data.entry) {
             let entries = data.entry;
             entries.forEach((entry) => {
