@@ -735,7 +735,7 @@ app.post('/webhook/', (req, res) => {
                 }
             });
         }
-		console.log('res.sessionId: ' + res.sessionId);
+		//console.log('res.sessionId: ' + res.sessionId);
         return res.status(200).json({
             status: "ok"
         });
