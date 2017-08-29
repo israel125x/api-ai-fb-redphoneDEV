@@ -379,7 +379,7 @@ class FacebookBot {
 				this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Iniciar encuestas"){
-				//iniciarEncuestas();
+				iniciarEncuestas();
 				//return ' ';
 				}
 				if(event.message.text=="info"){
