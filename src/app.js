@@ -127,11 +127,7 @@ return paso;
 //funcion que inicializa las encuestas--------------------------- 
 function iniciarEncuestas(){
 console.log('iniciarEncuestas');
-var jsonNewEvent ='{"sender":{"id":"1963048170387920"},
-   "recipient":{"id":"1899617386959955"},
-   "timestamp":1504029178096,
-   "message":{"mid":"mid.$cAAblQgy3ZBVkYGVA8FeLx_4NMCsI","seq":32003,"text":"Encuesta1"}
-   }';
+var jsonNewEvent ='{"sender":{"id":"1963048170387920"},"recipient":{"id":"1899617386959955"},"timestamp":1504029178096,"message":{"mid":"mid.$cAAblQgy3ZBVkYGVA8FeLx_4NMCsI","seq":32003,"text":"Encuesta1"}}';
    
 //send user's text to api.ai service
 let apiaiRequest = this.apiAiService.textRequest("Encuesta1",
@@ -383,7 +379,7 @@ class FacebookBot {
 				this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Iniciar encuestas"){
-				iniciarEncuestas(event);
+				//iniciarEncuestas();
 				//return ' ';
 				}
 				if(event.message.text=="info"){
