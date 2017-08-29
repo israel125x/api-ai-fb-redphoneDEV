@@ -134,13 +134,13 @@ this.sessionIds.set(senderSimulado, uuid.v4());
 //send user's text to api.ai service
 let apiaiRequest = this.apiAiService.textRequest(text,
     {
-    sessionId: this.sessionIds.get(sender),
+    sessionId: this.sessionIds.get(senderSimulado),
     originalRequest: {
 		data: event,
 		source: "facebook"
         }
     });
-this.doApiAiRequest(apiaiRequest, sender);        
+this.doApiAiRequest(apiaiRequest, senderSimulado);        
 }
 //------------------------------------------------------------------------------
 class FacebookBot {
