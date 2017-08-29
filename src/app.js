@@ -369,7 +369,7 @@ class FacebookBot {
 
             if (event.message.text) {
                 console.log('event.message.text = true');
-				console.log("event: "+JSON.stringify(event));
+				//console.log("event: "+JSON.stringify(event));
 				if(event.message.text=='Registrarse'){
 					console.log('estado proceso alta= ',consultarProceso(event.sender.id));
 					return 'Alta_0';
@@ -485,6 +485,7 @@ class FacebookBot {
                 let responseMessages = response.result.fulfillment.messages;
 				console.log('response.result.metadata.intentName: ',response.result.metadata.intentName);
 				console.log('response.result.parameters.valor: ',response.result.parameters.valor);
+				console.log('response.result.sessionId: ',response.result.sessionId);
 				if (response.result.metadata.intentName=='redphone.agente.alta.pregunta1'){
 					//procesoAlta("A1",sender,response.result.parameters.valor);
 				}
