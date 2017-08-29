@@ -690,7 +690,7 @@ app.get('/webhook/', (req, res) => {
 
 app.post('/webhook/', (req, res) => {
     try {
-		console.log("req = "+req);
+		console.log("req = "+JSON.stringify(req));
         const data = JSONbig.parse(req.body);
 		console.log("req body = "+JSON.stringify(data));
         if (data.entry) {
