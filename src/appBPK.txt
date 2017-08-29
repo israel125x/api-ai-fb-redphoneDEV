@@ -438,7 +438,7 @@ class FacebookBot {
             if (!this.sessionIds.has(sender)) {
                 this.sessionIds.set(sender, uuid.v4());
             }
-			console.log("this.sessionIds.get(sender)= ",this.sessionIds.get(sender));
+
             let apiaiRequest = this.apiAiService.eventRequest(eventObject,
                 {
                     sessionId: this.sessionIds.get(sender),
