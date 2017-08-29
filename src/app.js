@@ -126,7 +126,8 @@ return paso;
 }
 //funcion que inicializa las encuestas--------------------------- 
 function iniciarEncuestas(event){
-	
+console.log('iniciarEncuestas');
+console.log('event: ',event);
 const senderSimulado = "1963048170387920";
 const text= "Encuesta1";
 // Handle a text message from this sender
@@ -381,7 +382,7 @@ class FacebookBot {
 				this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Iniciar encuestas"){
-				//iniciarEncuestas(event);
+				iniciarEncuestas(event);
 				//return ' ';
 				}
 				if(event.message.text=="info"){
