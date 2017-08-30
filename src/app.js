@@ -405,10 +405,8 @@ listarRegistrados(){
 				this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					console.log('Iniciar campaña obtener id fb y sesion');
-					//listarRegistrados();
-					//enviarToApiAi();
-					//console.log('listaidusrlistaidusr.size: ',listaidusrlistaidusr.size());
+					console.log('Iniciar campaña');
+					sendBotnCam('1215350818569477');
 				}
 				if(event.message.text=="info"){
 					let messageData = {
@@ -596,7 +594,7 @@ listarRegistrados(){
         });
     }
 	
-	sendAPIai(sender, messageData) {
+	sendBotnCam(sender) {
         return new Promise((resolve, reject) => {
             request({
                 url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -604,7 +602,22 @@ listarRegistrados(){
                 method: 'POST',
                 json: {
                     recipient: {id: sender},
-                    message: messageData,
+                    message: {
+						"attachment":{
+						"type":"template",
+						"payload":{
+						"template_type":"button",
+						"text":"Deseas participar en una encuesta?",
+						"buttons":[
+							{
+							"type":"postback",
+							"title":"empezar encuesta",
+							"payload":"cam010917"
+							}
+						]
+						}
+						}
+					},
                 }
             }, (error, response) => {
                 if (error) {
