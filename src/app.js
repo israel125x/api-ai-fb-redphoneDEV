@@ -126,7 +126,7 @@ return paso;
 }
 //funcion que inicializa las encuestas--------------------------- 
 function listarRegistrados(){	
-  listaidusr=[];
+  //listaidusr=[];
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
@@ -134,9 +134,30 @@ function listarRegistrados(){
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
-  listaidusr.push(snap.key);
+  //listaidusr.push(snap.key);
   });
-  console.log("listaidusr.length: ",listaidusr.length);
+  //console.log("listaidusr.length: ",listaidusr.length);
+}
+function enviarToApiAi (){
+ // Handle a text message from this sender
+ var sender='1963048170387920';
+ text = 'Hola api ai';
+            if (!this.sessionIds.has(sender)) {
+                this.sessionIds.set(sender, uuid.v4());
+            }
+
+            console.log("Text = ", text);
+            //send user's text to api.ai service
+            let apiaiRequest = this.apiAiService.textRequest(text,
+                {
+                    sessionId: this.sessionIds.get(sender),
+                    originalRequest: {
+                        //data: event,
+                        source: "facebook"
+                    }
+                });
+
+            this.doApiAiRequest(apiaiRequest, sender);	
 }
 //------------------------------------------------------------------------------
 class FacebookBot {
@@ -367,7 +388,7 @@ class FacebookBot {
 
             if (event.message.text) {
                 console.log('event.message.text = true');
-				//console.log("event: "+JSON.stringify(event));
+				console.log("event: "+JSON.stringify(event));
 				if(event.message.text=='Registrarse'){
 					console.log('estado proceso alta= ',consultarProceso(event.sender.id));
 					return 'Alta_0';
@@ -378,7 +399,8 @@ class FacebookBot {
 				}
 				if(event.message.text=="Iniciar campaña"){
 					console.log('Iniciar campaña obtener id fb y sesion');
-					listarRegistrados();
+					//listarRegistrados();
+					enviarToApiAi();
 					//console.log('listaidusrlistaidusr.size: ',listaidusrlistaidusr.size());
 				}
 				if(event.message.text=="info"){
