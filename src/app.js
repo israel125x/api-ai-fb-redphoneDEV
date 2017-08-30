@@ -135,7 +135,7 @@ function listarRegistrados(){
   console.log("added:", snap.key);
   listaidusr.push(snap.key);
   });
-  console.log("added:",listaidusr.size());
+  console.log("listaidusr.length: ",listaidusr.length);
 }
 //------------------------------------------------------------------------------
 class FacebookBot {
