@@ -126,6 +126,7 @@ return paso;
 }
 //funcion que inicializa las encuestas--------------------------- 
 function listarRegistrados(){
+  listaidusrlistaidusr=[];	
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
@@ -133,7 +134,9 @@ function listarRegistrados(){
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
+  listaidusrlistaidusr.push(snap.key);
   });
+  return listaidusrlistaidusr;
 }
 //------------------------------------------------------------------------------
 class FacebookBot {
@@ -375,8 +378,8 @@ class FacebookBot {
 				}
 				if(event.message.text=="Iniciar campaña"){
 					console.log('Iniciar campaña obtener id fb y sesion');
-					listarRegistrados();
-					console.log('paso1 OK');
+					listaidusrlistaidusr = listarRegistrados();
+					console.log('listaidusrlistaidusr.size: ',listaidusrlistaidusr.size());
 				}
 				if(event.message.text=="info"){
 					let messageData = {
