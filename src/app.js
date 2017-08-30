@@ -405,8 +405,23 @@ listarRegistrados(){
 				this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					console.log('Iniciar campaña');
-					sendBotnCam('1215350818569477');
+					let messageData = {
+						"attachment": 	{
+						"type": "image",
+						"payload": {
+						"template_type":"button",
+						"text":"Deseas participar en una encuesta?",
+						"buttons":[
+						{
+						"type":"postback",
+						"title":"camp300817",
+						"payload":"camp300817"
+						}
+						]
+						}					
+					}
+				}
+				this.sendFBMessage ('1215350818569477',messageData);
 				}
 				if(event.message.text=="info"){
 					let messageData = {
@@ -589,45 +604,6 @@ listarRegistrados(){
 				console.log('response.body ',response.body);
 				console.log('JSONbig.parse(req.body).first_name: ',JSONbig.parse(response.body).first_name);
 				console.log('resolve: ',resolve);
-                resolve();
-            });
-        });
-    }
-	
-	sendBotnCam(sender) {
-        return new Promise((resolve, reject) => {
-            request({
-                url: 'https://graph.facebook.com/v2.6/me/messages',
-                qs: {access_token: FB_PAGE_ACCESS_TOKEN},
-                method: 'POST',
-                json: {
-                    recipient: {id: sender},
-                    message: {
-						"attachment":{
-						"type":"template",
-						"payload":{
-						"template_type":"button",
-						"text":"Deseas participar en una encuesta?",
-						"buttons":[
-							{
-							"type":"postback",
-							"title":"empezar encuesta",
-							"payload":"cam010917"
-							}
-						]
-						}
-						}
-					},
-                }
-            }, (error, response) => {
-                if (error) {
-                    console.log('Error sending message: ', error);
-                    reject(error);
-                } else if (response.body.error) {
-                    console.log('Error: ', response.body.error);
-                    reject(new Error(response.body.error));
-                }
-
                 resolve();
             });
         });
