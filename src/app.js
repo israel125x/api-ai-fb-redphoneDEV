@@ -134,10 +134,11 @@ function listarRegistrados(){
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
-  //listaidusr.push(snap.key);
+   doTextResponse(snap.key, 'hola')
   });
   //console.log("listaidusr.length: ",listaidusr.length);
 }
+
 function enviarToApiAi (){
  // Handle a text message from this sender
  var sender='1963048170387920';
@@ -403,10 +404,10 @@ class FacebookBot {
 				console.log('consultarID = '+consultarID(event.sender.id));
 				this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
-				if(event.message.text=="Iniciar campaña"){
+				if(event.message.text=="Xx"){
 					console.log('Iniciar campaña obtener id fb y sesion');
-					//listarRegistrados();
-					enviarToApiAi();
+					listarRegistrados();
+					//enviarToApiAi();
 					//console.log('listaidusrlistaidusr.size: ',listaidusrlistaidusr.size());
 				}
 				if(event.message.text=="info"){
