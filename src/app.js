@@ -407,7 +407,7 @@ listarRegistrados(){
 				if(event.message.text=="Xx"){
 					let messageData = {
 						"attachment": 	{
-						"type": "image",
+						"type": "template",
 						"payload": {
 						"template_type":"button",
 						"text":"Deseas participar en una encuesta?",
