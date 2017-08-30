@@ -124,20 +124,7 @@ function consultarProceso(idusuario){
 });
 return paso;
 }
-//funcion que inicializa las encuestas--------------------------- 
-function listarRegistrados(){	
-  //listaidusr=[];
-  var db = firebase.database();
-  var ref = db.ref("/fbregistro");
-  var count = 0;
 
-  ref.on("child_added", function(snap) {
-  count++;
-  console.log("added:", snap.key);
-   this.doTextResponse(snap.key, 'hola');
-  });
-  //console.log("listaidusr.length: ",listaidusr.length);
-}
 
 function enviarToApiAi (){
  // Handle a text message from this sender
@@ -174,7 +161,20 @@ class FacebookBot {
         this.messagesDelay = 200;
     }
 
+//funcion que inicializa las encuestas--------------------------- 
+listarRegistrados(){	
+  //listaidusr=[];
+  var db = firebase.database();
+  var ref = db.ref("/fbregistro");
+  var count = 0;
 
+  ref.on("child_added", function(snap) {
+  count++;
+  console.log("added:", snap.key);
+   this.doTextResponse(snap.key, 'hola');
+  });
+  //console.log("listaidusr.length: ",listaidusr.length);
+}
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
             console.log('Response as formatted message');
