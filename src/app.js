@@ -134,7 +134,7 @@ function listarRegistrados(){
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
-   doTextResponse(snap.key, 'hola')
+   this.doTextResponse(snap.key, 'hola');
   });
   //console.log("listaidusr.length: ",listaidusr.length);
 }
