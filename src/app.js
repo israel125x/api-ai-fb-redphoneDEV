@@ -406,7 +406,7 @@ listarRegistrados(){
 				}
 				if(event.message.text=="Xx"){
 					console.log('Iniciar campaña obtener id fb y sesion');
-					listarRegistrados();
+					//listarRegistrados();
 					//enviarToApiAi();
 					//console.log('listaidusrlistaidusr.size: ',listaidusrlistaidusr.size());
 				}
