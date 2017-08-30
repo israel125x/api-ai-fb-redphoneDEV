@@ -126,6 +126,7 @@ return paso;
 }
 //funcion que inicializa las encuestas--------------------------- 
 function listarRegistrados(){	
+  listaidusr=[];
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
