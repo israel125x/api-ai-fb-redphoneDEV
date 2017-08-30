@@ -152,7 +152,13 @@ function enviarToApiAi (){
                 {
                     sessionId: this.sessionIds.get(sender),
                     originalRequest: {
-                        //data: event,
+                        data: {"sender":{"id":"1215350818569477"},
+						"recipient":{"id":"1899617386959955"},
+						"timestamp":1504125846632,
+						"message":{
+							"mid":"mid.$cAAblQjjdNd5kZihMaFeNOMVqK-uu",
+							"seq":4789,"text":"Hola Api Ai"}
+							},
                         source: "facebook"
                     }
                 });
