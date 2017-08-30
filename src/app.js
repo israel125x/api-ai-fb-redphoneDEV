@@ -429,6 +429,7 @@ listarRegistrados(){
         }
 
         if (event.postback && event.postback.payload) {
+			console.log('event.postback.payload =',event.postback.payload);
 			console.log('event.postback && event.postback.payload = true');
             return event.postback.payload;
         }
@@ -590,6 +591,30 @@ listarRegistrados(){
 				console.log('response.body ',response.body);
 				console.log('JSONbig.parse(req.body).first_name: ',JSONbig.parse(response.body).first_name);
 				console.log('resolve: ',resolve);
+                resolve();
+            });
+        });
+    }
+	
+	sendAPIai(sender, messageData) {
+        return new Promise((resolve, reject) => {
+            request({
+                url: 'https://graph.facebook.com/v2.6/me/messages',
+                qs: {access_token: FB_PAGE_ACCESS_TOKEN},
+                method: 'POST',
+                json: {
+                    recipient: {id: sender},
+                    message: messageData,
+                }
+            }, (error, response) => {
+                if (error) {
+                    console.log('Error sending message: ', error);
+                    reject(error);
+                } else if (response.body.error) {
+                    console.log('Error: ', response.body.error);
+                    reject(new Error(response.body.error));
+                }
+
                 resolve();
             });
         });
