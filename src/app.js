@@ -414,7 +414,7 @@ listarRegistrados(){
 						"buttons":[
 						{
 						"type":"postback",
-						"title":"camp300817",
+						"title":"Simon ese",
 						"payload":"camp300817"
 						}
 						]
@@ -444,7 +444,11 @@ listarRegistrados(){
         if (event.postback && event.postback.payload) {
 			console.log('event.postback.payload =',event.postback.payload);
 			console.log('event.postback && event.postback.payload = true');
+			if(event.postback.payload=='camp300817'){
+			return 'camp300817';
+			}	
             return event.postback.payload;
+			
         }
 		
 		console.log('event.sender.id.toString= '+event.sender.id.toString());
