@@ -125,20 +125,15 @@ function consultarProceso(idusuario){
 return paso;
 }
 //funcion que inicializa las encuestas--------------------------- 
-function iniciarEncuestas(){
-console.log('iniciarEncuestas');
-var jsonNewEvent ='{"sender":{"id":"1963048170387920"},"recipient":{"id":"1899617386959955"},"timestamp":1504029178096,"message":{"mid":"mid.$cAAblQgy3ZBVkYGVA8FeLx_4NMCsI","seq":32003,"text":"Encuesta1"}}';
-   
-//send user's text to api.ai service
-let apiaiRequest = this.apiAiService.textRequest("Encuesta1",
-    {
-    sessionId: this.sessionIds.get(senderSimulado),
-    originalRequest: {
-		data: JSONbig.parse(jsonNewEvent),
-		source: "facebook"
-        }
-    });
-this.doApiAiRequest(apiaiRequest, senderSimulado);        
+function listarRegistrados(){
+  var db = firebase.database();
+  var ref = db.ref("/fbregistro");
+  var count = 0;
+
+  ref.on("child_added", function(snap) {
+  count++;
+  console.log("added:", snap.key);
+  });
 }
 //------------------------------------------------------------------------------
 class FacebookBot {
@@ -378,8 +373,10 @@ class FacebookBot {
 				console.log('consultarID = '+consultarID(event.sender.id));
 				this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
-				if(event.message.text=="Iniciar encuestas"){
-					console.log('Iniciar encuestas incompleto');
+				if(event.message.text=="Iniciar campaña"){
+					console.log('Iniciar campaña obtener id fb y sesion');
+					listarRegistrados();
+					console.log('paso1 OK');
 				}
 				if(event.message.text=="info"){
 					let messageData = {
