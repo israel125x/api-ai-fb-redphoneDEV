@@ -136,7 +136,7 @@ function listarRegistrados(){
   console.log("added:", snap.key);
   listaidusrlistaidusr.push(snap.key);
   });
-  return listaidusrlistaidusr;
+  console.log("added:",listaidusrlistaidusr.size());
 }
 //------------------------------------------------------------------------------
 class FacebookBot {
@@ -378,8 +378,8 @@ class FacebookBot {
 				}
 				if(event.message.text=="Iniciar campaña"){
 					console.log('Iniciar campaña obtener id fb y sesion');
-					listaidusrlistaidusr = listarRegistrados();
-					console.log('listaidusrlistaidusr.size: ',listaidusrlistaidusr.size());
+					listarRegistrados();
+					//console.log('listaidusrlistaidusr.size: ',listaidusrlistaidusr.size());
 				}
 				if(event.message.text=="info"){
 					let messageData = {
