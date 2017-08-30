@@ -125,8 +125,7 @@ function consultarProceso(idusuario){
 return paso;
 }
 //funcion que inicializa las encuestas--------------------------- 
-function listarRegistrados(){
-  listaidusrlistaidusr=[];	
+function listarRegistrados(){	
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
@@ -378,7 +377,7 @@ class FacebookBot {
 				}
 				if(event.message.text=="Iniciar campaña"){
 					console.log('Iniciar campaña obtener id fb y sesion');
-					listarRegistrados();
+					//listarRegistrados();
 					//console.log('listaidusrlistaidusr.size: ',listaidusrlistaidusr.size());
 				}
 				if(event.message.text=="info"){
