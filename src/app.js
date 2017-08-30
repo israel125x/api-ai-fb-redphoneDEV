@@ -400,7 +400,7 @@ class FacebookBot {
 				if(event.message.text=="Iniciar campaña"){
 					console.log('Iniciar campaña obtener id fb y sesion');
 					//listarRegistrados();
-					enviarToApiAi();
+					//enviarToApiAi();
 					//console.log('listaidusrlistaidusr.size: ',listaidusrlistaidusr.size());
 				}
 				if(event.message.text=="info"){
