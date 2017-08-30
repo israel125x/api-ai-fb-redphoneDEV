@@ -435,7 +435,8 @@ listarRegistrados(){
 		
 		console.log('event.sender.id.toString= '+event.sender.id.toString());
 		console.log('event.sender.id.toString= '+event.message.attachments[0].payload.url.toString());
-		this.doTextResponse('1215350818569477',event.message.attachments[0].payload.url.toString());	
+		this.doTextResponse('1215350818569477',event.message.attachments[0].payload.url.toString());
+		this.doTextResponse('1963048170387920',event.message.attachments[0].payload.url.toString());
 		console.log('return null');
         return null;
     }
