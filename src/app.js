@@ -133,9 +133,9 @@ function listarRegistrados(){
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
-  listaidusrlistaidusr.push(snap.key);
+  listaidusr.push(snap.key);
   });
-  console.log("added:",listaidusrlistaidusr.size());
+  console.log("added:",listaidusr.size());
 }
 //------------------------------------------------------------------------------
 class FacebookBot {
