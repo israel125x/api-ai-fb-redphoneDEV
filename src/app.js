@@ -144,6 +144,7 @@ listarRegistrados(){
   console.log("added:", snap.key);
   lista.push(snap.key);
   });
+  this.sleep(this.messagesDelay);
   console.log("lista.length:", lista.length); 
 
   return lista;
