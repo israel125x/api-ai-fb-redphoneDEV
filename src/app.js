@@ -167,10 +167,10 @@ listarRegistrados(){
   var ref = db.ref("/fbregistro");
   var count = 0;
   var lista=[];
-  ref.once("child_added", function(snapshot) {
+  ref.one("child_added", function(snap) {
   count++;
-  console.log("added:", snapshot.key);
-  lista.push(snapshot.key);
+  console.log("added:", snap.key);
+  lista.push(snap.key);
   });
   console.log("lista.length:", lista.length);
   //segundo intento
