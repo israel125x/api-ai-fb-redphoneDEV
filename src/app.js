@@ -163,7 +163,7 @@ class FacebookBot {
 
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
 listarRegistrados(){	
-  //listaidusr=[];
+  listaidusr=[];
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
@@ -407,18 +407,8 @@ listarRegistrados(){
 				}
 				if(event.message.text=="Xx"){
 					listarRegistrados();
-					console.log("lista.length: ",lista.length);
-					/*realiza un segundo intento de obtencion
-					if(lista.length==0){
-					lista=listarRegistrados();	
-					console.log("lista.length: ",lista.length);
-					}
-					if(lista.length==0){
-					console.log("error al recuperar los datos");	
-					return 'error al recuperar los datos';	
-					}
-					
-					//contruir json para enviar boton de campaña
+					return 'test';
+					/*contruir json para enviar boton de campaña
 					let messageData = {
 						"attachment": 	{
 						"type": "template",
