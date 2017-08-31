@@ -167,12 +167,17 @@ listarRegistrados(){
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
+  try{
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
    listaidusr.push(snap.key);
   });
-  console.log("listaidusr.length: ",listaidusr.length);
+  console.log("listaidusr.length: ",listaidusr.length());
+  }catch (err) {
+  // This will not catch the throw!
+  console.error(err);
+  }
   //return listaidusr;
 }
     doDataResponse(sender, facebookResponseData) {
@@ -405,7 +410,7 @@ listarRegistrados(){
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					//listarRegistrados();
+					listarRegistrados();
 					return 'test';
 					/*contruir json para enviar boton de campaña
 					let messageData = {
