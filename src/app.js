@@ -20,7 +20,7 @@ const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 var firebase = require('firebase');
 var respuesta ="";
 var idusr =""; 
-var listaidusr=[];
+
 
 var config = {
     apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
@@ -163,7 +163,7 @@ class FacebookBot {
 
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
 listarRegistrados(){	
-  listaidusr=[];
+  //listaidusr=[];
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
@@ -171,9 +171,9 @@ listarRegistrados(){
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
-   listaidusr.push(snap.key);
+   //listaidusr.push(snap.key);
   });
-  console.log("listaidusr.length: ",listaidusr.length());
+  //console.log("listaidusr.length: ",listaidusr.length());
   }catch (err) {
   // This will not catch the throw!
   console.error('err: '+err);
