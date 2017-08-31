@@ -167,7 +167,6 @@ listarRegistrados(){
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
-  var listaidusr = []; 
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
@@ -406,7 +405,7 @@ listarRegistrados(){
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					listarRegistrados();
+					//listarRegistrados();
 					return 'test';
 					/*contruir json para enviar boton de campaña
 					let messageData = {
