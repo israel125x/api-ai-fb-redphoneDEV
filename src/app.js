@@ -167,7 +167,7 @@ listarRegistrados(){
   var ref = db.ref("/fbregistro");
   var count = 0;
   var lista=[];
-  ref.on("child_added", function(snap) {
+  ref.once("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
   lista.push(snap.key);
