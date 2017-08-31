@@ -40,17 +40,17 @@ function consultarID(idusuario){
   var ref = db.ref("fbregistro/"+idusuario); 
   //---------------------------------------------------
 //Attach an asynchronous callback to read the data at our posts reference
-  
+  var ultimarespuesta="";
   ref.on("value", function(snapshot) {
   var registro = snapshot.val();
   console.log("registro.val: "+registro);
   console.log("registro.ultimapeticion: " + registro.ultimapeticion);
   console.log("registro.ultimarespuesta: " + registro.ultimarespuesta);
-  
+  ultimarespuesta = registro.ultimarespuesta;
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
-return 'test';
+return ultimarespuesta;
 }
 
 function procesoAlta (idpro, idusr, valor){ 
@@ -125,6 +125,35 @@ function consultarProceso(idusuario){
 return paso;
 }
 
+
+function enviarToApiAi (){
+ // Handle a text message from this sender
+ var sender='1963048170387920';
+ text = 'Hola api ai';
+            if (!this.sessionIds.has(sender)) {
+                this.sessionIds.set(sender, uuid.v4());
+            }
+
+            console.log("Text = ", text);
+            //send user's text to api.ai service
+            let apiaiRequest = this.apiAiService.textRequest(text,
+                {
+                    sessionId: this.sessionIds.get(sender),
+                    originalRequest: {
+                        data: {"sender":{"id":"1215350818569477"},
+						"recipient":{"id":"1899617386959955"},
+						"timestamp":1504125846632,
+						"message":{
+							"mid":"mid.$cAAblQjjdNd5kZihMaFeNOMVqK-uu",
+							"seq":4789,"text":"Hola Api Ai"}
+							},
+                        source: "facebook"
+                    }
+                });
+
+            this.doApiAiRequest(apiaiRequest, sender);	
+}
+//------------------------------------------------------------------------------
 class FacebookBot {
     constructor() {
         this.apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
@@ -134,10 +163,11 @@ class FacebookBot {
 
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
 listarRegistrados(){	
-  var listaidusr=[];
+  //listaidusr=[];
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
-  var count = 0; 
+  var count = 0;
+  var listaidusr = []; 
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
@@ -377,8 +407,7 @@ listarRegistrados(){
 				}
 				if(event.message.text=="Xx"){
 					listarRegistrados();
-					return 'OK';
-					//console.log("listaidusr.length: ",this.listaidusr.length());
+					console.log("lista.length: ",lista.length);
 					/*realiza un segundo intento de obtencion
 					if(lista.length==0){
 					lista=listarRegistrados();	
