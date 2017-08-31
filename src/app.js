@@ -406,7 +406,8 @@ listarRegistrados(){
 				}
 				if(event.message.text=="Xx"){
 					listarRegistrados();
-					console.log("listaidusr.length: ",this.listaidusr.length());
+					return 'OK';
+					//console.log("listaidusr.length: ",this.listaidusr.length());
 					/*realiza un segundo intento de obtencion
 					if(lista.length==0){
 					lista=listarRegistrados();	
