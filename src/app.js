@@ -126,33 +126,7 @@ return paso;
 }
 
 
-function enviarToApiAi (){
- // Handle a text message from this sender
- var sender='1963048170387920';
- text = 'Hola api ai';
-            if (!this.sessionIds.has(sender)) {
-                this.sessionIds.set(sender, uuid.v4());
-            }
 
-            console.log("Text = ", text);
-            //send user's text to api.ai service
-            let apiaiRequest = this.apiAiService.textRequest(text,
-                {
-                    sessionId: this.sessionIds.get(sender),
-                    originalRequest: {
-                        data: {"sender":{"id":"1215350818569477"},
-						"recipient":{"id":"1899617386959955"},
-						"timestamp":1504125846632,
-						"message":{
-							"mid":"mid.$cAAblQjjdNd5kZihMaFeNOMVqK-uu",
-							"seq":4789,"text":"Hola Api Ai"}
-							},
-                        source: "facebook"
-                    }
-                });
-
-            this.doApiAiRequest(apiaiRequest, sender);	
-}
 //------------------------------------------------------------------------------
 class FacebookBot {
     constructor() {
@@ -168,15 +142,15 @@ listarRegistrados(){
   var count = 0;
   var lista=[];
   return new Promise((resolve, reject) => {
-  .then(() =>
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
   lista.push(snap.key);
-  }))
-  .then(() =>console.log("lista.length:", lista.length)
-  return lista;)
+  })
+  console.log("lista.length:", lista.length)
+  resolve();
   });
+  return lista;
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
