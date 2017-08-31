@@ -125,35 +125,6 @@ function consultarProceso(idusuario){
 return paso;
 }
 
-
-function enviarToApiAi (){
- // Handle a text message from this sender
- var sender='1963048170387920';
- text = 'Hola api ai';
-            if (!this.sessionIds.has(sender)) {
-                this.sessionIds.set(sender, uuid.v4());
-            }
-
-            console.log("Text = ", text);
-            //send user's text to api.ai service
-            let apiaiRequest = this.apiAiService.textRequest(text,
-                {
-                    sessionId: this.sessionIds.get(sender),
-                    originalRequest: {
-                        data: {"sender":{"id":"1215350818569477"},
-						"recipient":{"id":"1899617386959955"},
-						"timestamp":1504125846632,
-						"message":{
-							"mid":"mid.$cAAblQjjdNd5kZihMaFeNOMVqK-uu",
-							"seq":4789,"text":"Hola Api Ai"}
-							},
-                        source: "facebook"
-                    }
-                });
-
-            this.doApiAiRequest(apiaiRequest, sender);	
-}
-//------------------------------------------------------------------------------
 class FacebookBot {
     constructor() {
         this.apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
@@ -173,7 +144,7 @@ listarRegistrados(){
    listaidusr.push(snap.key);
   });
   console.log("listaidusr.length: ",listaidusr.length);
-  return listaidusr;
+  //return listaidusr;
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
@@ -405,7 +376,7 @@ listarRegistrados(){
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					listarRegistrados();
+					//listarRegistrados();
 					return 'OK';
 					//console.log("listaidusr.length: ",this.listaidusr.length());
 					/*realiza un segundo intento de obtencion
