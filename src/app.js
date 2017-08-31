@@ -139,14 +139,14 @@ listarRegistrados(){
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
-  this.lista=[];
+  lista=[];
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
-  this.lista.push(snap.key);
+  lista.push(snap.key);
   });
   //this.sleep(this.messagesDelay);
-  console.log("this.lista.length:", this.lista.length); 
+  console.log("this.lista.length:",lista.length); 
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
