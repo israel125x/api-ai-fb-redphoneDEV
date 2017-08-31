@@ -166,10 +166,13 @@ listarRegistrados(){
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
+  var lista=[];
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
+  lista.push(snap.key);
   });
+  console.log("lista.length:", lista.length);
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
