@@ -163,22 +163,13 @@ class FacebookBot {
 
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
 listarRegistrados(){	
-  //listaidusr=[];
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
-  try{
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
-   //listaidusr.push(snap.key);
   });
-  //console.log("listaidusr.length: ",listaidusr.length());
-  }catch (err) {
-  // This will not catch the throw!
-  console.error('err: '+err);
-  }
-  //return listaidusr;
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
@@ -410,7 +401,7 @@ listarRegistrados(){
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					listarRegistrados();
+					//listarRegistrados();
 					return 'test';
 					/*contruir json para enviar boton de campaña
 					let messageData = {
@@ -430,7 +421,7 @@ listarRegistrados(){
 					}
 				}
 				//se enviar el mesaje a los usrios de la lista 
-				/*for (var i = 0; i < lista.length; i++) {
+				for (var i = 0; i < lista.length; i++) {
 				console.log('lista['+i+']: '+lista[i]);	
 				this.sendFBMessage (lista[i],messageData);
 				}*/
