@@ -40,17 +40,17 @@ function consultarID(idusuario){
   var ref = db.ref("fbregistro/"+idusuario); 
   //---------------------------------------------------
 //Attach an asynchronous callback to read the data at our posts reference
-  var ultimarespuesta="";
+  
   ref.on("value", function(snapshot) {
   var registro = snapshot.val();
   console.log("registro.val: "+registro);
   console.log("registro.ultimapeticion: " + registro.ultimapeticion);
   console.log("registro.ultimarespuesta: " + registro.ultimarespuesta);
-  ultimarespuesta = registro.ultimarespuesta;
+  
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
-return ultimarespuesta;
+return 'test';
 }
 
 function procesoAlta (idpro, idusr, valor){ 
@@ -163,11 +163,10 @@ class FacebookBot {
 
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
 listarRegistrados(){	
-  //listaidusr=[];
+  var listaidusr=[];
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
-  var count = 0;
-  var listaidusr = []; 
+  var count = 0; 
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
@@ -406,8 +405,8 @@ listarRegistrados(){
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					this.listarRegistrados();
-					//console.log("lista.length: ",lista.length);
+					var lista[]= this.listarRegistrados();
+					console.log("lista.length: ",lista.length);
 					/*realiza un segundo intento de obtencion
 					if(lista.length==0){
 					lista=listarRegistrados();	
