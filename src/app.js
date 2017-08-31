@@ -20,7 +20,7 @@ const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 var firebase = require('firebase');
 var respuesta ="";
 var idusr =""; 
-var listaidusr = []; 
+
 
 var config = {
     apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
@@ -161,19 +161,20 @@ class FacebookBot {
         this.messagesDelay = 200;
     }
 
-//funcion que inicializa las encuestas--------------------------- 
+//funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
 listarRegistrados(){	
   //listaidusr=[];
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
-
+  var listaidusr = []; 
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
-   this.doTextResponse(snap.key, 'hola');
+   listaidusr.push(snap.key);
   });
   //console.log("listaidusr.length: ",listaidusr.length);
+  return listaidusr;
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
@@ -401,10 +402,20 @@ listarRegistrados(){
 					return 'Alta_0';
 				}
 				if(event.message.text=="Consulta usuario"){
-				console.log('consultarID = '+consultarID(event.sender.id));
-				this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
+				//console.log('consultarID = '+consultarID(event.sender.id));
+				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
+					var lista=listarRegistrados();
+					console.log("lista.length: ",lista.length);
+					//realiza un segundo intento de obtencion
+					if(lista.length==0){
+					lista=listarRegistrados();	
+					}
+					if(lista.length==0){
+					return 'error al recuperar los datos';	
+					}
+					//contruir json para enviar boton de campaña
 					let messageData = {
 						"attachment": 	{
 						"type": "template",
@@ -421,7 +432,11 @@ listarRegistrados(){
 						}					
 					}
 				}
-				this.sendFBMessage ('1215350818569477',messageData);
+				//se enviar el mesaje a los usrios de la lista 
+				for (var i = 0; i < lista.length; i++) {
+				console.log('lista['+i+']: '+lista[i]);	
+				this.sendFBMessage (lista[i],messageData);
+				}
 				}
 				if(event.message.text=="info"){
 					let messageData = {
