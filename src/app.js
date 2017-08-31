@@ -173,9 +173,9 @@ listarRegistrados(){
   console.log("added:", snap.key);
   lista.push(snap.key);
   });
-  });
   console.log("lista.length:", lista.length);
   return lista;
+  });
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
