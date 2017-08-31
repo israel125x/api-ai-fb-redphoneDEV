@@ -20,7 +20,7 @@ const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 var firebase = require('firebase');
 var respuesta ="";
 var idusr =""; 
-
+var listaidusr=[];
 
 var config = {
     apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
@@ -163,7 +163,7 @@ class FacebookBot {
 
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
 listarRegistrados(){	
-  var listaidusr=[];
+  listaidusr=[];
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
@@ -176,7 +176,7 @@ listarRegistrados(){
   console.log("listaidusr.length: ",listaidusr.length());
   }catch (err) {
   // This will not catch the throw!
-  console.error(err);
+  console.error('err: '+err);
   }
   //return listaidusr;
 }
@@ -410,7 +410,7 @@ listarRegistrados(){
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					listarRegistrados();
+					//listarRegistrados();
 					return 'test';
 					/*contruir json para enviar boton de campaña
 					let messageData = {
