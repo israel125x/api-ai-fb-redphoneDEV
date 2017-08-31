@@ -445,6 +445,7 @@ listarRegistrados(){
 			console.log('event.postback.payload =',event.postback.payload);
 			console.log('event.postback && event.postback.payload = true');
 			if(event.postback.payload=='cam010917'){
+				
 			return 'cam010917';
 			}	
             return event.postback.payload;
