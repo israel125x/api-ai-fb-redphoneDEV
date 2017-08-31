@@ -20,7 +20,7 @@ const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 var firebase = require('firebase');
 var respuesta ="";
 var idusr =""; 
-
+var listaidusr=[];
 
 var config = {
     apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
@@ -163,7 +163,7 @@ class FacebookBot {
 
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
 listarRegistrados(){	
-  var listaidusr=[];
+  listaidusr=[];
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0; 
@@ -405,9 +405,8 @@ listarRegistrados(){
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					var listaidusr=[];
-					listaidusr = this.listarRegistrados();
-					console.log("lista.length: ",lista.length);
+					//this.listaidusr = this.listarRegistrados();
+					console.log("listaidusr.length: ",this.listaidusr.length());
 					/*realiza un segundo intento de obtencion
 					if(lista.length==0){
 					lista=listarRegistrados();	
