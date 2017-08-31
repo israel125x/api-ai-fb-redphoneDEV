@@ -405,7 +405,8 @@ listarRegistrados(){
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					var lista[]= this.listarRegistrados();
+					var listaidusr=[];
+					listaidusr = this.listarRegistrados();
 					console.log("lista.length: ",lista.length);
 					/*realiza un segundo intento de obtencion
 					if(lista.length==0){
