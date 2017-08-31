@@ -410,7 +410,7 @@ listarRegistrados(){
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					//listarRegistrados();
+					listarRegistrados();
 					return 'test';
 					/*contruir json para enviar boton de campaña
 					let messageData = {
