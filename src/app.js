@@ -20,6 +20,7 @@ const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 var firebase = require('firebase');
 var respuesta ="";
 var idusr =""; 
+var lista=[];
 
 
 var config = {
@@ -138,16 +139,14 @@ listarRegistrados(){
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
-  var lista=[];
+  lista=[];
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
   lista.push(snap.key);
   });
-  this.sleep(this.messagesDelay);
-  console.log("lista.length:", lista.length); 
-
-  return lista;
+  //this.sleep(this.messagesDelay);
+  
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
@@ -379,9 +378,9 @@ listarRegistrados(){
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					var litsur=[];
-					litsur=this.listarRegistrados();
-					console.log('litsur = ',litsur.lista.length);
+		
+					this.listarRegistrados();
+					console.log("this.lista.length:", this.lista.length); 
 					return 'test';
 					/*contruir json para enviar boton de campaña
 					let messageData = {
