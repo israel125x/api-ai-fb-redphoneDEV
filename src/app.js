@@ -148,7 +148,7 @@ listarRegistrados(){
   console.log("lista.length:", lista.length);  
   if(!result.snapshot) {
     console.log("No results found");
-  }}
+  }
 });
   //resolve();
   //});
