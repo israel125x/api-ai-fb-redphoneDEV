@@ -145,14 +145,9 @@ listarRegistrados(){
   console.log("added:", snap.key);
   lista.push(snap.key);
   }).then(function(result) {
-  if(!result.snapshot) {
-    console.log("No results found");
-  }
-  else{
-  console.log("OK");
-  }
-});
-console.log("lista.length:", lista.length); 
+    console.log("x");
+  });
+  console.log("lista.length:", lista.length); 
   //resolve();
   //});
   return lista;
