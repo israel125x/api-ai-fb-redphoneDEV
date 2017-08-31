@@ -411,10 +411,13 @@ listarRegistrados(){
 					//realiza un segundo intento de obtencion
 					if(lista.length==0){
 					lista=listarRegistrados();	
+					console.log("lista.length: ",lista.length);
 					}
 					if(lista.length==0){
+					console.log("error al recuperar los datos");	
 					return 'error al recuperar los datos';	
 					}
+					
 					//contruir json para enviar boton de campaña
 					let messageData = {
 						"attachment": 	{
@@ -433,10 +436,10 @@ listarRegistrados(){
 					}
 				}
 				//se enviar el mesaje a los usrios de la lista 
-				for (var i = 0; i < lista.length; i++) {
+				/*for (var i = 0; i < lista.length; i++) {
 				console.log('lista['+i+']: '+lista[i]);	
 				this.sendFBMessage (lista[i],messageData);
-				}
+				}*/
 				}
 				if(event.message.text=="info"){
 					let messageData = {
