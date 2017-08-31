@@ -379,11 +379,9 @@ listarRegistrados(){
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					var litsur=this.listarRegistrados();
+					var litsur=[];
+					litsur=this.listarRegistrados();
 					console.log('litsur = ',litsur.lista.length);
-					if(litsur.lista.length==0){
-					 litsur=this.listarRegistrados();
-					}
 					return 'test';
 					/*contruir json para enviar boton de campaña
 					let messageData = {
