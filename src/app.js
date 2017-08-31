@@ -140,15 +140,16 @@ listarRegistrados(){
   var count = 0;
   var lista=[];
   //return new Promise((resolve, reject) => {
-  ref.on("child_added").then(function(snap) {
+  ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
   lista.push(snap.key);
-  }).catch(function (err) {
-    // This is where errors land
-    console.log('Error', err.code);
-  });
-  console.log("lista.length:", lista.length)
+  }).then(function(result) {
+  console.log("lista.length:", lista.length);  
+  if(!result.snapshot) {
+    console.log("No results found");
+  }}
+});
   //resolve();
   //});
   return lista;
