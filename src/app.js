@@ -173,7 +173,7 @@ listarRegistrados(){
   console.log("added:", snap.key);
    listaidusr.push(snap.key);
   });
-  //console.log("listaidusr.length: ",listaidusr.length);
+  console.log("listaidusr.length: ",listaidusr.length);
   return listaidusr;
 }
     doDataResponse(sender, facebookResponseData) {
