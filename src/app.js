@@ -81,9 +81,7 @@ function nuevoproceso (idusr){
   var newRef = ref.child(idusr);
   newRef.child("idfb").set(idusr).then(function (data) {
                           console.log('Firebase data: ', data); 
-						  }).catch(function (error) {
-                console.log('Firebase error: ', error);
-            });
+						  })
   newRef.child("limite").set("3").then(function (data) {
                           console.log('Firebase data: ', data); 
 						  })
@@ -141,15 +139,18 @@ listarRegistrados(){
   var ref = db.ref("/fbregistro");
   var count = 0;
   var lista=[];
-  return new Promise((resolve, reject) => {
-  ref.on("child_added", function(snap) {
+  //return new Promise((resolve, reject) => {
+  ref.on("child_added").then(function(snap) {
   count++;
   console.log("added:", snap.key);
   lista.push(snap.key);
-  })
-  console.log("lista.length:", lista.length)
-  resolve();
+  }).catch(function (err) {
+    // This is where errors land
+    console.log('Error', err.code);
   });
+  console.log("lista.length:", lista.length)
+  //resolve();
+  //});
   return lista;
 }
     doDataResponse(sender, facebookResponseData) {
