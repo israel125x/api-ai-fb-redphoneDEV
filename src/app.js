@@ -168,13 +168,14 @@ listarRegistrados(){
   var count = 0;
   var lista=[];
   return new Promise((resolve, reject) => {
+  .then(() =>
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
   lista.push(snap.key);
-  });
-  console.log("lista.length:", lista.length);
-  return lista;
+  }))
+  .then(() =>console.log("lista.length:", lista.length)
+  return lista;)
   });
 }
     doDataResponse(sender, facebookResponseData) {
