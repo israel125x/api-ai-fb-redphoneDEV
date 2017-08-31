@@ -139,14 +139,14 @@ listarRegistrados(){
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
-  lista=[];
+  this.lista=[];
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
-  lista.push(snap.key);
+  this.lista.push(snap.key);
   });
   //this.sleep(this.messagesDelay);
-  
+  console.log("this.lista.length:", this.lista.length); 
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
@@ -379,8 +379,8 @@ listarRegistrados(){
 				}
 				if(event.message.text=="Xx"){
 		
-					this.listarRegistrados();
-					console.log("this.lista.length:", this.lista.length); 
+					//this.listarRegistrados();
+					//console.log("this.lista.length:", this.lista.length); 
 					return 'test';
 					/*contruir json para enviar boton de campaña
 					let messageData = {
