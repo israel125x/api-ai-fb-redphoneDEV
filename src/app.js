@@ -139,15 +139,13 @@ listarRegistrados(){
   var ref = db.ref("/fbregistro");
   var count = 0;
   var lista=[];
-  //return new Promise((resolve, reject) => {
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
   lista.push(snap.key);
-  }).then(() => this.sleep(this.messagesDelay));
+  });
   console.log("lista.length:", lista.length); 
-  //resolve();
-  //});
+
   return lista;
 }
     doDataResponse(sender, facebookResponseData) {
