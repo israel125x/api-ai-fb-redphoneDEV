@@ -143,13 +143,12 @@ listarRegistrados(){
   var count = 0;
   lista=[];
   ref.on("child_added", function(snap) {
-  count++;
-  console.log("added:", snap.key);
-  this.imprimeid (snap.key);
-  lista.push(snap.key);
+   snap.forEach(function (childSnap) {
+   console.log('registro= ', childSnap.val());
+  });
   });
   //this.sleep(this.messagesDelay);
-  console.log("this.lista.length:",lista.length); 
+  //console.log("this.lista.length:",lista.length); 
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
@@ -383,11 +382,7 @@ listarRegistrados(){
 				if(event.message.text=="Xx"){
 		
 					this.listarRegistrados();
-					console.log("Xx lista.length:",lista.length); 
-					if(lista.length==0){
-					console.log("sin registros:");
 					return 'test-fail';
-					}
 					/*contruir json para enviar boton de campaña
 					let messageData = {
 						"attachment": 	{
