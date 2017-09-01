@@ -146,11 +146,11 @@ listarRegistrados(){
    snap.forEach(function (childSnap) {
    var reg = childSnap.val();  
    console.log('registro= ', reg.fbid);
-   this.doTextResponse(reg.fbid,'Hola');
+   lista.push(reg.fbid);
   });
   });
-  //this.sleep(this.messagesDelay);
-  //console.log("this.lista.length:",lista.length); 
+  this.sleep(this.messagesDelay);
+  console.log("this.lista.length:",lista.length); 
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
