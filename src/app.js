@@ -144,7 +144,7 @@ listarRegistrados(){
   lista=[];
   ref.on("child_added", function(snap) {
    snap.forEach(function (childSnap) {
-   console.log('fbid= ', childSnap.val().fbid);
+   console.log('fbid= ', childSnap.fbid.val());
   });
   });
   //this.sleep(this.messagesDelay);
