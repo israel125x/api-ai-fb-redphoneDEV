@@ -381,8 +381,8 @@ listarRegistrados(){
 		
 					this.listarRegistrados();
 					console.log("Xx lista.length:", this.lista.length); 
-					return 'test';
-					/*contruir json para enviar boton de campaña
+					
+					//contruir json para enviar boton de campaña
 					let messageData = {
 						"attachment": 	{
 						"type": "template",
@@ -404,6 +404,7 @@ listarRegistrados(){
 				console.log('lista['+i+']: '+lista[i]);	
 				this.sendFBMessage (lista[i],messageData);
 				}*/
+				return 'test';
 				}
 				if(event.message.text=="info"){
 					let messageData = {
