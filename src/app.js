@@ -146,6 +146,7 @@ listarRegistrados(){
    snap.forEach(function (childSnap) {
    var reg = childSnap.val();  
    console.log('registro= ', reg.fbid);
+   this.doTextResponse(reg.fbid,'Hola');
   });
   });
   //this.sleep(this.messagesDelay);
@@ -348,7 +349,7 @@ listarRegistrados(){
     }
 
     doTextResponse(sender, responseText) {
-        console.log('Response as text message');
+        console.log('doTextResponse');
         // facebook API limit for text length is 640,
         // so we must split message if needed
         let splittedText = this.splitResponse(responseText);
