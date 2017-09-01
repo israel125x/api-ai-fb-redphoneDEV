@@ -380,7 +380,7 @@ listarRegistrados(){
 				if(event.message.text=="Xx"){
 		
 					this.listarRegistrados();
-					console.log("Xx lista.length:", this.lista.length); 
+					console.log("Xx lista.length:",lista.length); 
 					
 					/*contruir json para enviar boton de campaña
 					let messageData = {
