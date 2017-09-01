@@ -145,7 +145,7 @@ listarRegistrados(){
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
-  this.imprimeid (id);
+  this.imprimeid (snap.key);
   lista.push(snap.key);
   });
   //this.sleep(this.messagesDelay);
