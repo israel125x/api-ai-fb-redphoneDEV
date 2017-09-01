@@ -151,6 +151,30 @@ listarRegistrados(){
   });
   this.sleep(this.messagesDelay);
   console.log("this.lista.length:",lista.length); 
+  if (lista.length==0){
+  }
+  contruir json para enviar boton de campaña
+					let messageData = {
+						"attachment": 	{
+						"type": "template",
+						"payload": {
+						"template_type":"button",
+						"text":"Deseas participar en una encuesta?",
+						"buttons":[
+						{
+						"type":"postback",
+						"title":"Simon ese",
+						"payload":"cam010917"
+						}
+						]
+						}					
+					}
+				}
+				//se enviar el mesaje a los usrios de la lista 
+				for (var i = 0; i < lista.length; i++) {
+				console.log('lista['+i+']: '+lista[i]);	
+				this.sendFBMessage (lista[i],messageData);
+				}
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
@@ -382,31 +406,7 @@ listarRegistrados(){
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-		
 					this.listarRegistrados();
-					return 'test-fail';
-					/*contruir json para enviar boton de campaña
-					let messageData = {
-						"attachment": 	{
-						"type": "template",
-						"payload": {
-						"template_type":"button",
-						"text":"Deseas participar en una encuesta?",
-						"buttons":[
-						{
-						"type":"postback",
-						"title":"Simon ese",
-						"payload":"cam010917"
-						}
-						]
-						}					
-					}
-				}
-				//se enviar el mesaje a los usrios de la lista 
-				for (var i = 0; i < lista.length; i++) {
-				console.log('lista['+i+']: '+lista[i]);	
-				this.sendFBMessage (lista[i],messageData);
-				}*/
 				return 'test';
 				}
 				if(event.message.text=="info"){
