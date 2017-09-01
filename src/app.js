@@ -382,7 +382,7 @@ listarRegistrados(){
 					this.listarRegistrados();
 					console.log("Xx lista.length:", this.lista.length); 
 					
-					//contruir json para enviar boton de campaña
+					/*contruir json para enviar boton de campaña
 					let messageData = {
 						"attachment": 	{
 						"type": "template",
