@@ -133,7 +133,9 @@ class FacebookBot {
         this.sessionIds = new Map();
         this.messagesDelay = 200;
     }
-
+imprimeid (id){
+console.log("id de Firebase= :",id);
+}
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
 listarRegistrados(){	
   var db = firebase.database();
@@ -143,6 +145,7 @@ listarRegistrados(){
   ref.on("child_added", function(snap) {
   count++;
   console.log("added:", snap.key);
+  imprimeid (id);
   lista.push(snap.key);
   });
   //this.sleep(this.messagesDelay);
@@ -381,8 +384,11 @@ listarRegistrados(){
 		
 					this.listarRegistrados();
 					console.log("Xx lista.length:",lista.length); 
-					
-					/*contruir json para enviar boton de campaña
+					if(lista.length==0){
+					console.log("sin registros:");
+					return 'test-fail';
+					}
+					contruir json para enviar boton de campaña
 					let messageData = {
 						"attachment": 	{
 						"type": "template",
@@ -403,7 +409,7 @@ listarRegistrados(){
 				for (var i = 0; i < lista.length; i++) {
 				console.log('lista['+i+']: '+lista[i]);	
 				this.sendFBMessage (lista[i],messageData);
-				}*/
+				}
 				return 'test';
 				}
 				if(event.message.text=="info"){
