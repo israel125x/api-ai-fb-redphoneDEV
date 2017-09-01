@@ -388,7 +388,7 @@ listarRegistrados(){
 					console.log("sin registros:");
 					return 'test-fail';
 					}
-					contruir json para enviar boton de campaña
+					/*contruir json para enviar boton de campaña
 					let messageData = {
 						"attachment": 	{
 						"type": "template",
@@ -409,7 +409,7 @@ listarRegistrados(){
 				for (var i = 0; i < lista.length; i++) {
 				console.log('lista['+i+']: '+lista[i]);	
 				this.sendFBMessage (lista[i],messageData);
-				}
+				}*/
 				return 'test';
 				}
 				if(event.message.text=="info"){
