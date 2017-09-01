@@ -142,7 +142,7 @@ listarRegistrados(){
   var ref = db.ref("/fbregistro");
   var count = 0;
   lista=[];
-  ref.on("child_added", function(snap) {
+  ref.on("value", function(snap) {
    snap.forEach(function (childSnap) {
    console.log('registro= ', childSnap.val());
   });
