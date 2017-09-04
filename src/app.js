@@ -139,7 +139,8 @@ var db = firebase.database();
   lista=[];
 
 function asyncSqrt(ref,callback) {
-    console.log('START execution');
+    try{
+	console.log('START execution');
 	ref.on("value").then(function(snap){
 		//snap.forEach(function (childSnap){
 			//var reg = childSnap.val();  
@@ -148,6 +149,10 @@ function asyncSqrt(ref,callback) {
 		//})
 	});
     callback(10);//lista.length);
+	} } catch (err) {
+        console.log('err ',err);
+		return null;
+        }
 }
 function asyncSqrt2(value, callback) {
     console.log('START execution with value =', value);
