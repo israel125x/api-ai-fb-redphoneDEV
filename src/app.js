@@ -133,7 +133,21 @@ class FacebookBot {
 
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
 listarRegistrados(){	
-  var db = firebase.database();
+
+function asyncSqrt(value, callback) {
+    console.log('START execution with value =', value);
+    setTimeout(function() {
+        callback(value, value * value);
+    }, 0 | Math.random() * 100);
+}
+ 
+for (var n = 0; n < 10; n++) {
+    asyncSqrt(n, function(value, result) {
+        console.log('END execution with value =', value, 'and result =', result);
+    });
+}
+console.log('COMPLETED ?');
+  /*var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
   lista=[];
@@ -167,7 +181,7 @@ listarRegistrados(){
 				for (var i = 0; i < con2; i++) {
 				console.log('lista['+i+']: '+lista[i]);	
 				this.sendFBMessage (lista[i],messageData);
-				}
+				}*/
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
