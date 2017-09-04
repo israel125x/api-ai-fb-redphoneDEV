@@ -137,7 +137,6 @@ listarRegistrados(){
 function asyncSqrt(callback) {
     console.log('START execution');
         callback(1000);
-    }
 }
  
 asyncSqrt( function (result) {
