@@ -21,8 +21,7 @@ var firebase = require('firebase');
 var respuesta ="";
 var idusr =""; 
 var lista=[];
-
-
+var defaultApp = firebase.initializeApp(config);
 var config = {
     apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
     authDomain: "turnosmovil-a576d.firebaseapp.com",
@@ -31,13 +30,12 @@ var config = {
     storageBucket: "turnosmovil-a576d.appspot.com",
     messagingSenderId: "706329874359"
   };
-
-var defaultApp = firebase.initializeApp(config);
+var db = firebase.database();
 
 function consultarID(idusuario){
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
-  var db = firebase.database();
+  db = firebase.database();
   var ref = db.ref("fbregistro/"+idusuario); 
   //---------------------------------------------------
 //Attach an asynchronous callback to read the data at our posts reference
@@ -57,7 +55,7 @@ return ultimarespuesta;
 function procesoAlta (idpro, idusr, valor){ 
   console.log("Insertar Registro");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
-  var db = firebase.database();
+  db = firebase.database();
   var ref = db.ref("fbregistro/"); 
   //var newRef = ref.push();
   var newRef = ref.child(idusr);
@@ -76,7 +74,7 @@ function procesoAlta (idpro, idusr, valor){
 function nuevoproceso (idusr){ 
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
-  var db = firebase.database();
+  db = firebase.database();
   var ref = db.ref("procesos/"); 
   //var newRef = ref.push();
   var newRef = ref.child(idusr);
@@ -100,7 +98,7 @@ function nuevoproceso (idusr){
 function consultarProceso(idusuario){
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
-  var db = firebase.database();
+  db = firebase.database();
   var ref = db.ref("procesos/"+idusuario); 
   //---------------------------------------------------
 //Attach an asynchronous callback to read the data at our posts reference
@@ -132,15 +130,16 @@ class FacebookBot {
         this.apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
         this.sessionIds = new Map();
         this.messagesDelay = 200;
+		this.db = firebase.database();
     }
 imprimeid (id){
 console.log("id de Firebase= :",id);
 }
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
 listarRegistrados(){	
-  var db = firebase.database();
+  //db = firebase.database();
   var ref = db.ref("/fbregistro");
-  var count = 0;
+  //var count = 0;
   lista=[];
   ref.on("value", function(snap) {
    snap.forEach(function (childSnap) {
