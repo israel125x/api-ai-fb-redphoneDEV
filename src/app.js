@@ -143,13 +143,7 @@ listarRegistrados(){
    console.log('registro= ', reg.fbid);
    lista.push(reg.fbid);
   });
-  var con2=lista.length;
-  console.log("lista.length:",lista.length); 
   });
-  /*if (lista.length==0){
-  console.log("sin registros");
-  return null;
-  }*/
   //contruir json para enviar boton de campaña
 					let messageData = {
 						"attachment": 	{
@@ -168,6 +162,8 @@ listarRegistrados(){
 					}
 				}
 				//se enviar el mesaje a los usrios de la lista 
+				var con2=lista.length;
+                console.log("lista.length:",lista.length);
 				for (var i = 0; i < con2; i++) {
 				console.log('lista['+i+']: '+lista[i]);	
 				this.sendFBMessage (lista[i],messageData);
