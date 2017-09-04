@@ -136,7 +136,9 @@ listarRegistrados(){
 
 function asyncSqrt(value, callback) {
     console.log('START execution with value =', value);
-    callback(value, value * 1000);
+    setTimeout(function () {
+        callback(value, value * 1000);
+    }, 0 | Math.random() * 100);
 }
  
 asyncSqrt(0, function (value, result) {
@@ -145,7 +147,7 @@ asyncSqrt(0, function (value, result) {
         console.log('END execution with value =', value, 'and result =', result);
     });
 });
-  var db = firebase.database();
+  /*var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
   lista=[];
@@ -156,7 +158,7 @@ asyncSqrt(0, function (value, result) {
    lista.push(reg.fbid);
   });
   });
-  /*contruir json para enviar boton de campaña
+  //contruir json para enviar boton de campaña
 					let messageData = {
 						"attachment": 	{
 						"type": "template",
