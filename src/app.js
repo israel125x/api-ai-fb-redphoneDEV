@@ -141,13 +141,13 @@ var db = firebase.database();
 function asyncSqrt(ref,callback) {
     console.log('START execution');
 	ref.on("value").then(function(snap){
-		snap.forEach(function (childSnap){
-			var reg = childSnap.val();  
-			console.log('registro= ', reg.fbid);
-			lista.push(reg.fbid);
+		//snap.forEach(function (childSnap){
+			//var reg = childSnap.val();  
+			console.log('registro= ',snap); //reg.fbid);
+			//lista.push(reg.fbid);
 		})
 	});
-    callback(lista.length);
+    callback(10);//lista.length);
 }
 function asyncSqrt2(value, callback) {
     console.log('START execution with value =', value);
