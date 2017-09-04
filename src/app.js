@@ -149,7 +149,7 @@ function asyncSqrt(ref,callback) {
 		//})
 	});
     callback(10);//lista.length);
-	} } catch (err) {
+	}  catch (err) {
         console.log('err ',err);
 		return null;
         }
