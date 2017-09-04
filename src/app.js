@@ -133,12 +133,22 @@ class FacebookBot {
 
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
 listarRegistrados(){	
-lista=[];
-function asyncSqrt(lista, callback) {
-  console.log('START load ids from db=', value);
+
+function asyncSqrt(value, callback) {
+    console.log('START execution with value =', value);
+    callback(value, value * 1000);
+}
+ 
+asyncSqrt(0, function (value, result) {
+    console.log('END execution with value =', value, 'and result =', result);
+    asyncSqrt(1, function (value, result) {
+        console.log('END execution with value =', value, 'and result =', result);
+    });
+});
   var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
+  lista=[];
   ref.on("value", function(snap) {
    snap.forEach(function (childSnap) {
    var reg = childSnap.val();  
@@ -146,22 +156,6 @@ function asyncSqrt(lista, callback) {
    lista.push(reg.fbid);
   });
   });
-    callback(lista, lista);
-}
-function asyncSqrt2(lista, callback) {
-	console.log('START execution with value =', value);
-    setTimeout(function () {
-        callback(value, value * value);
-    }, 0 | Math.random() * 100);
-}
- 
-asyncSqrt(lista, function (lista, result) {
-    console.log('result.length: ', result.length);
-    asyncSqrt2(1, function (value, result) {
-        console.log('END execution with value =', value, 'and result =', result);
-    });
-});
-  
   /*contruir json para enviar boton de campaña
 					let messageData = {
 						"attachment": 	{
