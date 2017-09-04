@@ -145,7 +145,7 @@ function asyncSqrt(ref,callback) {
 			//var reg = childSnap.val();  
 			console.log('registro= ',snap); //reg.fbid);
 			//lista.push(reg.fbid);
-		})
+		//})
 	});
     callback(10);//lista.length);
 }
