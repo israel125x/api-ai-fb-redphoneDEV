@@ -143,10 +143,10 @@ listarRegistrados(){
    console.log('registro= ', reg.fbid);
    lista.push(reg.fbid);
   });
-  //this.sleep(this.messagesDelay);
+  
   console.log("lista.length:",lista.length); 
   });
-  
+  this.sleep(800);
   if (lista.length==0){
   console.log("sin registros");
   return null;
