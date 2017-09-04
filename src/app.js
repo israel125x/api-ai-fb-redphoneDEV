@@ -136,17 +136,42 @@ listarRegistrados(){
 
 function asyncSqrt(value, callback) {
     console.log('START execution with value =', value);
-    setTimeout(function() {
+    setTimeout(function () {
         callback(value, value * value);
     }, 0 | Math.random() * 100);
 }
  
-for (var n = 0; n < 10; n++) {
-    asyncSqrt(n, function(value, result) {
+asyncSqrt(0, function (value, result) {
+    console.log('END execution with value =', value, 'and result =', result);
+    asyncSqrt(1, function (value, result) {
         console.log('END execution with value =', value, 'and result =', result);
+        asyncSqrt(2, function (value, result) {
+            console.log('END execution with value =', value, 'and result =', result);
+            asyncSqrt(3, function (value, result) {
+                console.log('END execution with value =', value, 'and result =', result);
+                asyncSqrt(4, function (value, result) {
+                    console.log('END execution with value =', value, 'and result =', result);
+                    asyncSqrt(5, function (value, result) {
+                        console.log('END execution with value =', value, 'and result =', result);
+                        asyncSqrt(6, function (value, result) {
+                            console.log('END execution with value =', value, 'and result =', result);
+                            asyncSqrt(7, function (value, result) {
+                                console.log('END execution with value =', value, 'and result =', result);
+                                asyncSqrt(8, function (value, result) {
+                                    console.log('END execution with value =', value, 'and result =', result);
+                                    asyncSqrt(9, function (value, result) {
+                                        console.log('END execution with value =', value, 'and result =', result);
+                                        console.log('COMPLETED');
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
     });
-}
-console.log('COMPLETED ?');
+});
   /*var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
