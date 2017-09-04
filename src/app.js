@@ -132,9 +132,8 @@ class FacebookBot {
     }
 
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
-var db = firebase.database();
 listarRegistrados(){	
-  
+  var db = firebase.database();
   var ref = db.ref("/fbregistro");
   var count = 0;
   lista=[];
@@ -144,10 +143,13 @@ listarRegistrados(){
    console.log('registro= ', reg.fbid);
    lista.push(reg.fbid);
   });
-  });
   this.sleep(this.messagesDelay);
-  console.log("this.lista.length:",lista.length); 
+  console.log("lista.length:",lista.length); 
+  });
+  
   if (lista.length==0){
+  console.log("sin registros");
+  return null;
   }
   //contruir json para enviar boton de campaña
 					let messageData = {
