@@ -31,7 +31,7 @@ var config = {
   };
 var defaultApp = firebase.initializeApp(config);
 
-function consultarID(idusuario){
+/*function consultarID(idusuario){
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
   var db = firebase.database();
@@ -120,7 +120,7 @@ function consultarProceso(idusuario){
 });
 return paso;
 }
-
+*/
 
 
 //------------------------------------------------------------------------------
@@ -130,12 +130,11 @@ class FacebookBot {
         this.sessionIds = new Map();
         this.messagesDelay = 200;
     }
-imprimeid (id){
-console.log("id de Firebase= :",id);
-}
+
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
+var db = firebase.database();
 listarRegistrados(){	
-  var db = firebase.database();
+  
   var ref = db.ref("/fbregistro");
   var count = 0;
   lista=[];
@@ -395,7 +394,7 @@ listarRegistrados(){
                 console.log('event.message.text = true');
 				console.log("event: "+JSON.stringify(event));
 				if(event.message.text=='Registrarse'){
-					console.log('estado proceso alta= ',consultarProceso(event.sender.id));
+					//console.log('estado proceso alta= ',consultarProceso(event.sender.id));
 					return 'Alta_0';
 				}
 				if(event.message.text=="Consulta usuario"){
