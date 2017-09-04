@@ -135,8 +135,19 @@ class FacebookBot {
 listarRegistrados(){	
 
 function asyncSqrt(callback) {
-    console.log('START execution');
-        callback(1000);
+  console.log('START execution');
+  var db = firebase.database();
+  var ref = db.ref("/fbregistro");
+  var count = 0;
+  lista=[];
+  ref.on("value", function(snap) {
+   snap.forEach(function (childSnap) {
+   var reg = childSnap.val();  
+   console.log('registro= ', reg.fbid);
+   lista.push(reg.fbid);
+  });
+  });
+  callback(lista.length);
 }
 function asyncSqrt2(value, callback) {
     console.log('START execution with value =', value);
@@ -151,17 +162,7 @@ asyncSqrt( function (result) {
         console.log('END execution with value =', value, 'and result =', result);
     });
 });
-  /*var db = firebase.database();
-  var ref = db.ref("/fbregistro");
-  var count = 0;
-  lista=[];
-  ref.on("value", function(snap) {
-   snap.forEach(function (childSnap) {
-   var reg = childSnap.val();  
-   console.log('registro= ', reg.fbid);
-   lista.push(reg.fbid);
-  });
-  });
+  /*
   //contruir json para enviar boton de campaña
 					let messageData = {
 						"attachment": 	{
