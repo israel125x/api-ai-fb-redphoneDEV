@@ -137,7 +137,7 @@ listarRegistrados(){
 function asyncSqrt(value, callback) {
     console.log('START execution with value =', value);
     setTimeout(function () {
-        callback(value, value * value);
+        callback(value, value * 1000);
     }, 0 | Math.random() * 100);
 }
  
