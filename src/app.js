@@ -138,11 +138,17 @@ function asyncSqrt(callback) {
     console.log('START execution');
         callback(1000);
 }
+function asyncSqrt2(value, callback) {
+    console.log('START execution with value =', value);
+    setTimeout(function () {
+        callback(value, value * value);
+    }, 0 | Math.random() * 100);
+}
  
 asyncSqrt( function (result) {
     console.log('END and result =', result);
-    asyncSqrt(function (result) {
-        console.log('END and result =', result+100);
+    asyncSqrt2(10, function (value, result) {
+        console.log('END execution with value =', value, 'and result =', result);
     });
 });
   /*var db = firebase.database();
