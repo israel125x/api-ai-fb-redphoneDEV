@@ -145,31 +145,6 @@ asyncSqrt(0, function (value, result) {
     console.log('END execution with value =', value, 'and result =', result);
     asyncSqrt(1, function (value, result) {
         console.log('END execution with value =', value, 'and result =', result);
-        asyncSqrt(2, function (value, result) {
-            console.log('END execution with value =', value, 'and result =', result);
-            asyncSqrt(3, function (value, result) {
-                console.log('END execution with value =', value, 'and result =', result);
-                asyncSqrt(4, function (value, result) {
-                    console.log('END execution with value =', value, 'and result =', result);
-                    asyncSqrt(5, function (value, result) {
-                        console.log('END execution with value =', value, 'and result =', result);
-                        asyncSqrt(6, function (value, result) {
-                            console.log('END execution with value =', value, 'and result =', result);
-                            asyncSqrt(7, function (value, result) {
-                                console.log('END execution with value =', value, 'and result =', result);
-                                asyncSqrt(8, function (value, result) {
-                                    console.log('END execution with value =', value, 'and result =', result);
-                                    asyncSqrt(9, function (value, result) {
-                                        console.log('END execution with value =', value, 'and result =', result);
-                                        console.log('COMPLETED');
-                                    });
-                                });
-                            });
-                        });
-                    });
-                });
-            });
-        });
     });
 });
   /*var db = firebase.database();
