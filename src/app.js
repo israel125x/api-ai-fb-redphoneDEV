@@ -143,7 +143,7 @@ listarRegistrados(){
    console.log('registro= ', reg.fbid);
    lista.push(reg.fbid);
   });
-  this.sleep(this.messagesDelay);
+  //this.sleep(this.messagesDelay);
   console.log("lista.length:",lista.length); 
   });
   
