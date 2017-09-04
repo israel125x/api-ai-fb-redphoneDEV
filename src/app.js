@@ -130,6 +130,7 @@ class FacebookBot {
         this.apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
         this.sessionIds = new Map();
         this.messagesDelay = 200;
+		this.defaultApp = firebase.initializeApp(config);
 		this.db = firebase.database();
     }
 imprimeid (id){
