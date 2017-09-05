@@ -177,7 +177,7 @@ function asyncSqrt2(value, callback) {
 				
 				for (var i = 0; i < value.length; i++) {
 				console.log('lista['+i+']: '+value[i]);	
-				sendFBMessage (value[i],messageData);
+				this.sendFBMessage (value[i],messageData);
 				}
 				callback(null,'OK');
     
@@ -186,22 +186,8 @@ function asyncSqrt2(value, callback) {
 asyncSqrt(ref, function (ref, result) {
     console.log('END and result =', result);
 	var resultado =result;
-    asyncSqrt2(resultado, function (value, result) {
-        console.log('END execution with value =', value, 'and result =', result);
-    });
-});
-  /*var db = firebase.database();
-  var ref = db.ref("/fbregistro");
-  var count = 0;
-  lista=[];
-  ref.on("value", function(snap) {
-   snap.forEach(function (childSnap) {
-   var reg = childSnap.val();  
-   console.log('registro= ', reg.fbid);
-   lista.push(reg.fbid);
-  });
-  });
-  //contruir json para enviar boton de campaña
+	 console.log('tamalo de la lista =', value.length);
+	 //contruir json para enviar boton de campaña
 					let messageData = {
 						"attachment": 	{
 						"type": "template",
@@ -219,12 +205,15 @@ asyncSqrt(ref, function (ref, result) {
 					}
 				}
 				//se enviar el mesaje a los usrios de la lista 
-				var con2=lista.length;
-                console.log("lista.length:",lista.length);
-				for (var i = 0; i < con2; i++) {
-				console.log('lista['+i+']: '+lista[i]);	
-				this.sendFBMessage (lista[i],messageData);
-				}*/
+				
+				for (var i = 0; i < value.length; i++) {
+				console.log('lista['+i+']: '+value[i]);	
+				//this.sendFBMessage (value[i],messageData);
+				}
+    /*asyncSqrt2(resultado, function (value, result) {
+        console.log('END execution with value =', value, 'and result =', result);
+    });*/
+});
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
