@@ -132,7 +132,7 @@ class FacebookBot {
     }
 
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
-listarRegistrados(null, callback){	
+listarRegistrados(callback){	
 
   var ref = db.ref("/fbregistro");
   var count = 0;
