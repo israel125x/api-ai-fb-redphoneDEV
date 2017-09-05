@@ -132,7 +132,7 @@ class FacebookBot {
     }
 
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
-listarRegistrados(){	
+listarRegistrados(callback){	
 
   var ref = db.ref("/fbregistro");
   var count = 0;
@@ -191,25 +191,9 @@ asyncSqrt(ref, function (ref, result) {
     /*asyncSqrt2(resultado, function (value, result) {
         console.log('END execution with value =', value, 'and result =', result);
     });*/
+	callback(null,'OK');
 });
 console.log('END lista.length=',lista.length);
-let messageData = {
-						"attachment": 	{
-						"type": "template",
-						"payload": {
-						"template_type":"button",
-						"text":"Deseas participar en una encuesta?",
-						"buttons":[
-						{
-						"type":"postback",
-						"title":"Simon ese",
-						"payload":"cam010917"
-						}
-						]
-						}					
-					}
-				}
-this.sendFBMessage ('1963048170387920',messageData);
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
@@ -441,7 +425,9 @@ this.sendFBMessage ('1963048170387920',messageData);
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					this.listarRegistrados();
+					this.listarRegistrados(function (value, result) {
+					console.log('result2 =', result);
+					});
 				return 'test';
 				}
 				if(event.message.text=="info"){
