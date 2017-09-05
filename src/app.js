@@ -121,23 +121,6 @@ function consultarProceso(idusuario){
 return paso;
 }
 */
-
-
-//------------------------------------------------------------------------------
-class FacebookBot {
-    constructor() {
-        this.apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
-        this.sessionIds = new Map();
-        this.messagesDelay = 200;
-    }
-
-//funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
-listarRegistrados(){	
-
-  var ref = db.ref("/fbregistro");
-  var count = 0;
-  lista=[];
-
 function asyncSqrt(ref,callback) {
     try{
 	console.log('START execution');
@@ -154,6 +137,7 @@ function asyncSqrt(ref,callback) {
 		return null;
         }
 }
+
 function asyncSqrt2(value, callback) {
     console.log('tamalo de la lista =', value.length);
 	 //contruir json para enviar boton de campaña
@@ -182,46 +166,27 @@ function asyncSqrt2(value, callback) {
 				callback(null,'OK');
     
 }
- 
-asyncSqrt(ref, function (ref, result) {
-    console.log('END and result =', result);
-	return result;
-});
-  /*var db = firebase.database();
+
+//------------------------------------------------------------------------------
+class FacebookBot {
+    constructor() {
+        this.apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
+        this.sessionIds = new Map();
+        this.messagesDelay = 200;
+    }
+
+//funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
+listarRegistrados(){	
+
   var ref = db.ref("/fbregistro");
   var count = 0;
   lista=[];
-  ref.on("value", function(snap) {
-   snap.forEach(function (childSnap) {
-   var reg = childSnap.val();  
-   console.log('registro= ', reg.fbid);
-   lista.push(reg.fbid);
-  });
-  });
-  //contruir json para enviar boton de campaña
-					let messageData = {
-						"attachment": 	{
-						"type": "template",
-						"payload": {
-						"template_type":"button",
-						"text":"Deseas participar en una encuesta?",
-						"buttons":[
-						{
-						"type":"postback",
-						"title":"Simon ese",
-						"payload":"cam010917"
-						}
-						]
-						}					
-					}
-				}
-				//se enviar el mesaje a los usrios de la lista 
-				var con2=lista.length;
-                console.log("lista.length:",lista.length);
-				for (var i = 0; i < con2; i++) {
-				console.log('lista['+i+']: '+lista[i]);	
-				this.sendFBMessage (lista[i],messageData);
-				}*/
+
+this.asyncSqrt(ref, function (ref, result) {
+    console.log('END and result =', result);
+	return result;
+});
+
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
@@ -453,8 +418,7 @@ asyncSqrt(ref, function (ref, result) {
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-				var registros=[];
-				registros=this.listarRegistrados();
+				var registros=this.listarRegistrados();
 				console.log('registros.length',registros.length);
 				return 'test';
 				}
