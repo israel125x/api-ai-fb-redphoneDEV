@@ -145,10 +145,12 @@ listarRegistrados(){
 function asyncSqrt(ref,callback) {
     try{
 	console.log('START execution');
-	ref.once("value").then(function(snapshot){
+	var refonce = ref.once("value");
+	refonce.then(function(snapshot){
 		//snap.forEach(function (childSnap){
 			//var reg = childSnap.val();  
-			console.log('registro= ',snapshot.val()); //reg.fbid);
+			var valor =snapshot.val();
+			console.log('registro= ',valor); //reg.fbid);
 			//lista.push(reg.fbid);
 		//})
 	});
@@ -166,7 +168,8 @@ function asyncSqrt2(value, callback) {
 }
  
 asyncSqrt(ref, function (ref, result) {
-    console.log('END and result =', result);
+	var resultado = result;
+    console.log('END and result =', resultado);
     asyncSqrt2(10, function (value, result) {
         console.log('END execution with value =', value, 'and result =', result);
     });
