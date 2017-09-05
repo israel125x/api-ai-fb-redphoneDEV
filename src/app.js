@@ -177,7 +177,7 @@ function asyncSqrt2(value, callback) {
 				
 				for (var i = 0; i < value.length; i++) {
 				console.log('lista['+i+']: '+value[i]);	
-				this.sendFBMessage (value[i],messageData);
+				//this.sendFBMessage (value[i],messageData);
 				callback(null,'OK');
     
 }
