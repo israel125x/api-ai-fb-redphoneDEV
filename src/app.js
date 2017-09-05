@@ -132,7 +132,7 @@ class FacebookBot {
     }
 
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
-listarRegistrados(){	
+listarRegistrados(null, callback){	
 
   var ref = db.ref("/fbregistro");
   var count = 0;
@@ -422,7 +422,9 @@ asyncSqrt(ref, function (ref, result) {
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					console.log('retorno: ',this.listarRegistrados());
+					this.listarRegistrados(null, function (null, result) {
+					console.log('END = ', result);
+					});
 				return 'test';
 				}
 				if(event.message.text=="info"){
