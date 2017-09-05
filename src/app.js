@@ -121,6 +121,23 @@ function consultarProceso(idusuario){
 return paso;
 }
 */
+
+
+//------------------------------------------------------------------------------
+class FacebookBot {
+    constructor() {
+        this.apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
+        this.sessionIds = new Map();
+        this.messagesDelay = 200;
+    }
+
+//funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
+listarRegistrados(){	
+
+  var ref = db.ref("/fbregistro");
+  var count = 0;
+  lista=[];
+
 function asyncSqrt(ref,callback) {
     try{
 	console.log('START execution');
@@ -137,7 +154,6 @@ function asyncSqrt(ref,callback) {
 		return null;
         }
 }
-
 function asyncSqrt2(value, callback) {
     console.log('tamalo de la lista =', value.length);
 	 //contruir json para enviar boton de campaña
@@ -166,27 +182,16 @@ function asyncSqrt2(value, callback) {
 				callback(null,'OK');
     
 }
-
-//------------------------------------------------------------------------------
-class FacebookBot {
-    constructor() {
-        this.apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
-        this.sessionIds = new Map();
-        this.messagesDelay = 200;
-    }
-
-//funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
-listarRegistrados(){	
-
-  var ref = db.ref("/fbregistro");
-  var count = 0;
-  lista=[];
-
-this.asyncSqrt(ref, function (ref, result) {
+ 
+asyncSqrt(ref, function (ref, result) {
     console.log('END and result =', result);
-	return result;
+	lista=result;
+	//var resultado =result;
+    /*asyncSqrt2(resultado, function (value, result) {
+        console.log('END execution with value =', value, 'and result =', result);
+    });*/
 });
-
+console.log('END lista.height =', lista.height);
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
@@ -418,8 +423,7 @@ this.asyncSqrt(ref, function (ref, result) {
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-				var registros=this.listarRegistrados();
-				console.log('registros.length',registros.length);
+					this.listarRegistrados();
 				return 'test';
 				}
 				if(event.message.text=="info"){
