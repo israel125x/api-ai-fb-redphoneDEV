@@ -152,9 +152,12 @@ function asyncSqrt(ref,callback) {
 			var valor =snapshot.val();
 			console.log('registro= ',valor); //reg.fbid);
 			//lista.push(reg.fbid);
-			callback(value, 10);
+			callback(value,10);
 		//})
-	});
+	}).catch(function (error) {
+                console.log('error: ', error);
+				callback(value, 2);
+            });
     
 	}  catch (err) {
         console.log('err ',err);
