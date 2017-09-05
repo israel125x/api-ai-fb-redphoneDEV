@@ -422,7 +422,7 @@ asyncSqrt(ref, function (ref, result) {
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					this.listarRegistrados(null, function (null, result) {
+					this.listarRegistrados(function (null, result) {
 					console.log('END = ', result);
 					});
 				return 'test';
