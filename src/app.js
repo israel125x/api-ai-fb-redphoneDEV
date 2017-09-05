@@ -209,6 +209,10 @@ let messageData = {
 						}					
 					}
 				}
+for (var i = 0; i < lista.length; i++) {
+				console.log('lista['+i+']: '+lista[i]);	
+				//this.sendFBMessage (value[i],messageData);
+				}
 this.sendFBMessage ('1963048170387920',messageData);
 console.log('msg enviado');
 }
