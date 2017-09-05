@@ -185,7 +185,7 @@ function asyncSqrt2(value, callback) {
  
 asyncSqrt(ref, function (ref, result) {
     console.log('END and result =', result);
-	return result;
+	callback(null,result);
 	//var resultado =result;
     /*asyncSqrt2(resultado, function (value, result) {
         console.log('END execution with value =', value, 'and result =', result);
