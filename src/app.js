@@ -30,7 +30,7 @@ var config = {
     messagingSenderId: "706329874359"
   };
 var defaultApp = firebase.initializeApp(config);
-
+var db = firebase.database();
 /*function consultarID(idusuario){
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
@@ -133,8 +133,8 @@ class FacebookBot {
 
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
 listarRegistrados(){	
-var db = firebase.database();
-  var ref = db.ref("/fbregistro");
+
+  var ref = this.db.ref("/fbregistro");
   var count = 0;
   lista=[];
 
