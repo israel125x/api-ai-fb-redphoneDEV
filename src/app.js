@@ -185,10 +185,7 @@ function asyncSqrt2(value, callback) {
  
 asyncSqrt(ref, function (ref, result) {
     console.log('END and result =', result);
-}).then(
-console.log('then :P');
-
-);
+}).then(() => console.log('then :P'));
 return null;
 }
     doDataResponse(sender, facebookResponseData) {
