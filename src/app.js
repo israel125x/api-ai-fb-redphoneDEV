@@ -185,7 +185,7 @@ function asyncSqrt2(value, callback) {
  
 asyncSqrt(ref, function (ref, result) {
     console.log('END and result =', result);
-	
+	lista=result;
 	//var resultado=result;
 	//var resultado =result;
     /*asyncSqrt2(resultado, function (value, result) {
@@ -209,11 +209,10 @@ let messageData = {
 						}					
 					}
 				}
-for (var i = 0; i < lista.length; i++) {
+				for (var i = 0; i < lista.length; i++) {
 				console.log('lista['+i+']: '+lista[i]);	
-				//this.sendFBMessage (value[i],messageData);
+				this.sendFBMessage (value[i],messageData);
 				}
-this.sendFBMessage ('1963048170387920',messageData);
 console.log('msg enviado');
 }
     doDataResponse(sender, facebookResponseData) {
