@@ -185,13 +185,12 @@ function asyncSqrt2(value, callback) {
  
 asyncSqrt(ref, function (ref, result) {
     console.log('END and result =', result);
-	var resultado=result;
+	return result;
 	//var resultado =result;
     /*asyncSqrt2(resultado, function (value, result) {
         console.log('END execution with value =', value, 'and result =', result);
     });*/
 });
-console.log('END lista.height =', resultado.length);
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
