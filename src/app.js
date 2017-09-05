@@ -185,24 +185,8 @@ function asyncSqrt2(value, callback) {
  
 asyncSqrt(ref, function (ref, result) {
     console.log('END and result =', result);
-	let messageData = {
-						"attachment": 	{
-						"type": "template",
-						"payload": {
-						"template_type":"button",
-						"text":"Deseas participar en una encuesta?",
-						"buttons":[
-						{
-						"type":"postback",
-						"title":"Simon ese",
-						"payload":"cam010917"
-						}
-						]
-						}					
-					}
-				}
-
-}).then(() => this.sendFBMessage ('1963048170387920', messageData));
+	
+}).then(console.log('then :P'));
 
 }
     doDataResponse(sender, facebookResponseData) {
