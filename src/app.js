@@ -146,7 +146,7 @@ function asyncSqrt(ref,callback) {
 			var reg = childSnap.val();  
 			console.log('registro= ',reg.fbid);
 			lista.push(reg.fbid);
-			callback(lista.length);
+			callback(null,lista.length);
 		})
 	});
 	}  catch (err) {
