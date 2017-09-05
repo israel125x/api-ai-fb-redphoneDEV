@@ -144,7 +144,7 @@ function asyncSqrt(ref,callback) {
 	ref.on("value", function(snap){
 		snap.forEach(function (childSnap){
 			var reg = childSnap.val();  
-			console.log('registro= ',snap); //reg.fbid);
+			console.log('registro= ',reg.fbid); //reg.fbid);
 			lista.push(reg.fbid);
 			callback(lista.length);
 		})
