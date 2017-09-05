@@ -202,29 +202,8 @@ asyncSqrt(ref, function (ref, result) {
 					}
 				}
 
-}).then(() => this.sendFBMessage('1963048170387920', messageData);
-/*console.log('END lista.length=',lista.length);
-let messageData = {
-						"attachment": 	{
-						"type": "template",
-						"payload": {
-						"template_type":"button",
-						"text":"Deseas participar en una encuesta?",
-						"buttons":[
-						{
-						"type":"postback",
-						"title":"Simon ese",
-						"payload":"cam010917"
-						}
-						]
-						}					
-					}
-				}
-				for (var i = 0; i < lista.length; i++) {
-				console.log('lista['+i+']: '+lista[i]);	
-				this.sendFBMessage (value[i],messageData);
-				}
-console.log('msg enviado');*/
+}).then(() => this.sendFBMessage ('1963048170387920', messageData));
+
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
