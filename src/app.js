@@ -152,9 +152,10 @@ function asyncSqrt(ref,callback) {
 			var valor =snapshot.val();
 			console.log('registro= ',valor); //reg.fbid);
 			//lista.push(reg.fbid);
+			callback(value, 10);
 		//})
 	});
-    callback(10);//lista.length);
+    
 	}  catch (err) {
         console.log('err ',err);
 		return null;
@@ -170,7 +171,7 @@ function asyncSqrt2(value, callback) {
 asyncSqrt(ref, function (ref, result) {
 	var resultado = result;
     console.log('END and result =', resultado);
-    asyncSqrt2(10, function (value, result) {
+    asyncSqrt2(resultado, function (value, result) {
         console.log('END execution with value =', value, 'and result =', result);
     });
 });
