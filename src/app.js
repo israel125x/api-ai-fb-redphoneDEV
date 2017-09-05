@@ -133,35 +133,24 @@ class FacebookBot {
 
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
 listarRegistrados(){	
-  try{
-  var ref =db.ref("/fbregistro");
+
+  var ref = db.ref("/fbregistro");
   var count = 0;
   lista=[];
-  }  catch (err) {
-        console.log('err ',err);
-		return null;
-        }
 
 function asyncSqrt(ref,callback) {
     try{
 	console.log('START execution');
-	var refonce = ref.once("value");
-	refonce.then(function(snapshot){
-		//snap.forEach(function (childSnap){
-			//var reg = childSnap.val();  
-			var valor =snapshot.val();
-			console.log('registro= ',valor); //reg.fbid);
-			//lista.push(reg.fbid);
-			callback(10);
-		//})
-	}).catch(function (error) {
-                console.log('error: ', error);
-				callback(2);
-            });
-    
+	ref.on("value", function(snap){
+		snap.forEach(function (childSnap){
+			var reg = childSnap.val();  
+			console.log('registro= ',snap); //reg.fbid);
+			lista.push(reg.fbid);
+			callback(lista.length);
+		})
+	});
 	}  catch (err) {
         console.log('err ',err);
-		callback(1);
 		return null;
         }
 }
@@ -173,8 +162,8 @@ function asyncSqrt2(value, callback) {
 }
  
 asyncSqrt(ref, function (ref, result) {
-	var resultado = result;
-    console.log('END and result =', resultado);
+    console.log('END and result =', result);
+	var resultado =result;
     asyncSqrt2(resultado, function (value, result) {
         console.log('END execution with value =', value, 'and result =', result);
     });
