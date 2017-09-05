@@ -423,7 +423,7 @@ asyncSqrt(ref, function (ref, result) {
 				}
 				if(event.message.text=="Xx"){
 					this.listarRegistrados(function (null, result) {
-					console.log('END = ', result);
+					console.log('END = ', result); 
 					});
 				return 'test';
 				}
