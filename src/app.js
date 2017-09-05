@@ -418,7 +418,7 @@ return null;
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					//this.listarRegistrados();
+					this.listarRegistrados();
 				return 'test';
 				}
 				if(event.message.text=="info"){
