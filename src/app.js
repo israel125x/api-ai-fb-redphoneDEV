@@ -158,6 +158,7 @@ function asyncSqrt(ref,callback) {
     
 	}  catch (err) {
         console.log('err ',err);
+		callback(value, 1);
 		return null;
         }
 }
