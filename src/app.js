@@ -136,7 +136,7 @@ listarRegistrados(){
 
   var ref = db.ref("/fbregistro");
   var count = 0;
-  //lista=[];
+  lista=[];
 
 function asyncSqrt(ref,callback) {
     try{
@@ -145,8 +145,9 @@ function asyncSqrt(ref,callback) {
 		snap.forEach(function (childSnap){
 			var reg = childSnap.val();  
 			console.log('registro= ',reg.fbid);
-			callback(null,reg.fbid);
+			lista.push(reg.fbid);
 		})
+		callback(null,lista.length);
 	});
 	}  catch (err) {
         console.log('err ',err);
@@ -155,9 +156,9 @@ function asyncSqrt(ref,callback) {
 }
 function asyncSqrt2(value, callback) {
     console.log('START execution with value =', value);
-	var id=value;
-    lista.push(id);
-	callback(value,lista.length);
+    setTimeout(function () {
+        callback(value, value * value);
+    }, 0 | Math.random() * 10);
 }
  
 asyncSqrt(ref, function (ref, result) {
