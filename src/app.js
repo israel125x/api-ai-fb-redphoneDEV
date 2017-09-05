@@ -185,9 +185,11 @@ function asyncSqrt2(value, callback) {
  
 asyncSqrt(ref, function (ref, result) {
     console.log('END and result =', result);
-	
-}).then(console.log('then :P'));
+}).then(
+console.log('then :P');
 
+);
+return null;
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
@@ -419,7 +421,7 @@ asyncSqrt(ref, function (ref, result) {
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					this.listarRegistrados();
+					//this.listarRegistrados();
 				return 'test';
 				}
 				if(event.message.text=="info"){
