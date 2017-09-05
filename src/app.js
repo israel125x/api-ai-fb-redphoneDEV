@@ -147,7 +147,7 @@ function asyncSqrt(ref,callback) {
 			console.log('registro= ',reg.fbid);
 			lista.push(reg.fbid);
 		})
-		callback(null,lista.length);
+		callback(null,lista);
 	});
 	}  catch (err) {
         console.log('err ',err);
@@ -155,10 +155,31 @@ function asyncSqrt(ref,callback) {
         }
 }
 function asyncSqrt2(value, callback) {
-    console.log('START execution with value =', value);
-    setTimeout(function () {
-        callback(value, value * value);
-    }, 0 | Math.random() * 10);
+    console.log('tamalo de la lista =', value.length);
+	 //contruir json para enviar boton de campaña
+					let messageData = {
+						"attachment": 	{
+						"type": "template",
+						"payload": {
+						"template_type":"button",
+						"text":"Deseas participar en una encuesta?",
+						"buttons":[
+						{
+						"type":"postback",
+						"title":"Simon ese",
+						"payload":"cam010917"
+						}
+						]
+						}					
+					}
+				}
+				//se enviar el mesaje a los usrios de la lista 
+				
+				for (var i = 0; i < value.length; i++) {
+				console.log('lista['+i+']: '+value[i]);	
+				this.sendFBMessage (value[i],messageData);
+				callback(null,'OK');
+    
 }
  
 asyncSqrt(ref, function (ref, result) {
