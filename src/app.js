@@ -447,11 +447,14 @@ asyncSqrt(ref, function (ref, result) {
 					listUSR=result;
 					});
 					//se enviar el mesaje a los usrios de la lista 
+				this.sleep(function (this.messagesDelay, result) {
+					console.log('messagesDelay result =', result);
+						for (var i = 0; i < listUSR.length; i++) {
+						console.log('listUSR['+i+']: '+listUSR[i]);	
+						//this.sendFBMessage (listUSR[i],messageData);
+					}
+					});
 				
-				for (var i = 0; i < listUSR.length; i++) {
-				console.log('listUSR['+i+']: '+listUSR[i]);	
-				this.sendFBMessage (listUSR[i],messageData);
-				}
 				return 'test';
 				}
 				if(event.message.text=="info"){
