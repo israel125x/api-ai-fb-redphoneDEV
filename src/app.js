@@ -462,12 +462,6 @@ asyncSqrt(ref, function (ref, result) {
 					});
 				});
 
-				this.listarRegistrados(function (value, result) {
-					console.log('result2 =', result);
-					});
-					//se enviar el mesaje a los usrios de la lista 
-				
-				
 				return 'test';
 				}
 				if(event.message.text=="info"){
