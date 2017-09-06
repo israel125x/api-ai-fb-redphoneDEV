@@ -155,7 +155,8 @@ function asyncSqrt(ref,callback) {
         }
 }
 function asyncSqrt2(value, callback) {
-    console.log('tamalo de la lista =', value.length);
+    
+console.log('tamalo de la lista =', value.length);
 	 //contruir json para enviar boton de campaña
 					let messageData = {
 						"attachment": 	{
@@ -446,15 +447,12 @@ asyncSqrt(ref, function (ref, result) {
 					console.log('result2 =', result);
 					listUSR=result;
 					});
-					//se enviar el mesaje a los usrios de la lista 
-				this.sleep(function (this.messagesDelay, result) {
-					console.log('messagesDelay result =', result);
-						for (var i = 0; i < listUSR.length; i++) {
-						console.log('listUSR['+i+']: '+listUSR[i]);	
-						//this.sendFBMessage (listUSR[i],messageData);
-					}
-					});
-				
+					
+				this.sleep(500, function (value, result) {
+				//console.log('END execution with value =', value, 'and result =', result);
+				console.log('sleep 500');
+				console.log('listUSR.length = ',listUSR.length);
+				});
 				return 'test';
 				}
 				if(event.message.text=="info"){
