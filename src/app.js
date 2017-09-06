@@ -425,8 +425,31 @@ asyncSqrt(ref, function (ref, result) {
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
+					let messageData = {
+						"attachment": 	{
+						"type": "template",
+						"payload": {
+						"template_type":"button",
+						"text":"Deseas participar en una encuesta?",
+						"buttons":[
+						{
+						"type":"postback",
+						"title":"Simon ese",
+						"payload":"cam010917"
+						}
+						]
+						}					
+					}
+				}
 					this.listarRegistrados(function (value, result) {
 					console.log('result2 =', result);
+					
+				//se enviar el mesaje a los usrios de la lista 
+				
+				for (var i = 0; i < result.length; i++) {
+				console.log('lista['+i+']: '+result[i]);	
+				//this.sendFBMessage (value[i],messageData);
+				}
 					});
 				return 'test';
 				}
