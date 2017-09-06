@@ -68,9 +68,9 @@ function procesoAlta (idpro, idusr, valor){
                           console.log('Firebase data: ', data); 
 						  })
   }
-}
-//---inserta nuevo registro de usurios en procesos--------------
-function nuevoproceso (idusr){ 
+}*/
+//---inserta nuevo contexto en arbol proceso--------------
+function nuevocontexto (idusr,contextoName,contextoValor){
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
   var db = firebase.database();
@@ -80,20 +80,14 @@ function nuevoproceso (idusr){
   newRef.child("idfb").set(idusr).then(function (data) {
                           console.log('Firebase data: ', data); 
 						  })
-  newRef.child("limite").set("3").then(function (data) {
-                          console.log('Firebase data: ', data); 
-						  })
-  newRef.child("paso").set("0").then(function (data) {
-                          console.log('Firebase data: ', data); 
-						  })
-  newRef.child("proceso").set("alta").then(function (data) {
+  newRef.child(contextoName).set(contextoValor).then(function (data) {
                           console.log('Firebase data: ', data); 
 						  })
 						  
 }
 //-------------------------------------------------------------
 
-//funcion que verifica el estado de la solicitus de alta 
+/*funcion que verifica el estado de la solicitus de alta 
 function consultarProceso(idusuario){
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
@@ -544,6 +538,9 @@ asyncSqrt(ref, function (ref, result) {
                 let responseData = response.result.fulfillment.data;
                 let responseMessages = response.result.fulfillment.messages;
 				console.log('response.result.metadata.intentName: ',response.result.metadata.intentName);
+				if(response.result.metadata.intentName !='Default Fallback Intent'){
+					nuevocontexto(sender,response.result.metadata.intentName,response.result.parameters.valor);
+				}
 				console.log('response.result.parameters.valor: ',response.result.parameters.valor);
 				console.log('response.sessionId: ',response.sessionId);
 				if (response.result.metadata.intentName=='redphone.agente.alta.pregunta1'){
