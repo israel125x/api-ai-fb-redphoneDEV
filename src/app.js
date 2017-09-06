@@ -154,46 +154,16 @@ function asyncSqrt(ref,callback) {
 		return null;
         }
 }
-function asyncSqrt2(callback) {
-    
-console.log('tamalo de la lista =', lista.length);
-	 //contruir json para enviar boton de campaña
-					let messageData = {
-						"attachment": 	{
-						"type": "template",
-						"payload": {
-						"template_type":"button",
-						"text":"Deseas participar en una encuesta?",
-						"buttons":[
-						{
-						"type":"postback",
-						"title":"Simon ese",
-						"payload":"cam010917"
-						}
-						]
-						}					
-					}
-				}
-				//se enviar el mesaje a los usrios de la lista 
-				
-				for (var i = 0; i < lista.length; i++) {
-				console.log('lista['+i+']: '+lista[i]);	
-				//this.sendFBMessage (value[i],messageData);
-				}
-				callback(null,'OK');
-    
-}
+
  
 asyncSqrt(ref, function (ref, result) {
-    console.log('END and result =', result);
+    console.log('END asyncSqrt and result =', result);
 	
 	//var resultado=result;
 	//var resultado =result;
 	callback(null,result);
 });
-asyncSqrt2(function (value, result) {
-        console.log('END execution with value =', value, 'and result =', result);
-});
+
 //console.log('END lista.length=',lista.length);
 }
     doDataResponse(sender, facebookResponseData) {
@@ -446,6 +416,46 @@ asyncSqrt2(function (value, result) {
 				this.listarRegistrados(function (value, result) {
 					console.log('result2 =', result);
 				});
+				asyncSqrt2(200, function (value, result) {
+                    console.log('END execution with value =', value, 'and result =', result);
+                    console.log('COMPLETED');
+                 });
+				 
+				function asyncSqrt2(value, callback) {
+				console.log('START execution with value =', value);
+				setTimeout(function () {
+				console.log('delay 200', value);	
+				callback(value, value * value);
+				},200);
+				}
+				/*function asyncSqrt2(callback) {
+				console.log('tamalo de la lista =', lista.length);
+				//contruir json para enviar boton de campaña
+					let messageData = {
+						"attachment": 	{
+						"type": "template",
+						"payload": {
+						"template_type":"button",
+						"text":"Deseas participar en una encuesta?",
+						"buttons":[
+						{
+						"type":"postback",
+						"title":"Simon ese",
+						"payload":"cam010917"
+						}
+						]
+						}					
+					}
+				}
+				//se enviar el mesaje a los usrios de la lista 
+				
+				for (var i = 0; i < lista.length; i++) {
+				console.log('lista['+i+']: '+lista[i]);	
+				//this.sendFBMessage (value[i],messageData);
+				}
+				callback(null,'OK');
+				}
+				*/
 					
 				return 'test';
 				}
