@@ -421,15 +421,13 @@ asyncSqrt(ref, function (ref, result) {
 					console.log('lista.length= ', lista.length);
 					for (var i = 0; i < lista.length; i++) {
 					console.log('lista['+i+']: '+lista[i]);	
-					//this.sendFBMessage (value[i],messageData);
+					this.sendFBMessage (value[i],messageData);
 					}
                     console.log('COMPLETED');
                  });
 				 
 				function asyncSqrt2(value, callback) {
-				console.log('START execution with value =', value);
-				setTimeout(function () {
-				console.log('delay 200', value);	
+				setTimeout(function () {	
 				callback(value, value * value);
 				},value);
 				}
