@@ -405,7 +405,7 @@ asyncSqrt(ref, function (ref, result) {
 						"buttons":[
 						{
 						"type":"postback",
-						"title":"Simon ese",
+						"title":"Simon",
 						"payload":"cam010917"
 						}
 						]
@@ -421,12 +421,14 @@ asyncSqrt(ref, function (ref, result) {
 					console.log('lista.length= ', lista.length);
 					for (var i = 0; i < lista.length; i++) {
 					console.log('lista['+i+']: '+lista[i]);	
-					sendFBMessage (value[i],messageData);
+					var idfb=lista[i];
+					sendFBMessage (idfb,messageData);
 					}
                     console.log('COMPLETED');
                  });
 				 
 				function sendFBMessage(sender, messageData) {
+			    console.log('sendFBMessage sender =',sender);
 				return new Promise((resolve, reject) => {
 				request({
                 url: 'https://graph.facebook.com/v2.6/me/messages',
