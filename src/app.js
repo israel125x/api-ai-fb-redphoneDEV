@@ -136,7 +136,6 @@ listarRegistrados(callback){
 
   var ref = db.ref("/fbregistro");
   var count = 0;
-  lista=[];
 let messageData = {
 						"attachment": 	{
 						"type": "template",
@@ -160,7 +159,7 @@ function asyncSqrt(ref,callback) {
 		snap.forEach(function (childSnap){
 			var reg = childSnap.val();  
 			console.log('registro= ',reg.fbid);
-			sendFBMessage(reg.fbid,messageData);
+			sendAlertaCam(reg.fbid,messageData);
 		})
 		callback(null,'OK');
 	});
@@ -169,7 +168,7 @@ function asyncSqrt(ref,callback) {
 		return null;
         }
 }
-function sendFBMessage(sender, messageData) {
+function sendAlertaCam(sender, messageData) {
 			    console.log('sendFBMessage sender =',sender);
 				return new Promise((resolve, reject) => {
 				request({
@@ -200,7 +199,6 @@ asyncSqrt(ref, function (ref, result) {
 	callback(null,result);
 });
 
-//console.log('END lista.length=',lista.length);
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
@@ -432,95 +430,9 @@ asyncSqrt(ref, function (ref, result) {
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					/*let messageData = {
-						"attachment": 	{
-						"type": "template",
-						"payload": {
-						"template_type":"button",
-						"text":"Deseas participar en una encuesta?",
-						"buttons":[
-						{
-						"type":"postback",
-						"title":"Simon",
-						"payload":"cam010917"
-						}
-						]
-						}					
-					}
-				}
-				*/
 				this.listarRegistrados(function (value, result) {
 					console.log('result2 =', result);
 				});
-				/*asyncSqrt2(200, function (value, result) {
-                    console.log('END execution with value =', value, 'and result =', result);
-					console.log('lista.length= ', lista.length);
-					for (var i = 0; i < lista.length; i++) {
-					console.log('lista['+i+']: '+lista[i]);	
-					var idfb=lista[i];
-					sendFBMessage (idfb,messageData);
-					}
-                    console.log('COMPLETED');
-                 });
-				 
-				function sendFBMessage(sender, messageData) {
-			    console.log('sendFBMessage sender =',sender);
-				return new Promise((resolve, reject) => {
-				request({
-                url: 'https://graph.facebook.com/v2.6/me/messages',
-                qs: {access_token: FB_PAGE_ACCESS_TOKEN},
-                method: 'POST',
-                json: {
-                    recipient: {id: sender},
-                    message: messageData,
-                }
-				}, (error, response) => {
-                if (error) {
-                    console.log('Error sending message: ', error);
-                    reject(error);
-                } else if (response.body.error) {
-                    console.log('Error: ', response.body.error);
-                    reject(new Error(response.body.error));
-                }
-
-					resolve();
-				});
-				});
-				}
-				function asyncSqrt2(value, callback) {
-				setTimeout(function () {	
-				callback(value, value * value);
-				},value);
-				}
-				/*function asyncSqrt2(callback) {
-				console.log('tamalo de la lista =', lista.length);
-				//contruir json para enviar boton de campaña
-					let messageData = {
-						"attachment": 	{
-						"type": "template",
-						"payload": {
-						"template_type":"button",
-						"text":"Deseas participar en una encuesta?",
-						"buttons":[
-						{
-						"type":"postback",
-						"title":"Simon ese",
-						"payload":"cam010917"
-						}
-						]
-						}					
-					}
-				}
-				//se enviar el mesaje a los usrios de la lista 
-				
-				for (var i = 0; i < lista.length; i++) {
-				console.log('lista['+i+']: '+lista[i]);	
-				//this.sendFBMessage (value[i],messageData);
-				}
-				callback(null,'OK');
-				}
-				*/
-					
 				return 'test';
 				}
 				if(event.message.text=="info"){
