@@ -442,7 +442,7 @@ asyncSqrt(ref, function (ref, result) {
 					}
 				}
 				async.eachSeries((callback) => {
-						this.sleep(this.messagesDelay))
+						this.sleep(this.messagesDelay)
                         .then(() => console.log('llamada1'))
                         .then(() => console.log('llamada2'))
                         .then(() => callback(null,'completado'))
