@@ -441,24 +441,17 @@ asyncSqrt(ref, function (ref, result) {
 						}					
 					}
 				}
-				async.eachSeries((callback) => {
-						this.sleep(this.messagesDelay)
-                        .then(() => console.log('llamada1'))
-                        .then(() => console.log('llamada2'))
-                        .then(() => callback(null,'completado'))
-                        .catch(callback);
-					},
-					(err) => {
-                    if (err) {
-                        console.error(err);
-                        reject(err);
-                    } else {
-                        console.log('Messages sent');
-                        resolve();
-                    }
+				var listUSR=[];
+				this.listarRegistrados(function (value, result) {
+					console.log('result2 =', result);
+					listUSR=result;
 					});
+					//se enviar el mesaje a los usrios de la lista 
 				
-
+				for (var i = 0; i < listUSR.length; i++) {
+				console.log('listUSR['+i+']: '+listUSR[i]);	
+				this.sendFBMessage (listUSR[i],messageData);
+				}
 				return 'test';
 				}
 				if(event.message.text=="info"){
