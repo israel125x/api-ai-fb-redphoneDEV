@@ -137,22 +137,7 @@ listarRegistrados(callback){
   var ref = db.ref("/fbregistro");
   var count = 0;
   lista=[];
-let messageData = {
-						"attachment": 	{
-						"type": "template",
-						"payload": {
-						"template_type":"button",
-						"text":"Deseas participar en una encuesta?",
-						"buttons":[
-						{
-						"type":"postback",
-						"title":"Simon",
-						"payload":"cam010917"
-						}
-						]
-						}					
-					}
-				}
+
 function asyncSqrt(ref,callback) {
     try{
 	console.log('START execution');
@@ -160,43 +145,22 @@ function asyncSqrt(ref,callback) {
 		snap.forEach(function (childSnap){
 			var reg = childSnap.val();  
 			console.log('registro= ',reg.fbid);
-			sendFBMessage(reg.fbid,messageData);
+			lista.push(reg.fbid);
 		})
-		callback(null,'OK');
+		callback(null,lista);
 	});
 	}  catch (err) {
         console.log('err ',err);
 		return null;
         }
 }
-function sendFBMessage(sender, messageData) {
-			    console.log('sendFBMessage sender =',sender);
-				return new Promise((resolve, reject) => {
-				request({
-                url: 'https://graph.facebook.com/v2.6/me/messages',
-                qs: {access_token: FB_PAGE_ACCESS_TOKEN},
-                method: 'POST',
-                json: {
-                    recipient: {id: sender},
-                    message: messageData,
-                }
-				}, (error, response) => {
-                if (error) {
-                    console.log('Error sending message: ', error);
-                    reject(error);
-                } else if (response.body.error) {
-                    console.log('Error: ', response.body.error);
-                    reject(new Error(response.body.error));
-                }
-
-					resolve();
-				});
-				});
-				}
 
  
 asyncSqrt(ref, function (ref, result) {
     console.log('END asyncSqrt and result =', result);
+	
+	//var resultado=result;
+	//var resultado =result;
 	callback(null,result);
 });
 
@@ -432,7 +396,7 @@ asyncSqrt(ref, function (ref, result) {
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
-					/*let messageData = {
+					let messageData = {
 						"attachment": 	{
 						"type": "template",
 						"payload": {
@@ -448,11 +412,11 @@ asyncSqrt(ref, function (ref, result) {
 						}					
 					}
 				}
-				*/
+				
 				this.listarRegistrados(function (value, result) {
 					console.log('result2 =', result);
 				});
-				/*asyncSqrt2(200, function (value, result) {
+				asyncSqrt2(200, function (value, result) {
                     console.log('END execution with value =', value, 'and result =', result);
 					console.log('lista.length= ', lista.length);
 					for (var i = 0; i < lista.length; i++) {
