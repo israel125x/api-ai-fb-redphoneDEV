@@ -441,7 +441,7 @@ asyncSqrt(ref, function (ref, result) {
 						}					
 					}
 				}
-				new Promise((resolve, reject) => {
+				return new Promise((resolve, reject) => {
 				async.eachSeries((callback) => {
 						this.listarRegistrados()
                         .then(() => console.log('llamada1'))
