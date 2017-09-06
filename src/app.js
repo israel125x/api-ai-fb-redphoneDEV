@@ -441,11 +441,9 @@ asyncSqrt(ref, function (ref, result) {
 						}					
 					}
 				}
-				return new Promise((resolve, reject) => {
+				new Promise((resolve, reject) => {
 				async.eachSeries((callback) => {
-                    this.listarRegistrados(function (value, result) {
-					console.log('result2 =', result);
-					})
+						this.listarRegistrados()
                         .then(() => this.sleep(this.messagesDelay))
                         .then(() => this.sendFBMessage ('1963048170387920',messageData))
                         .then(() => callback())
