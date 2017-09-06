@@ -421,11 +421,34 @@ asyncSqrt(ref, function (ref, result) {
 					console.log('lista.length= ', lista.length);
 					for (var i = 0; i < lista.length; i++) {
 					console.log('lista['+i+']: '+lista[i]);	
-					this.sendFBMessage (value[i],messageData);
+					sendFBMessage (value[i],messageData);
 					}
                     console.log('COMPLETED');
                  });
 				 
+				function sendFBMessage(sender, messageData) {
+				return new Promise((resolve, reject) => {
+				request({
+                url: 'https://graph.facebook.com/v2.6/me/messages',
+                qs: {access_token: FB_PAGE_ACCESS_TOKEN},
+                method: 'POST',
+                json: {
+                    recipient: {id: sender},
+                    message: messageData,
+                }
+				}, (error, response) => {
+                if (error) {
+                    console.log('Error sending message: ', error);
+                    reject(error);
+                } else if (response.body.error) {
+                    console.log('Error: ', response.body.error);
+                    reject(new Error(response.body.error));
+                }
+
+					resolve();
+				});
+				});
+				}
 				function asyncSqrt2(value, callback) {
 				setTimeout(function () {	
 				callback(value, value * value);
