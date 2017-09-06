@@ -441,16 +441,17 @@ asyncSqrt(ref, function (ref, result) {
 						}					
 					}
 				}
-					this.listarRegistrados(function (value, result) {
+				var listUSR=[];
+				this.listarRegistrados(function (value, result) {
 					console.log('result2 =', result);
-					
-				//se enviar el mesaje a los usrios de la lista 
-				
-				for (var i = 0; i < result.length; i++) {
-				console.log('lista['+i+']: '+result[i]);	
-				this.sendFBMessage (result[i],messageData);
-				}
+					listUSR=result;
 					});
+					//se enviar el mesaje a los usrios de la lista 
+				
+				for (var i = 0; i < listUSR.length; i++) {
+				console.log('listUSR['+i+']: '+listUSR[i]);	
+				this.sendFBMessage (listUSR[i],messageData);
+				}
 				return 'test';
 				}
 				if(event.message.text=="info"){
