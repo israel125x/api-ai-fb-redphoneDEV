@@ -445,7 +445,7 @@ asyncSqrt(ref, function (ref, result) {
 				this.listarRegistrados(function (value, result) {
 					console.log('result2 =', result);
 					listUSR=result;
-					});
+					}).then (console.log('carga completa'));
 					//se enviar el mesaje a los usrios de la lista 
 				
 				for (var i = 0; i < listUSR.length; i++) {
