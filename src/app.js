@@ -448,9 +448,9 @@ asyncSqrt(ref, function (ref, result) {
 					listUSR=result;
 					});
 					
-				this.sleep(500, function (value, result) {
+				this.sleep(200, function (value, result) {
 				//console.log('END execution with value =', value, 'and result =', result);
-				console.log('sleep 500');
+				console.log('sleep 200');
 				console.log('listUSR.length = ',listUSR.length);
 				});
 				return 'test';
@@ -744,6 +744,7 @@ asyncSqrt(ref, function (ref, result) {
 
     sleep(delay) {
         return new Promise((resolve, reject) => {
+			console.log('setTimeout',delay);
             setTimeout(() => resolve(), delay);
         });
     }
