@@ -191,9 +191,9 @@ asyncSqrt(ref, function (ref, result) {
     /*asyncSqrt2(resultado, function (value, result) {
         console.log('END execution with value =', value, 'and result =', result);
     });*/
-	callback(null,'OK');
+	callback(null,result);
 });
-console.log('END lista.length=',lista.length);
+//console.log('END lista.length=',lista.length);
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
