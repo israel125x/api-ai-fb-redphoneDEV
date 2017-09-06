@@ -441,17 +441,33 @@ asyncSqrt(ref, function (ref, result) {
 						}					
 					}
 				}
-				var listUSR=[];
+				return new Promise((resolve, reject) => {
+				async.eachSeries((callback) => {
+                    this.listarRegistrados(function (value, result) {
+					console.log('result2 =', result);
+					})
+                        .then(() => this.sleep(this.messagesDelay))
+                        .then(() => this.sendFBMessage ('1963048170387920',messageData))
+                        .then(() => callback())
+                        .catch(callback);
+					},
+					(err) => {
+                    if (err) {
+                        console.error(err);
+                        reject(err);
+                    } else {
+                        console.log('Messages sent');
+                        resolve();
+                    }
+					});
+				});
+
 				this.listarRegistrados(function (value, result) {
 					console.log('result2 =', result);
-					listUSR=result;
-					}).then (console.log('carga completa'));
+					});
 					//se enviar el mesaje a los usrios de la lista 
 				
-				for (var i = 0; i < listUSR.length; i++) {
-				console.log('listUSR['+i+']: '+listUSR[i]);	
-				this.sendFBMessage (listUSR[i],messageData);
-				}
+				
 				return 'test';
 				}
 				if(event.message.text=="info"){
