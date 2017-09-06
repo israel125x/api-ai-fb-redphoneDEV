@@ -448,7 +448,7 @@ asyncSqrt(ref, function (ref, result) {
 				
 				for (var i = 0; i < result.length; i++) {
 				console.log('lista['+i+']: '+result[i]);	
-				//this.sendFBMessage (value[i],messageData);
+				this.sendFBMessage (result[i],messageData);
 				}
 					});
 				return 'test';
