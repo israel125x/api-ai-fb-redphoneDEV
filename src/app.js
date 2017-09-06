@@ -418,6 +418,11 @@ asyncSqrt(ref, function (ref, result) {
 				});
 				asyncSqrt2(200, function (value, result) {
                     console.log('END execution with value =', value, 'and result =', result);
+					console.log('lista.length= ', lista.length);
+					for (var i = 0; i < lista.length; i++) {
+					console.log('lista['+i+']: '+lista[i]);	
+					//this.sendFBMessage (value[i],messageData);
+					}
                     console.log('COMPLETED');
                  });
 				 
@@ -426,7 +431,7 @@ asyncSqrt(ref, function (ref, result) {
 				setTimeout(function () {
 				console.log('delay 200', value);	
 				callback(value, value * value);
-				},200);
+				},value);
 				}
 				/*function asyncSqrt2(callback) {
 				console.log('tamalo de la lista =', lista.length);
@@ -748,7 +753,7 @@ asyncSqrt(ref, function (ref, result) {
 
     sleep(delay) {
         return new Promise((resolve, reject) => {
-			console.log('setTimeout',delay);
+			//console.log('setTimeout',delay);
             setTimeout(() => resolve(), delay);
         });
     }
