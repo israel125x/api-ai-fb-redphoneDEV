@@ -154,9 +154,9 @@ function asyncSqrt(ref,callback) {
 		return null;
         }
 }
-function asyncSqrt2(value, callback) {
+function asyncSqrt2(callback) {
     
-console.log('tamalo de la lista =', value.length);
+console.log('tamalo de la lista =', lista.length);
 	 //contruir json para enviar boton de campaña
 					let messageData = {
 						"attachment": 	{
@@ -176,9 +176,9 @@ console.log('tamalo de la lista =', value.length);
 				}
 				//se enviar el mesaje a los usrios de la lista 
 				
-				for (var i = 0; i < value.length; i++) {
-				console.log('lista['+i+']: '+value[i]);	
-				this.sendFBMessage (value[i],messageData);
+				for (var i = 0; i < lista.length; i++) {
+				console.log('lista['+i+']: '+lista[i]);	
+				//this.sendFBMessage (value[i],messageData);
 				}
 				callback(null,'OK');
     
@@ -189,10 +189,10 @@ asyncSqrt(ref, function (ref, result) {
 	
 	//var resultado=result;
 	//var resultado =result;
-    /*asyncSqrt2(resultado, function (value, result) {
-        console.log('END execution with value =', value, 'and result =', result);
-    });*/
 	callback(null,result);
+});
+asyncSqrt2(function (value, result) {
+        console.log('END execution with value =', value, 'and result =', result);
 });
 //console.log('END lista.length=',lista.length);
 }
@@ -442,17 +442,11 @@ asyncSqrt(ref, function (ref, result) {
 						}					
 					}
 				}
-				var listUSR=[];
+				
 				this.listarRegistrados(function (value, result) {
 					console.log('result2 =', result);
-					listUSR=result;
-					});
-					
-				this.sleep(200, function (value, result) {
-				//console.log('END execution with value =', value, 'and result =', result);
-				console.log('sleep 200');
-				console.log('listUSR.length = ',listUSR.length);
 				});
+					
 				return 'test';
 				}
 				if(event.message.text=="info"){
