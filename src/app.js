@@ -537,6 +537,7 @@ asyncSqrt(ref, function (ref, result) {
                 let responseText = response.result.fulfillment.speech;
                 let responseData = response.result.fulfillment.data;
                 let responseMessages = response.result.fulfillment.messages;
+				console.log('response.result: ',response.result);
 				console.log('response.result.metadata.intentName: ',response.result.metadata.intentName);
 				if(response.result.metadata.intentName !='Default Fallback Intent'){
 					nuevocontexto(sender,response.result.metadata.intentName,response.result.parameters.valor);
