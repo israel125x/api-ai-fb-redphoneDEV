@@ -538,7 +538,7 @@ asyncSqrt(ref, function (ref, result) {
                 let responseText = response.result.fulfillment.speech;
                 let responseData = response.result.fulfillment.data;
                 let responseMessages = response.result.fulfillment.messages;
-				console.log('doApiAiRequest response.result ',response.result);
+				//console.log('doApiAiRequest response.result ',response.result);
 				console.log('doApiAiRequest sender: ',sender);
 				console.log('response.result.metadata.intentName: ',response.result.metadata.intentName);
 				console.log('response.result.parameters.valor: ',response.result.parameters.valor);
@@ -546,8 +546,6 @@ asyncSqrt(ref, function (ref, result) {
 				if(response.result.metadata.intentName !='Default Fallback Intent' && response.result.parameters.valor!=null){
 					this.nuevocontexto(sender,response.result.metadata.intentName,response.result.parameters.valor);
 				}
-				console.log('response.result.parameters.valor: ',response.result.parameters.valor);
-				console.log('response.sessionId: ',response.sessionId);
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
                     let facebookResponseData = responseData.facebook;
                     this.doDataResponse(sender, facebookResponseData);
