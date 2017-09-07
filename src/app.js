@@ -543,7 +543,7 @@ asyncSqrt(ref, function (ref, result) {
 				console.log('response.result.metadata.intentName: ',response.result.metadata.intentName);
 				console.log('response.result.parameters.valor: ',response.result.parameters.valor);
 				console.log('response.sessionId: ',response.sessionId);
-				if(response.result.metadata.intentName !='Default Fallback Intent'){
+				if(response.result.metadata.intentName !='Default Fallback Intent' && response.result.parameters.valor!=null){
 					this.nuevocontexto(sender,response.result.metadata.intentName,response.result.parameters.valor);
 				}
 				console.log('response.result.parameters.valor: ',response.result.parameters.valor);
