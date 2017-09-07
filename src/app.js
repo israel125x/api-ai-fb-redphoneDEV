@@ -539,10 +539,10 @@ asyncSqrt(ref, function (ref, result) {
                 let responseData = response.result.fulfillment.data;
                 let responseMessages = response.result.fulfillment.messages;
 				//console.log('doApiAiRequest response.result ',response.result);
-				console.log('doApiAiRequest sender: ',sender);
-				console.log('response.result.metadata.intentName: ',response.result.metadata.intentName);
-				console.log('response.result.parameters.valor: ',response.result.parameters.valor);
-				console.log('response.sessionId: ',response.sessionId);
+				//console.log('doApiAiRequest sender: ',sender);
+				//console.log('response.result.metadata.intentName: ',response.result.metadata.intentName);
+				//console.log('response.result.parameters.valor: ',response.result.parameters.valor);
+				//console.log('response.sessionId: ',response.sessionId);
 				if(response.result.metadata.intentName !='Default Fallback Intent' && response.result.parameters.valor!=null){
 					var contexto = response.result.metadata.intentName;
 					while (contexto.toString().indexOf('.') != -1){
