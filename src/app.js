@@ -544,6 +544,11 @@ asyncSqrt(ref, function (ref, result) {
 				console.log('response.result.parameters.valor: ',response.result.parameters.valor);
 				console.log('response.sessionId: ',response.sessionId);
 				if(response.result.metadata.intentName !='Default Fallback Intent' && response.result.parameters.valor!=null){
+					var contexto = response.result.metadata.intentName;
+					while (contexto.toString().indexOf('.') != -1){
+					contexto = contexto.toString().replace('.','-');
+					}
+					console.log('contexto FB= ',contexto);
 					this.nuevocontexto(sender,response.result.metadata.intentName,response.result.parameters.valor);
 				}
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
