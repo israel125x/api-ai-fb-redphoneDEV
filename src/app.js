@@ -537,17 +537,16 @@ asyncSqrt(ref, function (ref, result) {
                 let responseText = response.result.fulfillment.speech;
                 let responseData = response.result.fulfillment.data;
                 let responseMessages = response.result.fulfillment.messages;
-				console.log('doApiAiRequest sender: ',response.result);
-				console.log('response.result: ',sender);
+				console.log('doApiAiRequest response.result ',response.result);
+				console.log('doApiAiRequest sender: ',sender);
 				console.log('response.result.metadata.intentName: ',response.result.metadata.intentName);
+				console.log('response.result.parameters.valor: ',response.result.parameters.valor);
+				console.log('response.sessionId: ',response.sessionId);
 				if(response.result.metadata.intentName !='Default Fallback Intent'){
-					nuevocontexto(sender,response.result.metadata.intentName,response.result.parameters.valor);
+					this.nuevocontexto(sender,response.result.metadata.intentName,response.result.parameters.valor);
 				}
 				console.log('response.result.parameters.valor: ',response.result.parameters.valor);
 				console.log('response.sessionId: ',response.sessionId);
-				if (response.result.metadata.intentName=='redphone.agente.alta.pregunta1'){
-					//procesoAlta("A1",sender,response.result.parameters.valor);
-				}
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
                     let facebookResponseData = responseData.facebook;
                     this.doDataResponse(sender, facebookResponseData);
