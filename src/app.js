@@ -69,23 +69,7 @@ function procesoAlta (idpro, idusr, valor){
 						  })
   }
 }*/
-//---inserta nuevo contexto en arbol proceso--------------
-function nuevocontexto (idusr,contextoName,contextoValor){
-  console.log("conectando a FireBase");
-  console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
-  var db = firebase.database();
-  var ref = db.ref("procesos/"); 
-  //var newRef = ref.push();
-  var newRef = ref.child(idusr);
-  newRef.child("idfb").set(idusr).then(function (data) {
-                          console.log('Firebase data: ', data); 
-						  })
-  newRef.child(contextoName).set(contextoValor).then(function (data) {
-                          console.log('Firebase data: ', data); 
-						  })
-						  
-}
-//-------------------------------------------------------------
+
 
 /*funcion que verifica el estado de la solicitus de alta 
 function consultarProceso(idusuario){
@@ -124,7 +108,24 @@ class FacebookBot {
         this.sessionIds = new Map();
         this.messagesDelay = 200;
     }
-
+//---inserta nuevo contexto en arbol proceso--------------
+nuevocontexto (idusr,contextoName,contextoValor){
+  console.log("conectando a FireBase");
+  console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
+  var db = firebase.database();
+  var ref = db.ref("procesos/"); 
+  //var newRef = ref.push();
+  var newRef = ref.child(idusr);
+  newRef.child("idfb").set(idusr).then(function (data) {
+                          console.log('Firebase data: ', data); 
+						  })
+  newRef.child(contextoName).set(contextoValor).then(function (data) {
+                          console.log('Firebase data: ', data); 
+						  })
+						  
+return null;
+}
+//-------------------------------------------------------------
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
 listarRegistrados(callback){	
 
