@@ -549,7 +549,7 @@ asyncSqrt(ref, function (ref, result) {
 					contexto = contexto.toString().replace('.','-');
 					}
 					console.log('contexto FB= ',contexto);
-					this.nuevocontexto(sender,response.result.metadata.intentName,response.result.parameters.valor);
+					this.nuevocontexto(sender,contexto,response.result.parameters.valor);
 				}
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
                     let facebookResponseData = responseData.facebook;
