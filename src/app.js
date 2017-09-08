@@ -772,7 +772,8 @@ app.post('/webhook/', (req, res) => {
                                 // delete all locations from original message
                                 event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
 								console.log('locations.length: <--',locations.length+'-->');
-                                if (locations.length > 0) {
+                                //api ai no esta abilitado para resivir eventos tipo FACEBOOK_LOCATION
+								/*if (locations.length > 0) {
 									return null;
                                     locations.forEach(l => {
                                         let locationEvent = {
@@ -784,7 +785,7 @@ app.post('/webhook/', (req, res) => {
                                         };
                                         facebookBot.processFacebookEvent(locationEvent);
                                     });
-                                }
+                                }*/ 
                             }
 
                             facebookBot.processMessageEvent(event);
