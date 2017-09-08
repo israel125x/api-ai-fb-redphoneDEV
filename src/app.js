@@ -772,6 +772,7 @@ app.post('/webhook/', (req, res) => {
                                 event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
 								console.log('locations: ',locations);
                                 if (locations.length > 0) {
+									return null;
                                     locations.forEach(l => {
                                         let locationEvent = {
                                             sender: event.sender,
@@ -780,7 +781,6 @@ app.post('/webhook/', (req, res) => {
                                                 data: l.payload.coordinates
                                             }
                                         };
-										return null;
                                         facebookBot.processFacebookEvent(locationEvent);
                                     });
                                 }
