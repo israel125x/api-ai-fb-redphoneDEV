@@ -771,14 +771,15 @@ app.post('/webhook/', (req, res) => {
 								console.log('JSON.stringify(locations): <--',JSON.stringify(locations)+'-->');
                                 // delete all locations from original message
                                 event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
+								console.log('locations.length: <--',locations.length+'-->');
                                 if (locations.length > 0) {
-									//return null;
+									return null;
                                     locations.forEach(l => {
                                         let locationEvent = {
                                             sender: event.sender,
                                             postback: {
                                                 payload: "FACEBOOK_LOCATION",
-                                                data: {"lat":19.425449068512,"long":"-99.165264137344"},
+                                                data: l.payload.coordinates,
                                             }
                                         };
                                         facebookBot.processFacebookEvent(locationEvent);
