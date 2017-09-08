@@ -755,7 +755,7 @@ app.get('/webhook/', (req, res) => {
 app.post('/webhook/', (req, res) => {
     try {
         const data = JSONbig.parse(req.body);
-		console.log("req = "+JSON.stringify(data));
+		console.log("req = <--"+JSON.stringify(data)+'-->');
         if (data.entry) {
             let entries = data.entry;
             entries.forEach((entry) => {
@@ -766,9 +766,9 @@ app.post('/webhook/', (req, res) => {
 
                             if (event.message.attachments) {
 								
-								console.log('event.message.attachments= ',event.message.attachments);
+								console.log('event.message.attachments= <--',event.message.attachments+'-->');
                                 let locations = event.message.attachments.filter(a => a.type === "location");
-								console.log('locations: ',locations);
+								console.log('locations: <--',locations+'-->');
                                 // delete all locations from original message
                                 event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
                                 if (locations.length > 0) {
