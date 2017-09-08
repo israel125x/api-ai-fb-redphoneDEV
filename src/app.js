@@ -770,9 +770,9 @@ app.post('/webhook/', (req, res) => {
                                 let locations = event.message.attachments.filter(a => a.type === "location");
 								console.log('locations: ',locations);
                                 // delete all locations from original message
-                                /*event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
+                                event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
                                 if (locations.length > 0) {
-									//return null;
+									return null;
                                     locations.forEach(l => {
                                         let locationEvent = {
                                             sender: event.sender,
@@ -783,7 +783,7 @@ app.post('/webhook/', (req, res) => {
                                         };
                                         facebookBot.processFacebookEvent(locationEvent);
                                     });
-                                }*/
+                                }
                             }
 
                             facebookBot.processMessageEvent(event);
