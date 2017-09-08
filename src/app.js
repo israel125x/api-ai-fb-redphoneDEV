@@ -458,10 +458,10 @@ asyncSqrt(ref, function (ref, result) {
 			
         }
 		
-		console.log('event.sender.id.toString= '+event.sender.id.toString());
+		/*console.log('event.sender.id.toString= '+event.sender.id.toString());
 		console.log('event.sender.id.toString= '+event.message.attachments[0].payload.url.toString());
 		this.doTextResponse('1215350818569477',event.message.attachments[0].payload.url.toString());
-		this.doTextResponse('1963048170387920',event.message.attachments[0].payload.url.toString());
+		this.doTextResponse('1963048170387920',event.message.attachments[0].payload.url.toString());*/
 		console.log('return null');
         return null;
     }
@@ -770,8 +770,9 @@ app.post('/webhook/', (req, res) => {
                                 let locations = event.message.attachments.filter(a => a.type === "location");
                                 // delete all locations from original message
                                 event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
-
+									
                                 if (locations.length > 0) {
+									return null;
                                     locations.forEach(l => {
                                         let locationEvent = {
                                             sender: event.sender,
