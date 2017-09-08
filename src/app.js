@@ -766,9 +766,9 @@ app.post('/webhook/', (req, res) => {
 
                             if (event.message.attachments) {
 								
-								console.log('event.message.attachments= <--',event.message.attachments+'-->');
+								console.log('JSON.stringify(event.message.attachments):<--',JSON.stringify(event.message.attachments)+'-->');
                                 let locations = event.message.attachments.filter(a => a.type === "location");
-								console.log('locations: <--',locations+'-->');
+								console.log('JSON.stringify(locations): <--',JSON.stringify(locations)+'-->');
                                 // delete all locations from original message
                                 event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
                                 if (locations.length > 0) {
