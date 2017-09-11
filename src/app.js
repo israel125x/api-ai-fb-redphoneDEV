@@ -786,7 +786,7 @@ app.post('/webhook/', (req, res) => {
 								
 								console.log('JSON.stringify(event.message.attachments):<--',JSON.stringify(event.message.attachments)+'-->');
                                 let locations = event.message.attachments.filter(a => a.type === "location");
-								console.log('JSONbig.parse(locations).payload.coordinates.lat   <--',JSONbig.parse(locations).payload.coordinates.lat+'-->');
+								console.log('event.message.attachments.payload.coordinates.lat: <-- ',event.message.attachments.payload.coordinates.lat+' -->');
 								//console.log('JSONbig.parse(locations).payload.coordinates.long: <--',JSONbig.parse(locations).payload.coordinates.long+'-->');
                                 // delete all locations from original message
                                 event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
