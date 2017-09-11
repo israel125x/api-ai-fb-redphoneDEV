@@ -786,13 +786,16 @@ app.post('/webhook/', (req, res) => {
 								
 								//console.log('JSON.stringify(event.message.attachments):<--',JSON.stringify(event.message.attachments)+'-->');
                                 let locations = event.message.attachments.filter(a => a.type === "location");
-								console.log('lat= ',event.message.attachments[0].payload.coordinates.lat);
-								console.log('long= ',event.message.attachments[0].payload.coordinates.long.toString());
                                 // delete all locations from original message
                                 event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
                                 //api ai no esta abilitado para resivir eventos tipo FACEBOOK_LOCATION
 								
 								if (locations.length > 0) {
+									var latitud= event.message.attachments[0].payload.coordinates.lat;
+									var longitud= event.message.attachments[0].payload.coordinates.long.toString();
+									geocoder.reverse({lat:latitud, lon:longitud}, function(err, res) {
+									console.log('res geocoder.reverse: ',res);
+									});
 									return null;
                                     locations.forEach(l => {
                                         let locationEvent = {
