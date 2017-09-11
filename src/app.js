@@ -18,6 +18,8 @@ const FB_TEXT_LIMIT = 640;
 const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
 const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 var firebase = require('firebase');
+var NodeGeocoder = require('node-geocoder');
+
 var respuesta ="";
 var idusr =""; 
 var lista=[];
