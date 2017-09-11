@@ -784,10 +784,9 @@ app.post('/webhook/', (req, res) => {
 
                             if (event.message.attachments) {
 								
-								console.log('JSON.stringify(event.message.attachments):<--',JSON.stringify(event.message.attachments)+'-->');
+								//console.log('JSON.stringify(event.message.attachments):<--',JSON.stringify(event.message.attachments)+'-->');
                                 let locations = event.message.attachments.filter(a => a.type === "location");
-								//console.log('event.message.attachments.payload.coordinates.lat: <-- ',event.message.attachments.payload.coordinates.lat+' -->');
-								//console.log('JSONbig.parse(locations).payload.coordinates.long: <--',JSONbig.parse(locations).payload.coordinates.long+'-->');
+								console.log('event.message.attachments[0].payload:',event.message.attachments[0].payload+' -->');
                                 // delete all locations from original message
                                 event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
                                 //api ai no esta abilitado para resivir eventos tipo FACEBOOK_LOCATION
