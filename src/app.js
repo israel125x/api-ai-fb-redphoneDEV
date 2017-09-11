@@ -23,6 +23,7 @@ var NodeGeocoder = require('node-geocoder');
 var respuesta ="";
 var idusr =""; 
 var lista=[];
+
 var config = {
     apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
     authDomain: "turnosmovil-a576d.firebaseapp.com",
@@ -33,6 +34,21 @@ var config = {
   };
 var defaultApp = firebase.initializeApp(config);
 var db = firebase.database();
+
+
+
+var options = {
+  provider: 'google',
+ 
+  // Optional depending on the providers
+  httpAdapter: 'https', // Default
+  apiKey: 'AIzaSyCEB67bF9xstjwDsZUP3i6VV6j9759xf4g', // for Mapquest, OpenCage, Google Premier
+  formatter: null         // 'gpx', 'string', ...
+};
+ 
+var geocoder = NodeGeocoder(options);
+
+
 /*function consultarID(idusuario){
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
@@ -770,10 +786,10 @@ app.post('/webhook/', (req, res) => {
 								
 								console.log('JSON.stringify(event.message.attachments):<--',JSON.stringify(event.message.attachments)+'-->');
                                 let locations = event.message.attachments.filter(a => a.type === "location");
-								console.log('JSON.stringify(locations): <--',JSON.stringify(locations)+'-->');
+								console.log('JSONbig.parse(locations).payload.coordinates.lat   <--',JSONbig.parse(locations).payload.coordinates.lat+'-->');
+								console.log('JSONbig.parse(locations).payload.coordinates.long: <--',JSONbig.parse(locations).payload.coordinates.long+'-->');
                                 // delete all locations from original message
                                 event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
-								console.log('locations.length: <--',locations.length+'-->');
                                 //api ai no esta abilitado para resivir eventos tipo FACEBOOK_LOCATION
 								/*if (locations.length > 0) {
 									return null;
