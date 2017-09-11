@@ -791,14 +791,15 @@ app.post('/webhook/', (req, res) => {
                                 //api ai no esta abilitado para resivir eventos tipo FACEBOOK_LOCATION
 								
 								if (locations.length > 0) {
-									var latitud= event.message.attachments[0].payload.coordinates.lat;
-									var longitud= event.message.attachments[0].payload.coordinates.long.toString();
+									//var latitud= event.message.attachments[0].payload.coordinates.lat;
+									//var longitud= event.message.attachments[0].payload.coordinates.long.toString();
+									try{
 									geocoder.reverse({lat:19.42540564329, lon:-99.165248640227}, function(err, res) {
 									console.log('res geocoder.reverse: ',res);
 									});
-									if(err){
-									console.log('err: ',err);
-									return null;									
+									}catch (err) {
+									console.log('err ',err);
+									return null;
 									}
 									return null;
                                     locations.forEach(l => {
