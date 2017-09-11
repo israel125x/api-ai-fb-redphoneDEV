@@ -793,14 +793,13 @@ app.post('/webhook/', (req, res) => {
 								if (locations.length > 0) {
 									//var latitud= event.message.attachments[0].payload.coordinates.lat;
 									//var longitud= event.message.attachments[0].payload.coordinates.long.toString();
-									try{
-									geocoder.reverse({lat:19.42540564329, lon:-99.165248640227}, function(err, res) {
-									console.log('res geocoder.reverse: ',res);
+									geocoder.reverse({lat:45.767, lon:4.833})
+									.then(function(res) {
+									console.log('JSON.stringify(res): ',JSON.stringify(res));
+									})
+									.catch(function(err) {
+									console.log(err);
 									});
-									}catch (err) {
-									console.log('err ',err);
-									return null;
-									}
 									return null;
                                     locations.forEach(l => {
                                         let locationEvent = {
