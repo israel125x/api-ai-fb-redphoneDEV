@@ -791,8 +791,8 @@ app.post('/webhook/', (req, res) => {
                                 //api ai no esta abilitado para resivir eventos tipo FACEBOOK_LOCATION
 								
 								if (locations.length > 0) {
-									var latitud= event.message.attachments[0].payload.coordinates.lat;
-									var longitud= event.message.attachments[0].payload.coordinates.long.toString();
+									//var latitud= event.message.attachments[0].payload.coordinates.lat;
+									//var longitud= event.message.attachments[0].payload.coordinates.long.toString();
 									geocoder.reverse({lat:45.767, lon:4.833})
 									.then(function(res) {
 									console.log('JSON.stringify(res): ',JSON.stringify(res));
