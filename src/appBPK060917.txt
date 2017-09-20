@@ -18,12 +18,9 @@ const FB_TEXT_LIMIT = 640;
 const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
 const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 var firebase = require('firebase');
-var NodeGeocoder = require('node-geocoder');
-
 var respuesta ="";
 var idusr =""; 
 var lista=[];
-
 var config = {
     apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
     authDomain: "turnosmovil-a576d.firebaseapp.com",
@@ -34,21 +31,6 @@ var config = {
   };
 var defaultApp = firebase.initializeApp(config);
 var db = firebase.database();
-
-
-
-var options = {
-  provider: 'google',
- 
-  // Optional depending on the providers
-  httpAdapter: 'https', // Default
-  apiKey: 'AIzaSyCEB67bF9xstjwDsZUP3i6VV6j9759xf4g', // for Mapquest, OpenCage, Google Premier
-  formatter: null         // 'gpx', 'string', ...
-};
- 
-var geocoder = NodeGeocoder(options);
-
-
 /*function consultarID(idusuario){
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
@@ -86,10 +68,32 @@ function procesoAlta (idpro, idusr, valor){
                           console.log('Firebase data: ', data); 
 						  })
   }
-}*/
+}
+//---inserta nuevo registro de usurios en procesos--------------
+function nuevoproceso (idusr){ 
+  console.log("conectando a FireBase");
+  console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
+  var db = firebase.database();
+  var ref = db.ref("procesos/"); 
+  //var newRef = ref.push();
+  var newRef = ref.child(idusr);
+  newRef.child("idfb").set(idusr).then(function (data) {
+                          console.log('Firebase data: ', data); 
+						  })
+  newRef.child("limite").set("3").then(function (data) {
+                          console.log('Firebase data: ', data); 
+						  })
+  newRef.child("paso").set("0").then(function (data) {
+                          console.log('Firebase data: ', data); 
+						  })
+  newRef.child("proceso").set("alta").then(function (data) {
+                          console.log('Firebase data: ', data); 
+						  })
+						  
+}
+//-------------------------------------------------------------
 
-
-/*funcion que verifica el estado de la solicitus de alta 
+//funcion que verifica el estado de la solicitus de alta 
 function consultarProceso(idusuario){
   console.log("conectando a FireBase");
   console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
@@ -126,45 +130,14 @@ class FacebookBot {
         this.sessionIds = new Map();
         this.messagesDelay = 200;
     }
-//---inserta nuevo contexto en arbol proceso--------------
-nuevocontexto (idusr,contextoName,contextoValor){
-  console.log("conectando a FireBase");
-  console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
-  var db = firebase.database();
-  var ref = db.ref("procesos/"); 
-  //var newRef = ref.push();
-  var newRef = ref.child(idusr);
-  newRef.child("idfb").set(idusr).then(function (data) {
-                          console.log('Firebase data: ', data); 
-						  })
-  newRef.child(contextoName).set(contextoValor).then(function (data) {
-                          console.log('Firebase data: ', data); 
-						  })
-						  
-return null;
-}
-//-------------------------------------------------------------
+
 //funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
 listarRegistrados(callback){	
 
   var ref = db.ref("/fbregistro");
   var count = 0;
-let messageData = {
-						"attachment": 	{
-						"type": "template",
-						"payload": {
-						"template_type":"button",
-						"text":"Deseas participar en una encuesta?",
-						"buttons":[
-						{
-						"type":"postback",
-						"title":"Simon",
-						"payload":"cam010917"
-						}
-						]
-						}					
-					}
-				}
+  lista=[];
+
 function asyncSqrt(ref,callback) {
     try{
 	console.log('START execution');
@@ -172,46 +145,26 @@ function asyncSqrt(ref,callback) {
 		snap.forEach(function (childSnap){
 			var reg = childSnap.val();  
 			console.log('registro= ',reg.fbid);
-			sendAlertaCam(reg.fbid,messageData);
+			lista.push(reg.fbid);
 		})
-		callback(null,'OK');
+		callback(null,lista);
 	});
 	}  catch (err) {
         console.log('err ',err);
 		return null;
         }
 }
-function sendAlertaCam(sender, messageData) {
-			    console.log('sendFBMessage sender =',sender);
-				return new Promise((resolve, reject) => {
-				request({
-                url: 'https://graph.facebook.com/v2.6/me/messages',
-                qs: {access_token: FB_PAGE_ACCESS_TOKEN},
-                method: 'POST',
-                json: {
-                    recipient: {id: sender},
-                    message: messageData,
-                }
-				}, (error, response) => {
-                if (error) {
-                    console.log('Error sending message: ', error);
-                    reject(error);
-                } else if (response.body.error) {
-                    console.log('Error: ', response.body.error);
-                    reject(new Error(response.body.error));
-                }
-
-					resolve();
-				});
-				});
-				}
 
  
 asyncSqrt(ref, function (ref, result) {
     console.log('END asyncSqrt and result =', result);
+	
+	//var resultado=result;
+	//var resultado =result;
 	callback(null,result);
 });
 
+//console.log('END lista.length=',lista.length);
 }
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
@@ -443,9 +396,95 @@ asyncSqrt(ref, function (ref, result) {
 				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
 				}
 				if(event.message.text=="Xx"){
+					let messageData = {
+						"attachment": 	{
+						"type": "template",
+						"payload": {
+						"template_type":"button",
+						"text":"Deseas participar en una encuesta?",
+						"buttons":[
+						{
+						"type":"postback",
+						"title":"Simon",
+						"payload":"cam010917"
+						}
+						]
+						}					
+					}
+				}
+				
 				this.listarRegistrados(function (value, result) {
 					console.log('result2 =', result);
 				});
+				asyncSqrt2(200, function (value, result) {
+                    console.log('END execution with value =', value, 'and result =', result);
+					console.log('lista.length= ', lista.length);
+					for (var i = 0; i < lista.length; i++) {
+					console.log('lista['+i+']: '+lista[i]);	
+					var idfb=lista[i];
+					sendFBMessage (idfb,messageData);
+					}
+                    console.log('COMPLETED');
+                 });
+				 
+				function sendFBMessage(sender, messageData) {
+			    console.log('sendFBMessage sender =',sender);
+				return new Promise((resolve, reject) => {
+				request({
+                url: 'https://graph.facebook.com/v2.6/me/messages',
+                qs: {access_token: FB_PAGE_ACCESS_TOKEN},
+                method: 'POST',
+                json: {
+                    recipient: {id: sender},
+                    message: messageData,
+                }
+				}, (error, response) => {
+                if (error) {
+                    console.log('Error sending message: ', error);
+                    reject(error);
+                } else if (response.body.error) {
+                    console.log('Error: ', response.body.error);
+                    reject(new Error(response.body.error));
+                }
+
+					resolve();
+				});
+				});
+				}
+				function asyncSqrt2(value, callback) {
+				setTimeout(function () {	
+				callback(value, value * value);
+				},value);
+				}
+				/*function asyncSqrt2(callback) {
+				console.log('tamalo de la lista =', lista.length);
+				//contruir json para enviar boton de campaña
+					let messageData = {
+						"attachment": 	{
+						"type": "template",
+						"payload": {
+						"template_type":"button",
+						"text":"Deseas participar en una encuesta?",
+						"buttons":[
+						{
+						"type":"postback",
+						"title":"Simon ese",
+						"payload":"cam010917"
+						}
+						]
+						}					
+					}
+				}
+				//se enviar el mesaje a los usrios de la lista 
+				
+				for (var i = 0; i < lista.length; i++) {
+				console.log('lista['+i+']: '+lista[i]);	
+				//this.sendFBMessage (value[i],messageData);
+				}
+				callback(null,'OK');
+				}
+				*/
+					
 				return 'test';
 				}
 				if(event.message.text=="info"){
@@ -476,9 +515,9 @@ asyncSqrt(ref, function (ref, result) {
 			
         }
 		
-		//console.log('event.sender.id.toString= '+event.sender.id.toString());
-		//console.log('event.sender.id.toString= '+event.message.attachments[0].payload.url.toString());
-		//this.doTextResponse('1215350818569477',event.message.attachments[0].payload.url.toString());
+		console.log('event.sender.id.toString= '+event.sender.id.toString());
+		console.log('event.sender.id.toString= '+event.message.attachments[0].payload.url.toString());
+		this.doTextResponse('1215350818569477',event.message.attachments[0].payload.url.toString());
 		this.doTextResponse('1963048170387920',event.message.attachments[0].payload.url.toString());
 		console.log('return null');
         return null;
@@ -556,18 +595,11 @@ asyncSqrt(ref, function (ref, result) {
                 let responseText = response.result.fulfillment.speech;
                 let responseData = response.result.fulfillment.data;
                 let responseMessages = response.result.fulfillment.messages;
-				//console.log('doApiAiRequest response.result ',response.result);
-				//console.log('doApiAiRequest sender: ',sender);
-				//console.log('response.result.metadata.intentName: ',response.result.metadata.intentName);
-				//console.log('response.result.parameters.valor: ',response.result.parameters.valor);
-				//console.log('response.sessionId: ',response.sessionId);
-				if(response.result.metadata.intentName !='Default Fallback Intent' && response.result.parameters.valor!=null){
-					var contexto = response.result.metadata.intentName;
-					while (contexto.toString().indexOf('.') != -1){
-					contexto = contexto.toString().replace('.','-');
-					}
-					console.log('contexto FB= ',contexto);
-					this.nuevocontexto(sender,contexto,response.result.parameters.valor);
+				console.log('response.result.metadata.intentName: ',response.result.metadata.intentName);
+				console.log('response.result.parameters.valor: ',response.result.parameters.valor);
+				console.log('response.sessionId: ',response.sessionId);
+				if (response.result.metadata.intentName=='redphone.agente.alta.pregunta1'){
+					//procesoAlta("A1",sender,response.result.parameters.valor);
 				}
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
                     let facebookResponseData = responseData.facebook;
@@ -773,7 +805,7 @@ app.get('/webhook/', (req, res) => {
 app.post('/webhook/', (req, res) => {
     try {
         const data = JSONbig.parse(req.body);
-		console.log("req = <--"+JSON.stringify(data)+'-->');
+		console.log("req = "+JSON.stringify(data));
         if (data.entry) {
             let entries = data.entry;
             entries.forEach((entry) => {
@@ -784,31 +816,21 @@ app.post('/webhook/', (req, res) => {
 
                             if (event.message.attachments) {
 								
-								//console.log('JSON.stringify(event.message.attachments):<--',JSON.stringify(event.message.attachments)+'-->');
+								console.log('event.message.attachments= ',event.message.attachments);
                                 let locations = event.message.attachments.filter(a => a.type === "location");
                                 // delete all locations from original message
-                                //event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
-                                //api ai no esta abilitado para resivir eventos tipo FACEBOOK_LOCATION
-								
-								if (locations.length > 0) {
-									//console.log('latitud:',event.message.attachments[0].payload.coordinates.lat);
-									//var longitud= event.message.attachments[0].payload.coordinates.long.toString();
-									geocoder.reverse({lat:event.message.attachments[0].payload.coordinates.lat, lon:event.message.attachments[0].payload.coordinates.long.toString()})
-									.then(function(res) {
-									console.log('JSON.stringify(res): ',JSON.stringify(res));
-									})
-									.catch(function(err) {
-									console.log(err);
-									});
-									return null;
+                                event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
+
+                                if (locations.length > 0) {
                                     locations.forEach(l => {
                                         let locationEvent = {
                                             sender: event.sender,
                                             postback: {
                                                 payload: "FACEBOOK_LOCATION",
-                                                data: l.payload.coordinates,
+                                                data: l.payload.coordinates
                                             }
                                         };
+
                                         facebookBot.processFacebookEvent(locationEvent);
                                     });
                                 }

@@ -17,202 +17,15 @@ const FB_TEXT_LIMIT = 640;
 
 const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
 const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
-var firebase = require('firebase');
-var NodeGeocoder = require('node-geocoder');
 
-var respuesta ="";
-var idusr =""; 
-var lista=[];
-
-var config = {
-    apiKey: "AIzaSyBy8uGZdOz_5Pbw1YkjM9vx9GDmWAF5w44",
-    authDomain: "turnosmovil-a576d.firebaseapp.com",
-    databaseURL: "https://turnosmovil-a576d.firebaseio.com",
-    projectId: "turnosmovil-a576d",
-    storageBucket: "turnosmovil-a576d.appspot.com",
-    messagingSenderId: "706329874359"
-  };
-var defaultApp = firebase.initializeApp(config);
-var db = firebase.database();
-
-
-
-var options = {
-  provider: 'google',
- 
-  // Optional depending on the providers
-  httpAdapter: 'https', // Default
-  apiKey: 'AIzaSyCEB67bF9xstjwDsZUP3i6VV6j9759xf4g', // for Mapquest, OpenCage, Google Premier
-  formatter: null         // 'gpx', 'string', ...
-};
- 
-var geocoder = NodeGeocoder(options);
-
-
-/*function consultarID(idusuario){
-  console.log("conectando a FireBase");
-  console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
-  var db = firebase.database();
-  var ref = db.ref("fbregistro/"+idusuario); 
-  //---------------------------------------------------
-//Attach an asynchronous callback to read the data at our posts reference
-  var ultimarespuesta="";
-  ref.on("value", function(snapshot) {
-  var registro = snapshot.val();
-  console.log("registro.val: "+registro);
-  console.log("registro.ultimapeticion: " + registro.ultimapeticion);
-  console.log("registro.ultimarespuesta: " + registro.ultimarespuesta);
-  ultimarespuesta = registro.ultimarespuesta;
-}, function (errorObject) {
-  console.log("The read failed: " + errorObject.code);
-});
-return ultimarespuesta;
-}
-
-function procesoAlta (idpro, idusr, valor){ 
-  console.log("Insertar Registro");
-  console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
-  var db = firebase.database();
-  var ref = db.ref("fbregistro/"); 
-  //var newRef = ref.push();
-  var newRef = ref.child(idusr);
-  if(idpro=='A1'){
-  newRef.child("ALTA1").set(valor).then(function (data) {
-                          console.log('Firebase data: ', data); 
-						  })
-  }
-  if(idpro=='A2'){						  
-  newRef.child("ALTA1").set(valor).then(function (data) {
-                          console.log('Firebase data: ', data); 
-						  })
-  }
-}*/
-
-
-/*funcion que verifica el estado de la solicitus de alta 
-function consultarProceso(idusuario){
-  console.log("conectando a FireBase");
-  console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
-  var db = firebase.database();
-  var ref = db.ref("procesos/"+idusuario); 
-  //---------------------------------------------------
-//Attach an asynchronous callback to read the data at our posts reference
-  var paso="_";
-  ref.on("value", function(snapshot) {
-  var registro = snapshot.val();
-  if(registro==null){
-	return paso;  
-  }
-  console.log("registro.val: "+registro);
-  console.log("registro.idfb: " + registro.idfb);
-  console.log("registro.paso: " + registro.paso);
-  console.log("registro.limite " + registro.limite);
-  console.log("registro.proceso " + registro.proceso);
-  paso = registro.paso;
-  
-}, function (errorObject) {
-  console.log("The read failed: " + errorObject.code);
-  return errorObject.code;
-});
-return paso;
-}
-*/
-
-
-//------------------------------------------------------------------------------
 class FacebookBot {
     constructor() {
         this.apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
         this.sessionIds = new Map();
         this.messagesDelay = 200;
     }
-//---inserta nuevo contexto en arbol proceso--------------
-nuevocontexto (idusr,contextoName,contextoValor){
-  console.log("conectando a FireBase");
-  console.log('defaultApp.name: '+defaultApp.name);  // "[DEFAULT]"
-  var db = firebase.database();
-  var ref = db.ref("procesos/"); 
-  //var newRef = ref.push();
-  var newRef = ref.child(idusr);
-  newRef.child("idfb").set(idusr).then(function (data) {
-                          console.log('Firebase data: ', data); 
-						  })
-  newRef.child(contextoName).set(contextoValor).then(function (data) {
-                          console.log('Firebase data: ', data); 
-						  })
-						  
-return null;
-}
-//-------------------------------------------------------------
-//funcion que inicializa las encuestas-consulta id de usuarios registrados en Firebase------------------------ 
-listarRegistrados(callback){	
 
-  var ref = db.ref("/fbregistro");
-  var count = 0;
-let messageData = {
-						"attachment": 	{
-						"type": "template",
-						"payload": {
-						"template_type":"button",
-						"text":"Deseas participar en una encuesta?",
-						"buttons":[
-						{
-						"type":"postback",
-						"title":"Simon",
-						"payload":"cam010917"
-						}
-						]
-						}					
-					}
-				}
-function asyncSqrt(ref,callback) {
-    try{
-	console.log('START execution');
-	ref.on("value", function(snap){
-		snap.forEach(function (childSnap){
-			var reg = childSnap.val();  
-			console.log('registro= ',reg.fbid);
-			sendAlertaCam(reg.fbid,messageData);
-		})
-		callback(null,'OK');
-	});
-	}  catch (err) {
-        console.log('err ',err);
-		return null;
-        }
-}
-function sendAlertaCam(sender, messageData) {
-			    console.log('sendFBMessage sender =',sender);
-				return new Promise((resolve, reject) => {
-				request({
-                url: 'https://graph.facebook.com/v2.6/me/messages',
-                qs: {access_token: FB_PAGE_ACCESS_TOKEN},
-                method: 'POST',
-                json: {
-                    recipient: {id: sender},
-                    message: messageData,
-                }
-				}, (error, response) => {
-                if (error) {
-                    console.log('Error sending message: ', error);
-                    reject(error);
-                } else if (response.body.error) {
-                    console.log('Error: ', response.body.error);
-                    reject(new Error(response.body.error));
-                }
 
-					resolve();
-				});
-				});
-				}
-
- 
-asyncSqrt(ref, function (ref, result) {
-    console.log('END asyncSqrt and result =', result);
-	callback(null,result);
-});
-
-}
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
             console.log('Response as formatted message');
@@ -241,14 +54,13 @@ asyncSqrt(ref, function (ref, result) {
             });
         }
     }
-		
-   
-	doRichContentResponse(sender, messages) {
+
+    doRichContentResponse(sender, messages) {
         let facebookMessages = []; // array with result messages
-		
+
         for (let messageIndex = 0; messageIndex < messages.length; messageIndex++) {
             let message = messages[messageIndex];
-			console.log('message.type: '+message.type);
+
             switch (message.type) {
                 //message.type 0 means text message
                 case 0:
@@ -257,11 +69,7 @@ asyncSqrt(ref, function (ref, result) {
                     if (message.speech) {
 
                         let splittedText = this.splitResponse(message.speech);
-						console.log('message.speech: '+message.speech);
-						if (message.speech=='Me indicas tú nombre completo, por favor'){
-						
-						}
-							
+
                         splittedText.forEach(s => {
                             facebookMessages.push({text: s});
                         });
@@ -346,7 +154,6 @@ asyncSqrt(ref, function (ref, result) {
                         let facebookMessage = {};
 
                         facebookMessage.text = message.title ? message.title : 'Choose an item';
-						console.log('facebookMessage.text: '+facebookMessage.text);
                         facebookMessage.quick_replies = [];
 
                         message.replies.forEach((r) => {
@@ -410,7 +217,7 @@ asyncSqrt(ref, function (ref, result) {
     }
 
     doTextResponse(sender, responseText) {
-        console.log('doTextResponse');
+        console.log('Response as text message');
         // facebook API limit for text length is 640,
         // so we must split message if needed
         let splittedText = this.splitResponse(responseText);
@@ -424,64 +231,30 @@ asyncSqrt(ref, function (ref, result) {
 
     //which webhook event
     getEventText(event) {
-		
         if (event.message) {
             if (event.message.quick_reply && event.message.quick_reply.payload) {
-                console.log('event.message = true');
-				return event.message.quick_reply.payload;
+                return event.message.quick_reply.payload;
             }
 
             if (event.message.text) {
-                console.log('event.message.text = true');
-				console.log("event: "+JSON.stringify(event));
-				if(event.message.text=='Registrarse'){
-					//console.log('estado proceso alta= ',consultarProceso(event.sender.id));
-					return 'Alta_0';
+				if(event.message.text=='Alta'){
+					console.log("Alta");
+					return 'ALTA';
 				}
-				if(event.message.text=="Consulta usuario"){
-				//console.log('consultarID = '+consultarID(event.sender.id));
-				//this.doTextResponse(event.sender.id.toString(),"la ultima repuesta fue :"+consultarID(event.sender.id)+" :) ");
-				}
-				if(event.message.text=="Xx"){
-				this.listarRegistrados(function (value, result) {
-					console.log('result2 =', result);
-				});
-				return 'test';
-				}
-				if(event.message.text=="info"){
-					let messageData = {
-						"attachment": 	{
-						"type": "image",
-						"payload": {"url": "https://uuajpq.dm2302.livefilestore.com/y4pV0o-PnYo4EGr72neSDx4EqAjD4V7qsN3ztz15n29PoU5dhLwk0psbiVNb2xcNG0oV-GiradMklm2luhQEBbpSxLS1No48bQnLQ3R41IpCji9qLW1H_QwtOtmdSHxjqkblqULTblMIaigctMh5TwP72aFyJ_r9V0rOUPu52bQVvjml0V8-H5cCkSp29E4mjje/coca_logo2.png"
-						}
-					}
-				}
-				this.sendFBMessage (event.sender.id,messageData);	
-				}
-				if (event.message.text=="Nombre usuario") {
-					this.getNombreUSR(event.sender.id);
-				}
+				else{
+				procesarPeticion();
 				return event.message.text;
+				}	
+                return event.message.text;
             }
-			
         }
 
         if (event.postback && event.postback.payload) {
-			console.log('event.postback.payload =',event.postback.payload);
-			console.log('event.postback && event.postback.payload = true');
-			if(event.postback.payload=='cam010917'){
-			return 'cam010917';
-			}	
             return event.postback.payload;
-			
         }
-		
-		//console.log('event.sender.id.toString= '+event.sender.id.toString());
-		//console.log('event.sender.id.toString= '+event.message.attachments[0].payload.url.toString());
-		//this.doTextResponse('1215350818569477',event.message.attachments[0].payload.url.toString());
-		this.doTextResponse('1963048170387920',event.message.attachments[0].payload.url.toString());
-		console.log('return null');
+
         return null;
+
     }
 
     getFacebookEvent(event) {
@@ -533,9 +306,10 @@ asyncSqrt(ref, function (ref, result) {
             // Handle a text message from this sender
             if (!this.sessionIds.has(sender)) {
                 this.sessionIds.set(sender, uuid.v4());
+				console.log('this.sessionIds= ',this.sessionIds);
             }
 
-            console.log("Text = ", text);
+            console.log("Text", text);
             //send user's text to api.ai service
             let apiaiRequest = this.apiAiService.textRequest(text,
                 {
@@ -555,20 +329,10 @@ asyncSqrt(ref, function (ref, result) {
             if (this.isDefined(response.result) && this.isDefined(response.result.fulfillment)) {
                 let responseText = response.result.fulfillment.speech;
                 let responseData = response.result.fulfillment.data;
+				console.log('response.result.parameters.valor: ',response.result.parameters.valor);
+				console.log('response.result.metadata.intentName: ',response.result.metadata.intentName);
                 let responseMessages = response.result.fulfillment.messages;
-				//console.log('doApiAiRequest response.result ',response.result);
-				//console.log('doApiAiRequest sender: ',sender);
-				//console.log('response.result.metadata.intentName: ',response.result.metadata.intentName);
-				//console.log('response.result.parameters.valor: ',response.result.parameters.valor);
-				//console.log('response.sessionId: ',response.sessionId);
-				if(response.result.metadata.intentName !='Default Fallback Intent' && response.result.parameters.valor!=null){
-					var contexto = response.result.metadata.intentName;
-					while (contexto.toString().indexOf('.') != -1){
-					contexto = contexto.toString().replace('.','-');
-					}
-					console.log('contexto FB= ',contexto);
-					this.nuevocontexto(sender,contexto,response.result.parameters.valor);
-				}
+
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
                     let facebookResponseData = responseData.facebook;
                     this.doDataResponse(sender, facebookResponseData);
@@ -622,29 +386,6 @@ asyncSqrt(ref, function (ref, result) {
         return output;
     }
 
-
-    getNombreUSR(sender) {
-        return new Promise((resolve, reject) => {
-            request({
-                url: 'https://graph.facebook.com/v2.6/1215350818569477?access_token=EAAD3bi8tBYwBAKZB7EZAZAYeU7eUxXa5yVph36rr1CGVAUDPez3tjUaaVxZBeY7r8qGRdnP9ZAXL6fMHDjToc9IRpEZA3Su6ehafavPIcs3ZAw5hzUnz1nFCg3wMB4cyAzXdHrYRYOvSkQDxHFhmDkKBJ5Er7mxVXnZAWO0fVMo2zQZDZD',
-                method: 'GET'
-                
-            }, (error, response) => {
-                if (error) {
-                    console.log('Error sending message: ', error);
-                    reject(error);
-                } else if (response.body.error) {
-                    console.log('Error: ', response.body.error);
-                    reject(new Error(response.body.error));
-                }
-				console.log('response.body ',response.body);
-				console.log('JSONbig.parse(req.body).first_name: ',JSONbig.parse(response.body).first_name);
-				console.log('resolve: ',resolve);
-                resolve();
-            });
-        });
-    }
-	
     sendFBMessage(sender, messageData) {
         return new Promise((resolve, reject) => {
             request({
@@ -744,14 +485,18 @@ asyncSqrt(ref, function (ref, result) {
 
     sleep(delay) {
         return new Promise((resolve, reject) => {
-			//console.log('setTimeout',delay);
             setTimeout(() => resolve(), delay);
         });
     }
 
 }
 
-
+function procesarPeticion(){
+	console.log("prosesar peticion");
+	return null;	
+	}
+	
+	
 let facebookBot = new FacebookBot();
 
 const app = express();
@@ -771,9 +516,11 @@ app.get('/webhook/', (req, res) => {
 });
 
 app.post('/webhook/', (req, res) => {
-    try {
+    //console.log("req.sessionID= ",JSONbig.parse(req.sessionID));
+	//console.log("req= ",req);
+	try {
         const data = JSONbig.parse(req.body);
-		console.log("req = <--"+JSON.stringify(data)+'-->');
+		//console.log("data= ",data);
         if (data.entry) {
             let entries = data.entry;
             entries.forEach((entry) => {
@@ -783,32 +530,21 @@ app.post('/webhook/', (req, res) => {
                         if (event.message && !event.message.is_echo) {
 
                             if (event.message.attachments) {
-								
-								//console.log('JSON.stringify(event.message.attachments):<--',JSON.stringify(event.message.attachments)+'-->');
                                 let locations = event.message.attachments.filter(a => a.type === "location");
+
                                 // delete all locations from original message
-                                //event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
-                                //api ai no esta abilitado para resivir eventos tipo FACEBOOK_LOCATION
-								
-								if (locations.length > 0) {
-									//console.log('latitud:',event.message.attachments[0].payload.coordinates.lat);
-									//var longitud= event.message.attachments[0].payload.coordinates.long.toString();
-									geocoder.reverse({lat:event.message.attachments[0].payload.coordinates.lat, lon:event.message.attachments[0].payload.coordinates.long.toString()})
-									.then(function(res) {
-									console.log('JSON.stringify(res): ',JSON.stringify(res));
-									})
-									.catch(function(err) {
-									console.log(err);
-									});
-									return null;
+                                event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
+
+                                if (locations.length > 0) {
                                     locations.forEach(l => {
                                         let locationEvent = {
                                             sender: event.sender,
                                             postback: {
                                                 payload: "FACEBOOK_LOCATION",
-                                                data: l.payload.coordinates,
+                                                data: l.payload.coordinates
                                             }
                                         };
+
                                         facebookBot.processFacebookEvent(locationEvent);
                                     });
                                 }
@@ -826,7 +562,7 @@ app.post('/webhook/', (req, res) => {
                 }
             });
         }
-		//console.log('res.sessionId: ' + res.sessionId);
+
         return res.status(200).json({
             status: "ok"
         });
